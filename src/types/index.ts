@@ -4,3 +4,10 @@ export interface Posts {
 	title: string
 	body: string
 }
+
+export type User = {
+	age: number
+	name: string
+}
+
+export type Collection = 'users'

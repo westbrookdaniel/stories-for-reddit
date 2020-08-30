@@ -18,6 +18,7 @@
 		"@chakra-ui/theme": "^1.0.0-rc.2",
 		"@types/react-helmet": "^6.1.0",
 		"axios": "^0.20.0",
+		"firebase": "^7.19.1",
 		"framer-motion": "^2.6.5",
 		"qs": "^6.9.4",
 		"react": "^16.13.1",

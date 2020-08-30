@@ -2,24 +2,38 @@ import React, { useEffect, useState } from 'react'
 import { hot } from 'react-hot-loader/root'
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 import Header from './components/Header'
-import { Heading, VStack, Code, positionParser } from '@chakra-ui/core'
+import { Heading, VStack, Code, positionParser, Button } from '@chakra-ui/core'
 import { Helmet } from 'react-helmet'
 import { FcHome, FcAbout } from 'react-icons/fc'
 import { motion } from 'framer-motion'
 
-import api from './api'
+import { placeholder, firebase } from './api'
 import { Posts } from './types'
 
 const App = () => {
 	const [posts, setPosts] = useState<Posts[]>()
 
 	useEffect(() => {
-		callApi()
+		callp()
+		callf()
 	}, [])
 
-	const callApi = async () => {
-		const data = await api.getPosts()
-		setPosts(data)
+	const callf = async () => {
+		const fdata = await firebase.get('users')
+		console.log(fdata)
+	}
+	const callp = async () => {
+		const pdata = await placeholder.getPosts()
+		setPosts(pdata)
+	}
+
+	const handleClick = async () => {
+		const fres = await firebase.post('users', {
+			name: 'Tommy',
+			age: 21
+		})
+		console.log('Post Response: ' + fres)
+		callf()
 	}
 
 	return (
@@ -34,6 +48,7 @@ const App = () => {
 						<Heading>
 							<FcHome style={{ display: 'inline-block ' }} /> Hello World
 						</Heading>
+						<Button onClick={handleClick}>Add User</Button>
 						{posts ? (
 							<motion.pre
 								initial={{ opacity: 0, y: 20 }}
