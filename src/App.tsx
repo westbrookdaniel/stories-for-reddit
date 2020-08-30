@@ -27,15 +27,6 @@ const App = () => {
 		setPosts(pdata)
 	}
 
-	const handleClick = async () => {
-		const fres = await firebase.post('users', {
-			name: 'Tommy',
-			age: 21
-		})
-		console.log('Post Response: ' + fres)
-		callf()
-	}
-
 	return (
 		<Router>
 			<VStack p={10} spacing={10}>
@@ -48,14 +39,13 @@ const App = () => {
 						<Heading>
 							<FcHome style={{ display: 'inline-block ' }} /> Hello World
 						</Heading>
-						<Button onClick={handleClick}>Add User</Button>
 						{posts ? (
 							<motion.pre
 								initial={{ opacity: 0, y: 20 }}
 								animate={{ opacity: 1, y: 0 }}
 								style={{ maxWidth: '100%', fontSize: '0.7rem' }}
 							>
-								{JSON.stringify(posts, null, 2)}
+								{JSON.stringify(posts[0], null, 2)}
 							</motion.pre>
 						) : null}
 					</Route>
