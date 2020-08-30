@@ -3,6 +3,7 @@ const path = require('path');
 const CopyPlugin = require('copy-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const Dotenv = require('dotenv-webpack');
 
 const config = {
   entry: [
@@ -65,6 +66,7 @@ const config = {
     historyApiFallback: true
   },
   plugins: [
+    new Dotenv(),
     new HtmlWebpackPlugin({
       appMountId: 'app',
       filename: 'index.html',

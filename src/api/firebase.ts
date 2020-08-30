@@ -8,13 +8,13 @@ import 'firebase/auth'
 import 'firebase/firestore'
 
 const firebaseConfig = {
-	apiKey: 'AIzaSyBVj1aSVACwaNRQP2VuI698G4kJb6yW-Yo',
-	authDomain: 'stories-for-reddit.firebaseapp.com',
+	apiKey: process.env.FB_APIKEY,
+	authDomain: 'FB_AUTH_DOMAIN',
 	databaseURL: 'https://stories-for-reddit.firebaseio.com',
 	projectId: 'stories-for-reddit',
 	storageBucket: 'stories-for-reddit.appspot.com',
 	messagingSenderId: '677944946792',
-	appId: '1:677944946792:web:1c7652578f3b2e465e8bdd',
+	appId: process.env.FB_APPID,
 	measurementId: 'G-RBK6W99GY2',
 }
 firebase.initializeApp(firebaseConfig)
