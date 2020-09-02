@@ -13,10 +13,10 @@ import {
 } from '@chakra-ui/core'
 import { FcDocument } from 'react-icons/fc'
 import { MdKeyboardArrowRight, MdMoreHoriz } from 'react-icons/md'
-import { useTheme } from "@chakra-ui/core";
+import { useTheme } from '@chakra-ui/core'
 
 export default function StyleGuide() {
-    const theme = useTheme()
+	const theme = useTheme()
 	return (
 		<>
 			<Helmet>
@@ -38,8 +38,8 @@ export default function StyleGuide() {
 				<HStack>
 					<Button
 						colorScheme="primary"
-                        pr={2}
-                        size="md"
+						pr={2}
+						size="md"
 						rightIcon={<MdKeyboardArrowRight size={25} />}
 					>
 						Primary
@@ -57,11 +57,11 @@ export default function StyleGuide() {
 				>
 					<VStack p={5} justify="space-between">
 						<Heading
-                            fontSize="lg"
+							fontSize="lg"
 							mt="1"
 							fontWeight="semibold"
-                            as="h4"
-                            lineHeight="1.4em"
+							as="h4"
+							lineHeight="1.4em"
 						>
 							[HR] Monster Hunter Saga
 						</Heading>
@@ -78,8 +78,18 @@ export default function StyleGuide() {
 								justifyContent="space-between"
 								alignItems="center"
 							>
-								<MdMoreHoriz fontSize={25} color={theme.colors.primary[500]} />
-								<MdKeyboardArrowRight size={25} color={theme.colors.primary[500]} />
+								<Button variant="ghost" p={1} size="sm">
+									<MdMoreHoriz
+										fontSize={25}
+										color={theme.colors.primary[500]}
+									/>
+								</Button>
+								<Button variant="ghost" p={1} size="sm">
+									<MdKeyboardArrowRight
+										size={25}
+										color={theme.colors.primary[500]}
+									/>
+								</Button>
 							</Box>
 						</Box>
 					</VStack>
