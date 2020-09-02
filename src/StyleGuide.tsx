@@ -13,7 +13,10 @@ import {
 } from '@chakra-ui/core'
 import { FcDocument } from 'react-icons/fc'
 import { MdKeyboardArrowRight, MdMoreHoriz } from 'react-icons/md'
+import { useTheme } from "@chakra-ui/core";
+
 export default function StyleGuide() {
+    const theme = useTheme()
 	return (
 		<>
 			<Helmet>
@@ -75,8 +78,8 @@ export default function StyleGuide() {
 								justifyContent="space-between"
 								alignItems="center"
 							>
-								<MdMoreHoriz fontSize={25} color="primary.500" />
-								<MdKeyboardArrowRight size={25} color="primary.500" />
+								<MdMoreHoriz fontSize={25} color={theme.colors.primary[500]} />
+								<MdKeyboardArrowRight size={25} color={theme.colors.primary[500]} />
 							</Box>
 						</Box>
 					</VStack>
