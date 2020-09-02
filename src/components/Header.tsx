@@ -6,7 +6,7 @@ export default function Header() {
     return (
         <HStack as="nav" spacing={10}>
            <Link to='/'>Home</Link>
-           <Link to='/about'>About</Link>
+           <Link to='/style-guide'>Style Guide</Link>
         </HStack>
     )
 }

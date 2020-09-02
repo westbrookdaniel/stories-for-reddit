@@ -2,13 +2,12 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import App from './App'
 
-import { ChakraProvider, CSSReset } from '@chakra-ui/core'
+import { ChakraProvider } from '@chakra-ui/core'
 import theme from "../theme"
 
 function Index() {
     return (
-      <ChakraProvider theme={theme}>
-        <CSSReset />
+      <ChakraProvider resetCSS theme={theme}>
         <App />
       </ChakraProvider>
     )
