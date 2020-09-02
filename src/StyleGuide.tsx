@@ -25,7 +25,7 @@ export default function StyleGuide() {
 			<Heading>
 				<FcDocument style={{ display: 'inline-block ' }} /> Style Guide
 			</Heading>
-			<VStack align="start" maxW="4xl" w="100%" px={5}>
+			<VStack align="start" maxW="4xl" w="100%" px={5} spacing={5}>
 				<Heading>Heading Default</Heading>
 				<Heading size="lg">Heading Large</Heading>
 				<Heading size="md">Heading Medium</Heading>
@@ -47,7 +47,7 @@ export default function StyleGuide() {
 					<Button>Default</Button>
 					<Button variant="ghost">Ghost</Button>
 				</HStack>
-				<Input focusBorderColor="primary.300" placeholder="Input Text Here" />
+				<Input focusBorderColor="primary.200" placeholder="Input Text Here" />
 				<AspectRatio
 					ratio={1}
 					maxW="200px"
@@ -56,7 +56,7 @@ export default function StyleGuide() {
 					boxShadow="md"
 				>
 					<VStack p={5} justify="space-between">
-						<Heading
+						<Text
 							fontSize="lg"
 							mt="1"
 							fontWeight="semibold"
@@ -64,7 +64,7 @@ export default function StyleGuide() {
 							lineHeight="1.4em"
 						>
 							[HR] Monster Hunter Saga
-						</Heading>
+						</Text>
 						<Box w="100%">
 							<Box d="flex" alignItems="baseline" pt={3}>
 								<Badge borderRadius="full" px="2" colorScheme="primary">

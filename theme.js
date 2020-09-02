@@ -2,9 +2,11 @@ import { extendTheme } from '@chakra-ui/core'
 import { mode } from "@chakra-ui/theme-tools"
 // import {theme as ogTheme} from '@chakra-ui/theme'
 
-// console.log(ogTheme.colors.blue)
-
 const theme = extendTheme({
+	fonts: {
+		body: ['sans-serif', 'Lato'],
+		heading: ['sans-serif', 'Lora'],
+	},
 	colors: {
 		primary: {
 			50: '#f6eeee',
