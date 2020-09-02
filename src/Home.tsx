@@ -1,15 +1,29 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { Helmet } from 'react-helmet'
 import { motion } from 'framer-motion'
 import { FcHome } from 'react-icons/fc'
 import { Heading } from '@chakra-ui/core'
 import { Posts } from './types'
 
-interface Props {
-    posts: Posts[] | undefined
-}
+import { placeholder, firebase } from './api'
 
-export default function Home({ posts }: Props) {
+export default function Home() {
+	const [posts, setPosts] = useState<Posts[]>()
+
+	useEffect(() => {
+		callp()
+		callf()
+	}, [])
+
+	const callf = async () => {
+		const fdata = await firebase.get('users')
+		console.log(fdata)
+	}
+	const callp = async () => {
+		const pdata = await placeholder.getPosts()
+		setPosts(pdata)
+	}
+
 	return (
 		<>
 			<Helmet>

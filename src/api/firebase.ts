@@ -1,11 +1,8 @@
-import http from './http'
-import qs from 'qs'
-import { Collection, User } from '../types'
-
 import firebase from 'firebase/app'
 import 'firebase/analytics'
 import 'firebase/auth'
 import 'firebase/firestore'
+import { Collection, User } from '../types'
 
 const firebaseConfig = {
 	apiKey: process.env.FB_APIKEY,
@@ -19,7 +16,6 @@ const firebaseConfig = {
 }
 firebase.initializeApp(firebaseConfig)
 const db = firebase.firestore()
-
 
 class firebaseApi {
 	get = async (collection: Collection) => {
