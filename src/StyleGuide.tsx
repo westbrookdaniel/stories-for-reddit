@@ -10,12 +10,14 @@ import {
 	Box,
 	Badge,
 	AspectRatio,
+	useColorMode,
 } from '@chakra-ui/core'
 import { FcDocument } from 'react-icons/fc'
 import { MdKeyboardArrowRight, MdMoreHoriz } from 'react-icons/md'
 import { useTheme } from '@chakra-ui/core'
 
 export default function StyleGuide() {
+	const { colorMode } = useColorMode()
 	const theme = useTheme()
 	return (
 		<>
@@ -30,7 +32,7 @@ export default function StyleGuide() {
 				<Heading size="lg">Heading Large</Heading>
 				<Heading size="md">Heading Medium</Heading>
 				<Heading size="rg">Heading Regular</Heading>
-				<Text>
+				<Text color={colorMode === 'dark' ? 'gray.400' : 'gray.700'}>
 					Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quos id,
 					enim impedit fugit accusamus earum eligendi saepe distinctio iure!
 					Fugiat?
@@ -53,15 +55,21 @@ export default function StyleGuide() {
 					maxW="200px"
 					w="100%"
 					borderRadius="md"
+					bg={colorMode === 'dark' ? 'gray.750' : 'white'}
 					boxShadow="md"
 				>
-					<VStack p={5} justify="space-between">
+					<Box
+						display="flex"
+						flexDirection="column"
+						p={5}
+					>
 						<Text
 							fontSize="lg"
 							mt="1"
 							fontWeight="semibold"
 							as="h4"
 							lineHeight="1.4em"
+							flexGrow={1}
 						>
 							[HR] Monster Hunter Saga
 						</Text>
@@ -81,18 +89,26 @@ export default function StyleGuide() {
 								<Button variant="ghost" p={1} size="sm">
 									<MdMoreHoriz
 										fontSize={25}
-										color={theme.colors.primary[500]}
+										color={
+											colorMode === 'dark'
+												? theme.colors.primary[100]
+												: theme.colors.primary[500]
+										}
 									/>
 								</Button>
 								<Button variant="ghost" p={1} size="sm">
 									<MdKeyboardArrowRight
 										size={25}
-										color={theme.colors.primary[500]}
+										color={
+											colorMode === 'dark'
+												? theme.colors.primary[100]
+												: theme.colors.primary[500]
+										}
 									/>
 								</Button>
 							</Box>
 						</Box>
-					</VStack>
+					</Box>
 				</AspectRatio>
 			</VStack>
 		</>

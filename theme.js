@@ -1,6 +1,8 @@
 import { extendTheme } from '@chakra-ui/core'
-import { mode } from "@chakra-ui/theme-tools"
-// import {theme as ogTheme} from '@chakra-ui/theme'
+import { mode } from '@chakra-ui/theme-tools'
+
+import { theme as ogTheme } from '@chakra-ui/theme'
+console.log(ogTheme.components)
 
 const theme = extendTheme({
 	fonts: {
@@ -27,10 +29,22 @@ const theme = extendTheme({
 			300: '#e0e0e0',
 			400: '#bdbdbd',
 			500: '#9e9e9e',
-			600: '#757575',
-			700: '#616161',
-			800: '#323232',
-			900: '#212121',
+			600: '#656565',
+			700: '#515151',
+			750: '#303030',
+			800: '#212121',
+			900: '#191919',
+		},
+	},
+	components: {
+		Input: {
+			baseStyle: ({ colorMode }) => ({
+				field: {
+					'&::placeholder': {
+						color: colorMode === 'dark' ? 'gray.100' : 'gray.800',
+					},
+				},
+			}),
 		},
 	},
 })
