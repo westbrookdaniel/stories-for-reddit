@@ -1,4 +1,4 @@
-import { extendTheme } from './src/CustomProvider'
+import { extendTheme } from '@chakra-ui/core'
 import { mode } from '@chakra-ui/theme-tools'
 
 import { theme as ogTheme } from '@chakra-ui/theme'
