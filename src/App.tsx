@@ -1,7 +1,7 @@
 import React from 'react'
 import { hot } from 'react-hot-loader/root'
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
-import Header from './components/Header'
+import Header from './components/layout/Header'
 
 import Home from './Home'
 import StyleGuide from './StyleGuide'
