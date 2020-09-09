@@ -10,8 +10,8 @@ import {
 	Box,
 	Badge,
 	AspectRatio,
+	useColorMode
 } from '@chakra-ui/core'
-import { useColorMode } from './ColorProvider'
 import { FcDocument } from 'react-icons/fc'
 import { MdKeyboardArrowRight, MdMoreHoriz } from 'react-icons/md'
 import { useTheme } from '@chakra-ui/core'

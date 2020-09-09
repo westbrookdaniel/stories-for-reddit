@@ -2,14 +2,14 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import App from './App'
 
-import { CustomProvider } from './CustomProvider'
+import { ChakraProvider } from '@chakra-ui/core'
 import theme from "../theme"
 
 function Index() {
     return (
-      <CustomProvider resetCSS theme={theme}>
+      <ChakraProvider resetCSS theme={theme}>
         <App />
-      </CustomProvider>
+      </ChakraProvider>
     )
   }
 
