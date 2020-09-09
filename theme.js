@@ -1,15 +1,13 @@
-import { extendTheme } from '@chakra-ui/core'
-import { mode } from '@chakra-ui/theme-tools'
+import { theme as t } from './completeTheme'
 
-import { theme as ogTheme } from '@chakra-ui/theme'
-console.log(ogTheme)
-
-const theme = extendTheme({
+const theme = {
+	...t,
 	fonts: {
 		body: ['sans-serif', 'Lato'],
 		heading: ['sans-serif', 'Lora'],
 	},
 	colors: {
+		...t.colors,
 		primary: {
 			50: '#f6eeee',
 			100: '#e5cdcd',
@@ -37,16 +35,18 @@ const theme = extendTheme({
 		},
 	},
 	components: {
+		...t.components,
 		Input: {
-			baseStyle: ({ colorMode }) => ({
+			...t.components.Input,
+			baseStyle: {
 				field: {
 					'&::placeholder': {
-						color: colorMode === 'dark' ? 'gray.100' : 'gray.800',
+						color: 'gray.800',
 					},
 				},
-			}),
+			},
 		},
 	},
-})
+}
 
 export default theme

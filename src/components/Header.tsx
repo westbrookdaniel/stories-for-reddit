@@ -1,6 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import { HStack, Button, useColorMode} from '@chakra-ui/core'
+import { HStack, useColorMode} from '@chakra-ui/core'
+import { Button } from 'rebass'
 
 export default function Header() {
     const { toggleColorMode }: any = useColorMode()

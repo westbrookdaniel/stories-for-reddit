@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { Helmet } from 'react-helmet'
 import { motion } from 'framer-motion'
 import { FcHome } from 'react-icons/fc'
-import { Heading } from '@chakra-ui/core'
+import { Heading } from 'rebass'
 import { Posts } from './types'
 
 import { placeholder, firebase } from './api'

@@ -1,4 +1,4 @@
-const theme = {
+export const theme = {
     "breakpoints": [
       "30em",
       "48em",

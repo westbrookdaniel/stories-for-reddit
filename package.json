@@ -16,9 +16,14 @@
 	"dependencies": {
 		"@chakra-ui/core": "^1.0.0-rc.3",
 		"@chakra-ui/theme": "^1.0.0-rc.3",
+		"@rebass/forms": "^4.0.6",
+		"@rebass/preset": "^4.0.5",
 		"@types/react-helmet": "^6.1.0",
+		"@types/rebass": "^4.0.6",
+		"@types/rebass__forms": "^4.0.2",
 		"axios": "^0.20.0",
 		"dotenv-webpack": "^2.0.0",
+		"emotion-theming": "^10.0.27",
 		"firebase": "^7.19.1",
 		"framer-motion": "^2.6.5",
 		"qs": "^6.9.4",
@@ -27,7 +32,9 @@
 		"react-helmet": "^6.1.0",
 		"react-hot-loader": "^4.12.21",
 		"react-icons": "^3.11.0",
-		"react-router-dom": "^5.2.0"
+		"react-router-dom": "^5.2.0",
+		"rebass": "^4.0.7",
+		"reset-css": "^5.0.1"
 	},
 	"devDependencies": {
 		"@babel/core": "^7.11.4",
