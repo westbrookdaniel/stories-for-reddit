@@ -1,8 +1,8 @@
-import { extendTheme } from '@chakra-ui/core'
+import { extendTheme } from './src/CustomProvider'
 import { mode } from '@chakra-ui/theme-tools'
 
 import { theme as ogTheme } from '@chakra-ui/theme'
-console.log(ogTheme.components)
+console.log(ogTheme)
 
 const theme = extendTheme({
 	fonts: {

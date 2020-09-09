@@ -1,9 +1,10 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import { HStack, Button, useColorMode } from '@chakra-ui/core'
+import { HStack, Button } from '@chakra-ui/core'
+import { useColorMode } from '../ColorProvider'
 
 export default function Header() {
-    const { toggleColorMode } = useColorMode()
+    const { toggleColorMode }: any = useColorMode()
 
     return (
         <HStack as="nav" spacing={10}>
