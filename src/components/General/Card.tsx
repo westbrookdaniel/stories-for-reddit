@@ -19,6 +19,10 @@ const Card = ({ title, time = "unknown"}: Props) => {
 			borderRadius="md"
 			bg={colorMode === 'dark' ? 'gray.750' : 'white'}
 			boxShadow="md"
+			_hover={{
+				boxShadow: "xl"
+			}}
+			transition="ease-in-out 0.1s all"
 		>
 			<Box display="flex" flexDirection="column" p={5}>
 				<Text

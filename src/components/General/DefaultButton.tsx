@@ -13,6 +13,7 @@ const DefaultButton: FunctionComponent<Props> = ({ children, colorScheme = "prim
 			colorScheme={colorScheme}
 			pr={2}
 			size="md"
+			boxShadow="sm"
             rightIcon={<MdKeyboardArrowRight size={25} />}
             {...props}
 		>
