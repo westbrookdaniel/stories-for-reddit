@@ -5,7 +5,7 @@ interface Props {
 	[index: string]: any
 }
 
-const SectionContainer: FunctionComponent<Props> = ({ children, maxW = '4xl', ...props }) => {
+const SectionContainer: FunctionComponent<Props> = ({ children, maxW = '6xl', ...props }) => {
 	return (
 		<Container p={8} maxW={maxW} {...props}>
 			{children}

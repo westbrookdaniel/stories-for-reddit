@@ -15,7 +15,7 @@ interface Props {}
 
 const Hero = (props: Props) => {
 	return (
-		<SectionContainer maxW="6xl" py={12}>
+		<SectionContainer py={12}>
 			<SimpleGrid columns={[1, 1, 1, 2]} alignItems="center">
 				<Box maxW="sm">
 					<Heading as="h1" fontSize="4em" mb={6}>
