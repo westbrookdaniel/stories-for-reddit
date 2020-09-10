@@ -1,16 +1,22 @@
 import React, { FunctionComponent } from 'react'
-import { Container } from '@chakra-ui/core'
+import { Container, Box } from '@chakra-ui/core'
 
 interface Props {
 	maxW?: string
 	[index: string]: any
 }
 
-const SectionContainer: FunctionComponent<Props> = ({ children, maxW = '6xl', ...props }) => {
+const SectionContainer: FunctionComponent<Props> = ({
+	children,
+	maxW = '6xl',
+	...props
+}) => {
 	return (
-		<Container p={8} maxW={maxW} {...props}>
-			{children}
-		</Container>
+		<Box {...props}>
+			<Container p={8} maxW={maxW}>
+				{children}
+			</Container>
+		</Box>
 	)
 }
 

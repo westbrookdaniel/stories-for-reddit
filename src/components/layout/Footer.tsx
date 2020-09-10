@@ -10,7 +10,7 @@ export default function Footer() {
 	const { colorMode } = useColorMode()
 
 	return (
-		<Box px={12} pt={6} pb={12} d="flex" alignItems="center" color={colorMode === 'dark' ? 'gray.500' : 'gray.700'} w="100%">
+		<Box px={12} pt={6} py={10} d="flex" alignItems="center" color={colorMode === 'dark' ? 'gray.500' : 'gray.700'} w="100%">
 			<Link
 				as={RouterLink}
 				_hover={{ textDecor: 'none' }}
