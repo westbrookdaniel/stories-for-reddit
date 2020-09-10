@@ -31,7 +31,7 @@ const Hero = (props: Props) => {
 					<DefaultButton mb={6}>Discover Stories </DefaultButton>
 				</Box>
 				<Box maxW="lg" my={12} alignItems="center" d="flex">
-					<Image src={heroImage} alt="Segun Adebayo" />
+					<Image htmlHeight="341" htmlWidth="512" src={heroImage} alt="Segun Adebayo" />
 				</Box>
 			</SimpleGrid>
 		</SectionContainer>

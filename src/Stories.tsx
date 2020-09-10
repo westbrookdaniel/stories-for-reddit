@@ -28,22 +28,30 @@ export default function Stories() {
 	// 	setPosts(pdata)
 	// }
 
-	const cards: JSX.Element[] = new Array(12)
-	cards.fill(<Card title="[HR] Monster Hunter Saga" time="14 min" />)
+	const cards = new Array(12)
+	cards.fill(Date.now())
 
 	return (
 		<>
 			<Helmet>
 				<title>All Stories | Stories For Reddit</title>
 			</Helmet>
-			<TopDetails  mb={6} title="All Stories" maxW="4xl" />
+			<TopDetails mb={6} title="All Stories" maxW="4xl" />
 			<SectionContainer
 				maxW="4xl"
 				bg={colorMode === 'dark' ? 'tan.950' : 'tan.400'}
 				pb={8}
 			>
 				<SimpleGrid columns={4} spacing={5}>
-					{cards}
+					{cards.map((card) => {
+						return (
+							<Card
+								key={cards.indexOf(card)}
+								title="[HR] Monster Hunter Saga"
+								time="14 min"
+							/>
+						)
+					})}
 				</SimpleGrid>
 			</SectionContainer>
 		</>
