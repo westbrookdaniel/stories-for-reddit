@@ -5,12 +5,12 @@ import Header from './components/layout/Header'
 
 import Home from './Home'
 import StyleGuide from './StyleGuide'
-import { VStack } from '@chakra-ui/core'
+import { Box } from '@chakra-ui/core'
 
 const App = () => {
 	return (
 		<Router>
-			<VStack p={10} spacing={10}>
+			<Box d="flex" flexDir="column">
 				<Header />
 				<Switch>
 					<Route exact path="/">
@@ -20,7 +20,7 @@ const App = () => {
 						<StyleGuide />
 					</Route>
 				</Switch>
-			</VStack>
+			</Box>
 		</Router>
 	)
 }

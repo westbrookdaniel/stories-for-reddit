@@ -9,14 +9,12 @@ interface Props {
 export default function Logo({ colorMode, ...props }: Props) {
 	const defaultProps = {
 		style: {
-			height: "min-content" 
-		}
+			height: 'min-content',
+		},
 	}
-
-	console.log(props)
 	return colorMode === 'dark' ? (
 		<FcDvdLogo {...defaultProps} {...props} />
 	) : (
-		<FcCdLogo {...defaultProps}{...props} />
+		<FcCdLogo {...defaultProps} {...props} />
 	)
 }
