@@ -1,5 +1,7 @@
 import React from 'react'
-import { FcDvdLogo, FcCdLogo } from 'react-icons/fc'
+import logo from '../../images/logo.svg'
+import logoWhite from '../../images/logoWhite.svg'
+import { Image } from '@chakra-ui/core'
 
 interface Props {
 	colorMode: string
@@ -12,9 +14,11 @@ export default function Logo({ colorMode, ...props }: Props) {
 			height: 'min-content',
 		},
 	}
-	return colorMode === 'dark' ? (
-		<FcDvdLogo {...defaultProps} {...props} />
-	) : (
-		<FcCdLogo {...defaultProps} {...props} />
+	return (
+		<Image
+			src={colorMode === 'dark' ? logoWhite : logo}
+			{...defaultProps}
+			{...props}
+		/>
 	)
 }
