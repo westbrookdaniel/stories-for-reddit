@@ -2,6 +2,7 @@ import React, { FunctionComponent } from 'react'
 import { Container } from '@chakra-ui/core'
 
 interface Props {
+	maxW?: string
 	[index: string]: any
 }
 

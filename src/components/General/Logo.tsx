@@ -1,6 +1,7 @@
 import React from 'react'
 import logo from '../../images/logo.svg'
 import logoWhite from '../../images/logoWhite.svg'
+import logoGray from '../../images/logoGray.svg'
 import { Image } from '@chakra-ui/core'
 
 interface Props {
@@ -14,6 +15,11 @@ export default function Logo({ colorMode, ...props }: Props) {
 			height: 'min-content',
 		},
 	}
+
+	if (colorMode === 'gray') {
+		return <Image src={logoGray} {...defaultProps} {...props} />
+	}
+
 	return (
 		<Image
 			src={colorMode === 'dark' ? logoWhite : logo}

@@ -2,6 +2,7 @@ import React from 'react'
 import { hot } from 'react-hot-loader/root'
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 import Header from './components/layout/Header'
+import Footer from './components/layout/Footer'
 
 import Home from './Home'
 import StyleGuide from './StyleGuide'
@@ -20,6 +21,7 @@ const App = () => {
 						<StyleGuide />
 					</Route>
 				</Switch>
+				<Footer />
 			</Box>
 		</Router>
 	)

@@ -10,12 +10,14 @@ import {
 	Avatar,
 } from '@chakra-ui/core'
 import { FcCdLogo, FcDvdLogo } from 'react-icons/fc'
-import Logo from '../General/Logo'
+import Logo from '../general/Logo'
 import { AnimatePresence, motion } from 'framer-motion'
 import { BsMoon } from 'react-icons/bs'
+import NavLink from '../general/NavLink'
+import Nav from './Nav'
 
 export default function Header() {
-	const { toggleColorMode, colorMode } = useColorMode()
+	const { colorMode } = useColorMode()
 	const [logoHover, setLogoHover] = useState(false)
 
 	const handleHover = () => {
@@ -62,33 +64,7 @@ export default function Header() {
 					)}
 				</AnimatePresence>
 			</Box>
-			<HStack as="nav" justifyContent="flex-end" w="100%" spacing={12}>
-				<NavLink as={RouterLink} to="/">
-					Home
-				</NavLink>
-				<NavLink as={RouterLink} to="/style-guide">
-					Style Guide
-				</NavLink>
-				<HStack spacing={6}>
-					<Button onClick={toggleColorMode} variant="ghost" p={1} size="sm">
-						<BsMoon fontSize="1.3rem" />
-					</Button>
-					<Avatar name="Dan Abrahmov" src="https://bit.ly/dan-abramov" />
-				</HStack>
-			</HStack>
+			<Nav color={colorMode === 'dark' ? 'gray.500' : 'gray.700'} />
 		</Box>
-	)
-}
-
-interface NavLinkProps {
-	as: any
-	to: string
-}
-
-const NavLink: FunctionComponent<NavLinkProps> = ({ children, ...props }) => {
-	return (
-		<Link _focus={{ outline: 'none' }} {...props}>
-			{children}
-		</Link>
 	)
 }
