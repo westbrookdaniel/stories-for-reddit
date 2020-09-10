@@ -15,8 +15,8 @@ const Nav: FunctionComponent<Props> = ({ onlyLinks, color, ...props }) => {
 
 	return (
 		<HStack as="nav" justifyContent="flex-end" w="100%" spacing={12} {...props}>
-			<NavLink color={color} as={RouterLink} to="/">
-				Home
+			<NavLink color={color} as={RouterLink} to="/stories">
+				Stories
 			</NavLink>
 			<NavLink color={color} as={RouterLink} to="/style-guide">
 				Style Guide

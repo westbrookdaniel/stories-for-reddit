@@ -8,7 +8,7 @@ interface Props {
 }
 
 const Card = ({ title, time = "unknown"}: Props) => {
-    const { colorMode }: any = useColorMode()
+    const { colorMode } = useColorMode()
 	const theme = useTheme()
     
 	return (

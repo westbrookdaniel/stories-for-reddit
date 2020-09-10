@@ -7,6 +7,7 @@ import Footer from './components/layout/Footer'
 import Home from './Home'
 import StyleGuide from './StyleGuide'
 import { Box } from '@chakra-ui/core'
+import Stories from './Stories'
 
 const App = () => {
 	return (
@@ -20,6 +21,9 @@ const App = () => {
 						</Route>
 						<Route path="/style-guide">
 							<StyleGuide />
+						</Route>
+						<Route path="/stories">
+							<Stories />
 						</Route>
 					</Switch>
 				</Box>
