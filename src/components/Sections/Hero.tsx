@@ -16,7 +16,7 @@ interface Props {}
 const Hero = (props: Props) => {
 	return (
 		<SectionContainer maxW="6xl" py={12}>
-			<SimpleGrid columns={2} alignItems="center">
+			<SimpleGrid columns={[1, 1, 1, 2]} alignItems="center">
 				<Box maxW="sm">
 					<Heading as="h1" fontSize="4em" mb={6}>
 						Stories for Reddit
@@ -27,7 +27,7 @@ const Hero = (props: Props) => {
 					</Text>
 					<DefaultButton mb={6}>Discover Stories </DefaultButton>
 				</Box>
-				<Box boxSize="lg" alignItems="center" d="flex">
+				<Box maxW="lg" my={12} alignItems="center" d="flex">
 					<Image src={heroImage} alt="Segun Adebayo" />
 				</Box>
 			</SimpleGrid>
