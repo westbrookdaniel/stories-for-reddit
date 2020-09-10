@@ -36,7 +36,7 @@ export default function Home() {
 					<CardRow title="Featured Subreddits" w="100%" />
 					<SimpleGrid columns={2} w="100%" gap={10}>
 						<ActionContainer title="View All Subreddits" link="/"/>
-						<ActionContainer title="View All Subreddits" link="/"/>
+						<ActionContainer title="Discover All Stories" link="/stories"/>
 					</SimpleGrid>
 				</VStack>
 			</SectionContainer>
