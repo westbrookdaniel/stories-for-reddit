@@ -15,18 +15,16 @@ import {
 import { FcDocument } from 'react-icons/fc'
 import { MdKeyboardArrowRight, MdMoreHoriz } from 'react-icons/md'
 import { useTheme } from '@chakra-ui/core'
+import SectionContainer from './components/layout/SectionContainer'
 
 export default function StyleGuide() {
 	const { colorMode }: any = useColorMode()
 	const theme = useTheme()
 	return (
-		<>
+		<SectionContainer>
 			<Helmet>
 				<title>Style Guide | Stories For Reddit</title>
 			</Helmet>
-			<Heading>
-				<FcDocument style={{ display: 'inline-block ' }} /> Style Guide
-			</Heading>
 			<VStack align="start" maxW="4xl" w="100%" px={5} spacing={5}>
 				<Heading>Heading Default</Heading>
 				<Heading size="lg">Heading Large</Heading>
@@ -111,6 +109,6 @@ export default function StyleGuide() {
 					</Box>
 				</AspectRatio>
 			</VStack>
-		</>
+		</SectionContainer>
 	)
 }

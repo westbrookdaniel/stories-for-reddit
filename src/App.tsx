@@ -11,16 +11,18 @@ import { Box } from '@chakra-ui/core'
 const App = () => {
 	return (
 		<Router>
-			<Box d="flex" flexDir="column">
+			<Box d="flex" minH="100vh" flexDir="column">
 				<Header />
-				<Switch>
-					<Route exact path="/">
-						<Home />
-					</Route>
-					<Route path="/style-guide">
-						<StyleGuide />
-					</Route>
-				</Switch>
+				<Box flexGrow={1}>
+					<Switch>
+						<Route exact path="/">
+							<Home />
+						</Route>
+						<Route path="/style-guide">
+							<StyleGuide />
+						</Route>
+					</Switch>
+				</Box>
 				<Footer />
 			</Box>
 		</Router>
