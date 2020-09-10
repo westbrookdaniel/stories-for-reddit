@@ -20,7 +20,7 @@ const Card = ({ title, time = "unknown"}: Props) => {
 			bg={colorMode === 'dark' ? 'gray.750' : 'white'}
 			boxShadow="md"
 			_hover={{
-				boxShadow: "xl"
+				boxShadow: "lg"
 			}}
 			transition="ease-in-out 0.1s all"
 		>
