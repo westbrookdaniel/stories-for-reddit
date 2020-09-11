@@ -71,7 +71,7 @@ Basic Complexities
 
 Vertical Slice
 
-- [ ] M - Dynamic list content
+- [x] M - Dynamic list content
 - [x] E - Time to read calculation
 - [ ] H - Working Reader
 
@@ -84,6 +84,7 @@ Expanded Functionality
 - [ ] E - Subreddits list content
 - [ ] E - Dynamic Home content
 - [ ] M - Pagination
+- [ ] M - List item options
 
 Profile
 
