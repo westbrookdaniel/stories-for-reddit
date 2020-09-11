@@ -52,7 +52,7 @@ Visual Page Setup
 - [x] M - Home
 - [x] E - List
 - [x] E - Subreddits List
-- [ ] M - About
+- [x] M - About
 - [ ] M - Reader
 - [ ] E - Profile
 - [ ] E - Attributions
