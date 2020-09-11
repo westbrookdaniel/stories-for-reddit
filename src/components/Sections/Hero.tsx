@@ -11,6 +11,7 @@ import {
 } from '@chakra-ui/core'
 import DefaultButton from '../general/DefaultButton'
 import heroImage from '../../images/christin-hume-k2Kcwkandwg-unsplash@2x.png'
+import { Link } from 'react-router-dom'
 
 interface Props {}
 
@@ -28,7 +29,7 @@ const Hero = (props: Props) => {
 						Sed ut perspiciatis unde omnis iste natus error sit voluptatem
 						accusantium doloremque laudantium,
 					</Text>
-					<DefaultButton mb={6}>Discover Stories </DefaultButton>
+					<Link to="/stories"><DefaultButton mb={6}>Discover Stories </DefaultButton></Link>
 				</Box>
 				<Box maxW="lg" my={12} alignItems="center" d="flex">
 					<Image htmlHeight="341" htmlWidth="512" src={heroImage} alt="Segun Adebayo" />
