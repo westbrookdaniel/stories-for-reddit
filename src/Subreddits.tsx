@@ -3,7 +3,7 @@ import React, { useContext } from 'react'
 import { Helmet } from 'react-helmet'
 import { SimpleGrid, useColorMode } from '@chakra-ui/core'
 import TopDetails from './components/pages/List/TopDetails'
-import Card from './components/general/Card'
+import Card from './components/util/Card'
 import { PageContext, PageStateProps } from './PageProvider'
 import SectionContainer from './components/layout/SectionContainer'
 

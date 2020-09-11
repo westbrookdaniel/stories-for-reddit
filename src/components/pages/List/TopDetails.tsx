@@ -8,7 +8,7 @@ import {
 	HStack,
 	Badge,
 } from '@chakra-ui/core'
-import BigBackArrow from '../../general/BigBackArrow'
+import BigBackArrow from '../../util/BigBackArrow'
 import { useHistory } from 'react-router-dom'
 
 interface Props {

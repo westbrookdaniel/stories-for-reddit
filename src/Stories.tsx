@@ -9,7 +9,7 @@ import CardRow from './components/layout/CardRow'
 import { VStack, SimpleGrid, Text, useColorMode } from '@chakra-ui/core'
 import ActionContainer from './components/pages/Home/ActionContainer'
 import TopDetails from './components/pages/List/TopDetails'
-import Card from './components/general/Card'
+import Card from './components/util/Card'
 import { PageContext, PageStateProps } from './PageProvider'
 
 export default function Stories() {

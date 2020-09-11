@@ -9,7 +9,7 @@ import {
 	Image,
 	useColorMode,
 } from '@chakra-ui/core'
-import DefaultButton from '../../general/DefaultButton'
+import DefaultButton from '../../util/DefaultButton'
 import heroImage from '../../../images/christin-hume-k2Kcwkandwg-unsplash@2x.png'
 import { Link } from 'react-router-dom'
 

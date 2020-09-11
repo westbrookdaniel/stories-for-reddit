@@ -2,8 +2,8 @@ import React, { FunctionComponent } from 'react'
 import { Link as RouterLink } from 'react-router-dom'
 import { Link, Input, Text } from '@chakra-ui/core'
 import { HStack, useColorMode, Box } from '@chakra-ui/core'
-import NavLink from '../general/NavLink'
-import Logo from '../general/Logo'
+import NavLink from '../util/NavLink'
+import Logo from '../util/Logo'
 import Nav from './Nav'
 
 export default function Footer() {

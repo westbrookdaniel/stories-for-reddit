@@ -10,10 +10,10 @@ import {
 	Avatar,
 } from '@chakra-ui/core'
 import { FcCdLogo, FcDvdLogo } from 'react-icons/fc'
-import Logo from '../general/Logo'
+import Logo from '../util/Logo'
 import { AnimatePresence, motion } from 'framer-motion'
 import { BsMoon } from 'react-icons/bs'
-import NavLink from '../general/NavLink'
+import NavLink from '../util/NavLink'
 import Nav from './Nav'
 import { PageContext, PageStateProps } from '../../PageProvider'
 

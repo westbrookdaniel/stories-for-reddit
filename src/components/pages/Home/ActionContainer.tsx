@@ -1,6 +1,6 @@
 import React from 'react'
-import PaddedContainer from "../../general/PaddedContainer"
-import DefaultButton from "../../general/DefaultButton"
+import PaddedContainer from "../../util/PaddedContainer"
+import DefaultButton from "../../util/DefaultButton"
 import { Heading } from "@chakra-ui/core"
 import { Link } from "react-router-dom"
 

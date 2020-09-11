@@ -1,7 +1,7 @@
 import React, { FunctionComponent } from 'react'
 import { HStack, Button, useColorMode, Avatar } from '@chakra-ui/core'
 import { Link as RouterLink } from 'react-router-dom'
-import NavLink from '../general/NavLink'
+import NavLink from '../util/NavLink'
 import { BsMoon } from 'react-icons/bs'
 
 interface Props {

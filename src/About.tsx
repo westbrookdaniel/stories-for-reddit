@@ -12,7 +12,7 @@ import {
 	VStack,
 } from '@chakra-ui/core'
 import { PageContext, PageStateProps } from './PageProvider'
-import DefaultButton from './components/general/DefaultButton'
+import DefaultButton from './components/util/DefaultButton'
 
 export default function About() {
 	const {
