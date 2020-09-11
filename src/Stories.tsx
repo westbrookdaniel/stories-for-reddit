@@ -1,13 +1,10 @@
-import React, { useEffect, useState, useContext } from 'react'
+import React, { useEffect, useContext } from 'react'
 
-import { placeholder, firebase } from './api'
+import { reddit } from './api'
 
 import { Helmet } from 'react-helmet'
-import Hero from './components/pages/Home/Hero'
 import SectionContainer from './components/layout/SectionContainer'
-import CardRow from './components/layout/CardRow'
-import { VStack, SimpleGrid, Text, useColorMode } from '@chakra-ui/core'
-import ActionContainer from './components/pages/Home/ActionContainer'
+import { SimpleGrid, useColorMode } from '@chakra-ui/core'
 import TopDetails from './components/pages/List/TopDetails'
 import Card from './components/util/Card'
 import { PageContext, PageStateProps } from './PageProvider'
@@ -18,21 +15,17 @@ export default function Stories() {
 	const {
 		page: [, setPageState],
 	}: PageStateProps = useContext(PageContext)
-	setPageState('hidden')
 
-	// useEffect(() => {
-	// 	callp()
-	// 	callf()
-	// }, [])
 
-	// const callf = async () => {
-	// 	const fdata = await firebase.get('users')
-	// 	console.log(fdata)
-	// }
-	// const callp = async () => {
-	// 	const pdata = await placeholder.getPosts()
-	// 	setPosts(pdata)
-	// }
+	useEffect(() => {
+		setPageState('hidden')
+		getStories()
+	}, [])
+
+	const getStories = async () => {
+		const posts = await reddit.getFeaturedStories()
+		console.log(posts)
+	}
 
 	const cards = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
 

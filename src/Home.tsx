@@ -14,12 +14,12 @@ export default function Home() {
 	const {
 		page: [, setPageState],
 	}: PageStateProps = useContext(PageContext)
-	setPageState('default')
 	
-	// useEffect(() => {
-	// 	callp()
-	// 	callf()
-	// }, [])
+	useEffect(() => {
+		setPageState('default')
+		// callp()
+		// callf()
+	}, [])
 
 	// const callf = async () => {
 	// 	const fdata = await firebase.get('users')

@@ -74,6 +74,8 @@ Vertical Slice
 - [ ] M - Dynamic list content
 - [ ] H - Working Reader
 
+### Submission A2 Milestone
+
 Expanded Functionality
 
 - [ ] H - Search

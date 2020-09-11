@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React, { useContext, useEffect } from 'react'
 
 import { Helmet } from 'react-helmet'
 import Hero from './components/pages/About/Hero'
@@ -18,7 +18,10 @@ export default function About() {
 	const {
 		page: [, setPageState],
 	}: PageStateProps = useContext(PageContext)
-	setPageState('default')
+
+	useEffect(() => {
+		setPageState('default')
+	}, [])
 
 	const { colorMode } = useColorMode()
 
