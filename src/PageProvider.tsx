@@ -1,13 +1,19 @@
 import React, { createContext, useState, FunctionComponent } from 'react'
 
-interface Props {}
+export interface PageStateProps {
+	page:
+		| [PageStateType, SetPageStateType]
+		| any[]
+	title: any[]
+}
 
-export const PageContext = createContext({})
+export type PageStateType = 'default' | 'hidden' | 'title'
+export type SetPageStateType = React.Dispatch<React.SetStateAction<PageStateType>>
 
-export const PageProvider: FunctionComponent<Props> = ({ children }) => {
-	const [pageState, setPageState] = useState<'default' | 'hidden' | 'title'>(
-		'default'
-	)
+export const PageContext = createContext<PageStateProps>({ page: [], title: [] })
+
+export const PageProvider: FunctionComponent = ({ children }) => {
+	const [pageState, setPageState] = useState<PageStateType>('default')
 	const [pageTitle, setPageTitle] = useState<string | undefined>()
 
 	return (

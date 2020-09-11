@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useContext } from 'react'
 
 import { placeholder, firebase } from './api'
 
@@ -8,8 +8,14 @@ import SectionContainer from './components/layout/SectionContainer'
 import CardRow from './components/layout/CardRow'
 import { VStack, SimpleGrid } from '@chakra-ui/core'
 import ActionContainer from './components/pages/Home/ActionContainer'
+import { PageContext, PageStateProps } from './PageProvider'
 
 export default function Home() {
+	const {
+		page: [, setPageState],
+	}: PageStateProps = useContext(PageContext)
+	setPageState('default')
+	
 	// useEffect(() => {
 	// 	callp()
 	// 	callf()

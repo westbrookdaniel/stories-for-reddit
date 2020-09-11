@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useContext } from 'react'
 
 import { placeholder, firebase } from './api'
 
@@ -10,9 +10,14 @@ import { VStack, SimpleGrid, Text, useColorMode } from '@chakra-ui/core'
 import ActionContainer from './components/pages/Home/ActionContainer'
 import TopDetails from './components/pages/List/TopDetails'
 import Card from './components/general/Card'
+import { PageContext, PageStateProps } from './PageProvider'
 
 export default function Stories() {
 	const { colorMode } = useColorMode()
+	const {
+		page: [, setPageState],
+	}: PageStateProps = useContext(PageContext)
+	setPageState('hidden')
 
 	// useEffect(() => {
 	// 	callp()
