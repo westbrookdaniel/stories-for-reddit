@@ -39,3 +39,50 @@ To run unit tests:
 ```sh
 yarn test
 ```
+
+---
+
+## Development Outline
+
+- [x] Installed and Working Dependencies
+- [x] Styling setup
+
+Visual Page Setup
+
+- [x] M - Home
+- [x] E - List
+- [ ] E - Subreddits List
+- [ ] M - About
+- [ ] M - Reader
+- [ ] E - Profile
+- [ ] E - Attributions
+
+Basic Complexities
+
+- [x] E - Page transitions
+- [x] E - Animated header
+- [x] E - Dark mode switcher
+
+Vertical Slice
+
+- [ ] M - Dynamic list content
+- [ ] H - Working Reader
+
+Expanded Functionality
+
+- [ ] H - Search
+- [ ] H - Filter by tags
+- [ ] E - Subreddits list content
+- [ ] M - Dynamic Home content
+- [ ] M - Time to read calculation
+
+Profile
+
+- [ ] M - Profile Functionality
+- [ ] M - Saving Stories
+
+Finishing Up
+
+- [ ] H - Minimum coverage at 50%
+- [ ] E - Responsive Fixups
+- [ ] M - Mobile menu
