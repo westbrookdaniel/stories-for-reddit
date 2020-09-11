@@ -3,8 +3,8 @@ import { AspectRatio, useColorMode, Box, Text, Button, Badge, useTheme } from '@
 import { MdMoreHoriz, MdKeyboardArrowRight } from 'react-icons/md'
 
 interface Props {
-    title: string,
-    time?: string
+    title?: string,
+	time?: string,
 }
 
 const Card = ({ title, time = "unknown"}: Props) => {
@@ -32,6 +32,7 @@ const Card = ({ title, time = "unknown"}: Props) => {
 					as="h4"
 					lineHeight="1.4em"
 					flexGrow={1}
+					alignSelf="flex-start"
 				>
 					{title}
 				</Text>

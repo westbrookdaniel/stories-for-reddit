@@ -1,21 +1,24 @@
-import React, { useEffect, useContext } from 'react'
+import React, { useEffect, useContext, useState } from 'react'
 
 import { reddit } from './api'
 
 import { Helmet } from 'react-helmet'
 import SectionContainer from './components/layout/SectionContainer'
-import { SimpleGrid, useColorMode } from '@chakra-ui/core'
+import { SimpleGrid, Skeleton, Spinner, useColorMode } from '@chakra-ui/core'
 import TopDetails from './components/pages/List/TopDetails'
 import Card from './components/util/Card'
 import { PageContext, PageStateProps } from './PageProvider'
+import { CardPost } from './types'
+import { SkeletonCards } from './components/util/Skeletons'
+import { AnimatePresence, motion } from 'framer-motion'
 
 export default function Stories() {
 	const { colorMode } = useColorMode()
 
+	const [posts, setPosts] = useState<null | CardPost[]>(null)
 	const {
 		page: [, setPageState],
 	}: PageStateProps = useContext(PageContext)
-
 
 	useEffect(() => {
 		setPageState('hidden')
@@ -23,11 +26,22 @@ export default function Stories() {
 	}, [])
 
 	const getStories = async () => {
-		const posts = await reddit.getFeaturedStories()
-		console.log(posts)
+		const rawPosts = await reddit.getFeaturedStories()
+		if (!rawPosts) throw 'can not get featured stories'
+		setPosts(
+			rawPosts.map((post) => ({
+				title: post.title,
+				length: post.selftext_html?.length,
+				id: post.id,
+			}))
+		)
 	}
 
-	const cards = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
+	const animation = {
+		animate: { opacity: 1 },
+		initial: { opacity: 0 },
+		exit: { opacity: 0 },
+	}
 
 	return (
 		<>
@@ -41,15 +55,21 @@ export default function Stories() {
 				pb={8}
 			>
 				<SimpleGrid columns={4} spacing={5}>
-					{cards.map((card) => {
-						return (
-							<Card
-								key={cards.indexOf(card)}
-								title="[HR] Monster Hunter Saga"
-								time="14 min"
-							/>
-						)
-					})}
+					<AnimatePresence exitBeforeEnter>
+						{posts
+							? posts.map((post) => {
+									const time = Math.floor(post.length! / 250)
+									return (
+										<motion.div key={post.id} {...animation}>
+											<Card
+												title={post.title}
+												time={time ? `${time} min` : undefined}
+											/>
+										</motion.div>
+									)
+							  })
+							: SkeletonCards({ quanitity: 12, motionProps: animation })}
+					</AnimatePresence>
 				</SimpleGrid>
 			</SectionContainer>
 		</>

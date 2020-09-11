@@ -72,6 +72,7 @@ Basic Complexities
 Vertical Slice
 
 - [ ] M - Dynamic list content
+- [x] E - Time to read calculation
 - [ ] H - Working Reader
 
 ### Submission A2 Milestone
@@ -82,7 +83,7 @@ Expanded Functionality
 - [ ] H - Filter by tags
 - [ ] E - Subreddits list content
 - [ ] E - Dynamic Home content
-- [ ] E - Time to read calculation
+- [ ] M - Pagination
 
 Profile
 

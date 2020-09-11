@@ -17,6 +17,16 @@ const MotionBox = motion.custom(Box)
 const App = () => {
 	const location = useLocation()
 
+	const ScrollAfterDelay = () => {
+		setTimeout(() => {
+			window.scrollTo({
+				top: 0,
+				left: 0,
+				behavior: 'smooth',
+			})
+		}, 100)
+	}
+
 	return (
 		<Box d="flex" minH="100vh" flexDir="column">
 			<Header />
@@ -27,6 +37,7 @@ const App = () => {
 						animate={{ opacity: 1, transition: { delay: 0.1 } }}
 						exit={{ opacity: 0 }}
 						transition={{ ease: 'easeInOut', duration: '0.1' }}
+						onAnimationStart={ScrollAfterDelay}
 					>
 						<Switch location={location}>
 							<Route exact path="/">

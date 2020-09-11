@@ -1,9 +1,9 @@
-const snoowrap = require('snoowrap')
+import snoowrap from 'snoowrap'
 // https://www.reddit.com/prefs/apps
 // https://not-an-aardvark.github.io/snoowrap/
 
 class redditApi {
-	r: typeof snoowrap
+	r: snoowrap
 	loggedIn: boolean
 
 	constructor() {
@@ -19,7 +19,7 @@ class redditApi {
 
 	login = () => {
 		const authUrl = snoowrap.getAuthUrl({
-			clientId: process.env.CLIENT_ID,
+			clientId: process.env.CLIENT_ID!,
 			scope: ['identity', 'wikiread', 'wikiedit'],
 			redirectUri: 'http://localhost:8080/',
 			permanent: true,
@@ -30,7 +30,7 @@ class redditApi {
 
 	getFeaturedStories = async () => {
 		try {
-			const posts = await this.r.getHot()
+			const posts = await this.r.getHot('shortstories', { limit: 10 }) // Actually is a limit of 12
 			return posts
 		} catch (error) {
 			console.log(error)

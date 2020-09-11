@@ -11,3 +11,13 @@ export type User = {
 }
 
 export type Collection = 'users'
+
+export type CardPost = {
+	title: string
+	length: number | undefined
+	id: string
+}
+
+export type AnyObject = {
+	[index: string]: any
+}
