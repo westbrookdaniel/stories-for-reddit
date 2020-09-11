@@ -40,6 +40,12 @@ To run unit tests:
 yarn test
 ```
 
+To check code coverage:
+
+```sh
+yarn coverage
+```
+
 ---
 
 ## Development Outline
