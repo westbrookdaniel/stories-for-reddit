@@ -18,6 +18,9 @@ const Nav: FunctionComponent<Props> = ({ onlyLinks, color, ...props }) => {
 			<NavLink color={color} as={RouterLink} to="/stories">
 				Stories
 			</NavLink>
+			<NavLink color={color} as={RouterLink} to="/subreddits">
+				Subreddits
+			</NavLink>
 			<NavLink color={color} as={RouterLink} to="/style-guide">
 				Style Guide
 			</NavLink>

@@ -9,6 +9,7 @@ import StyleGuide from './StyleGuide'
 import { Box } from '@chakra-ui/core'
 import Stories from './Stories'
 import { AnimatePresence, motion } from 'framer-motion'
+import Subreddits from './Subreddits'
 
 const MotionBox = motion.custom(Box)
 
@@ -35,6 +36,9 @@ const App = () => {
 							</Route>
 							<Route path="/stories">
 								<Stories />
+							</Route>
+							<Route path="/subreddits">
+								<Subreddits />
 							</Route>
 						</Switch>
 					</motion.div>

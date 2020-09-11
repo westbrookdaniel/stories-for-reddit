@@ -51,7 +51,7 @@ Visual Page Setup
 
 - [x] M - Home
 - [x] E - List
-- [ ] E - Subreddits List
+- [x] E - Subreddits List
 - [ ] M - About
 - [ ] M - Reader
 - [ ] E - Profile
