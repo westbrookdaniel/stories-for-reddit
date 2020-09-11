@@ -73,8 +73,8 @@ Expanded Functionality
 - [ ] H - Search
 - [ ] H - Filter by tags
 - [ ] E - Subreddits list content
-- [ ] M - Dynamic Home content
-- [ ] M - Time to read calculation
+- [ ] E - Dynamic Home content
+- [ ] E - Time to read calculation
 
 Profile
 
