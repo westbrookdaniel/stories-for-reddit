@@ -27,7 +27,8 @@
 		"react-helmet": "^6.1.0",
 		"react-hot-loader": "^4.12.21",
 		"react-icons": "^3.11.0",
-		"react-router-dom": "^5.2.0"
+		"react-router-dom": "^5.2.0",
+		"snoowrap": "^1.21.0"
 	},
 	"devDependencies": {
 		"@babel/core": "^7.11.4",
