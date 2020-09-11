@@ -11,6 +11,7 @@ import { PageContext, PageStateProps } from './PageProvider'
 import { CardPost } from './types'
 import { SkeletonCards } from './components/util/Skeletons'
 import { AnimatePresence, motion } from 'framer-motion'
+import toLink from './util/toLink'
 
 export default function Stories() {
 	const { colorMode } = useColorMode()
@@ -59,11 +60,13 @@ export default function Stories() {
 						{posts
 							? posts.map((post) => {
 									const time = Math.floor(post.length! / 250)
+									const link = toLink(post.title)
 									return (
 										<motion.div key={post.id} {...animation}>
 											<Card
 												title={post.title}
 												time={time ? `${time} min` : undefined}
+												link={link ? `/${link}` : undefined}
 											/>
 										</motion.div>
 									)

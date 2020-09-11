@@ -1,16 +1,26 @@
 import React from 'react'
-import { AspectRatio, useColorMode, Box, Text, Button, Badge, useTheme } from '@chakra-ui/core'
+import {
+	AspectRatio,
+	useColorMode,
+	Box,
+	Text,
+	Button,
+	Badge,
+	useTheme,
+} from '@chakra-ui/core'
 import { MdMoreHoriz, MdKeyboardArrowRight } from 'react-icons/md'
+import { Link } from 'react-router-dom'
 
 interface Props {
-    title?: string,
-	time?: string,
+	title?: string
+	time?: string
+	link?: string
 }
 
-const Card = ({ title, time = "unknown"}: Props) => {
-    const { colorMode } = useColorMode()
+const Card = ({ title, time = 'unknown', link }: Props) => {
+	const { colorMode } = useColorMode()
 	const theme = useTheme()
-    
+
 	return (
 		<AspectRatio
 			ratio={1}
@@ -20,7 +30,7 @@ const Card = ({ title, time = "unknown"}: Props) => {
 			bg={colorMode === 'dark' ? 'gray.750' : 'white'}
 			boxShadow="md"
 			_hover={{
-				boxShadow: "lg"
+				boxShadow: 'lg',
 			}}
 			transition="ease-in-out 0.1s all"
 		>
@@ -59,16 +69,20 @@ const Card = ({ title, time = "unknown"}: Props) => {
 								}
 							/>
 						</Button>
-						<Button variant="ghost" p={1} size="sm">
-							<MdKeyboardArrowRight
-								size={25}
-								color={
-									colorMode === 'dark'
-										? theme.colors.primary[100]
-										: theme.colors.primary[500]
-								}
-							/>
-						</Button>
+						{link ? (
+							<Button variant="ghost" p={1} size="sm">
+								<Link to={link}>
+									<MdKeyboardArrowRight
+										size={25}
+										color={
+											colorMode === 'dark'
+												? theme.colors.primary[100]
+												: theme.colors.primary[500]
+										}
+									/>
+								</Link>
+							</Button>
+						) : null}
 					</Box>
 				</Box>
 			</Box>
