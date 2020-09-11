@@ -39,9 +39,9 @@ export default function Stories() {
 	return (
 		<>
 			<Helmet>
-				<title>All Stories | Stories For Reddit</title>
+				<title>All Featured Stories | Stories For Reddit</title>
 			</Helmet>
-			<TopDetails mb={6} title="All Stories" maxW="4xl" />
+			<TopDetails mb={6} title="All Featured Stories" maxW="4xl" />
 			<SectionContainer
 				maxW="4xl"
 				bg={colorMode === 'dark' ? 'tan.950' : 'tan.400'}
