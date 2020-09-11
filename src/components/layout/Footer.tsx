@@ -21,8 +21,11 @@ export default function Footer() {
 			</Link>
 			<HStack w="100%" ml={8} overflow="hidden" spacing={12}>
 				<Text>Copyright Stories for Reddit</Text>
-				<NavLink as={RouterLink} to="/style-guide">
+				<NavLink as={RouterLink} to="/">
 					Attributions
+				</NavLink>
+				<NavLink as={RouterLink} to="/style-guide">
+					Style Guide
 				</NavLink>
 			</HStack>
 			<Nav onlyLinks />

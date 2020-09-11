@@ -21,8 +21,8 @@ const Nav: FunctionComponent<Props> = ({ onlyLinks, color, ...props }) => {
 			<NavLink color={color} as={RouterLink} to="/subreddits">
 				Subreddits
 			</NavLink>
-			<NavLink color={color} as={RouterLink} to="/style-guide">
-				Style Guide
+			<NavLink color={color} as={RouterLink} to="/about">
+				About
 			</NavLink>
 			{onlyLinks ? null : (
 				<HStack spacing={6}>

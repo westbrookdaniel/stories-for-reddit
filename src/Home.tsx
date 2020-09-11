@@ -3,7 +3,7 @@ import React, { useEffect, useState, useContext } from 'react'
 import { placeholder, firebase } from './api'
 
 import { Helmet } from 'react-helmet'
-import Hero from './components/sections/Hero'
+import Hero from './components/pages/Home/Hero'
 import SectionContainer from './components/layout/SectionContainer'
 import CardRow from './components/layout/CardRow'
 import { VStack, SimpleGrid } from '@chakra-ui/core'
