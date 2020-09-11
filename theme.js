@@ -8,6 +8,7 @@ const theme = extendTheme({
 	fonts: {
 		body: ['sans-serif', 'Lato'],
 		heading: ['sans-serif', 'Lora'],
+		logo: ['sans-serif', 'Manrope']
 	},
 	colors: {
 		primary: {

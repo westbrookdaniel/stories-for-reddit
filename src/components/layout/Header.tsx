@@ -64,7 +64,7 @@ const NavSection = ({ logoHover }: { logoHover: boolean }) => {
 				<AnimatePresence exitBeforeEnter>
 					{logoHover ? (
 						<motion.div {...animation} key={1}>
-							<Heading as="h2" fontSize="1.2rem">
+							<Heading fontFamily="logo" as="h2" fontSize="1.2rem">
 								Stories for Reddit
 							</Heading>
 						</motion.div>
@@ -79,7 +79,7 @@ const NavSection = ({ logoHover }: { logoHover: boolean }) => {
 			<AnimatePresence exitBeforeEnter>
 				{logoHover ? (
 					<motion.div {...animation} key={1}>
-						<Heading as="h2" fontSize="1.2rem">
+						<Heading fontFamily="logo" as="h2" fontSize="1.2rem">
 							Stories for Reddit
 						</Heading>
 					</motion.div>

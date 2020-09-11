@@ -36,3 +36,10 @@
 	font-weight: bold;
 	font-style: italic;
 }
+
+@font-face {
+	font-family: 'Manrope';
+	src: url('./fonts/Manrope-Bold.woff2') format('woff2');
+	font-weight: bold;
+	font-style: normal;
+}
