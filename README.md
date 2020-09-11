@@ -83,6 +83,6 @@ Profile
 
 Finishing Up
 
-- [ ] H - Minimum coverage at 50%
+- [ ] H - Minimum coverage at 70%
 - [ ] E - Responsive Fixups
 - [ ] M - Mobile menu
