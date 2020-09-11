@@ -9,6 +9,7 @@ import {
 	Badge,
 } from '@chakra-ui/core'
 import BigBackArrow from '../../general/BigBackArrow'
+import { useHistory } from 'react-router-dom'
 
 interface Props {
     title: string
@@ -16,11 +17,12 @@ interface Props {
 }
 
 const TopDetails = ({ title, ...props }: Props) => {
-    
+	const history = useHistory()
+
 	return (
 		<SectionContainer {...props}>
 			<Box maxW="md">
-				<BigBackArrow />
+				<BigBackArrow onClick={history.goBack} />
 				<Heading as="h1" fontSize="3em" mb={6}>
 					{title}
 				</Heading>

@@ -14,6 +14,7 @@ import { PageContext, PageStateProps } from './PageProvider'
 
 export default function Stories() {
 	const { colorMode } = useColorMode()
+
 	const {
 		page: [, setPageState],
 	}: PageStateProps = useContext(PageContext)
