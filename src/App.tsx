@@ -11,6 +11,7 @@ import Stories from './Stories'
 import { AnimatePresence, motion } from 'framer-motion'
 import Subreddits from './Subreddits'
 import About from './About'
+import SingleStory from './SingleStory'
 
 const MotionBox = motion.custom(Box)
 
@@ -40,21 +41,12 @@ const App = () => {
 						onAnimationStart={ScrollAfterDelay}
 					>
 						<Switch location={location}>
-							<Route exact path="/">
-								<Home />
-							</Route>
-							<Route path="/style-guide">
-								<StyleGuide />
-							</Route>
-							<Route path="/stories">
-								<Stories />
-							</Route>
-							<Route path="/about">
-								<About />
-							</Route>
-							<Route path="/subreddits">
-								<Subreddits />
-							</Route>
+							<Route exact path="/" component={Home} />
+							<Route exact path="/stories" component={Stories} />
+							<Route path="/stories/:id" component={SingleStory} />
+							<Route exact path="/about" component={About} />
+							<Route exact path="/subreddits" component={Subreddits} />
+							<Route exact path="/style-guide" component={StyleGuide} />
 						</Switch>
 					</motion.div>
 				</MotionBox>

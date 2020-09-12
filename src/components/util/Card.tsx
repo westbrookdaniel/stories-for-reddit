@@ -15,9 +15,10 @@ interface Props {
 	title?: string
 	time?: string
 	link?: string
+	linkData?: any
 }
 
-const Card = ({ title, time = 'unknown', link }: Props) => {
+const Card = ({ title, time = 'unknown', link, linkData }: Props) => {
 	const { colorMode } = useColorMode()
 	const theme = useTheme()
 
@@ -69,7 +70,7 @@ const Card = ({ title, time = 'unknown', link }: Props) => {
 								}
 							/>
 						</Button>
-						{link ? (
+						{link && linkData ? (
 							<Button variant="ghost" p={1} size="sm">
 								<Link to={link}>
 									<MdKeyboardArrowRight

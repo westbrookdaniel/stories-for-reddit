@@ -37,6 +37,23 @@ class redditApi {
 			return null
 		}
 	}
+
+	getStoryById = (id: string) => {
+		try {
+			const data = new Promise<Omit<snoowrap.Submission, "then">>((res, rej) => {
+				this.r
+					.getSubmission(id)
+					.fetch()
+					.then((post) => {
+						res(post)
+					})
+			})
+			return data
+		} catch (error) {
+			console.log(error)
+			return null
+		}
+	}
 }
 
 const reddit = new redditApi()
