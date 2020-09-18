@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { hot } from 'react-hot-loader/root'
 import { Switch, Route, useLocation } from 'react-router-dom'
 import Header from './components/layout/Header'
@@ -51,7 +51,7 @@ const App = () => {
 					</motion.div>
 				</MotionBox>
 			</AnimatePresence>
-			{location.pathname.startsWith('/story/') ? null : <Footer />}
+			<Footer />
 		</Box>
 	)
 }
