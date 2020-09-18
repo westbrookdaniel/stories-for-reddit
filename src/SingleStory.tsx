@@ -42,7 +42,7 @@ export default function SingleStory(props: Props): ReactElement {
 
 	const handleScroll = () => {
 		stickyEl.current
-			? (stickyEl.current.style.top = `${window.scrollY + 600}px`)
+			? (stickyEl.current.style.top = `${window.scrollY + 50}px`)
 			: null
 	}
 
@@ -98,7 +98,7 @@ export default function SingleStory(props: Props): ReactElement {
 											transition: { duration: 1 },
 										}}
 										position="absolute"
-										top={600}
+										top={50}
 										ref={stickyEl}
 									>
 										<Heading>Title</Heading>
