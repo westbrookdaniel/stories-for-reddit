@@ -58,13 +58,14 @@ export default function Stories() {
 					<AnimatePresence exitBeforeEnter>
 						{posts
 							? posts.map((post) => {
-									const time = Math.floor(post.length! / 250)
+									// Character Per Minuite Reading Time
+									const time = Math.floor(post.length! / 1250)
 									return (
 										<motion.div key={post.id} {...animation}>
 											<Card
 												title={post.title}
 												time={time ? `${time} min` : undefined}
-												link={`/stories/${post.id}`}
+												link={`/story/${post.id}`}
 												linkData={post}
 											/>
 										</motion.div>

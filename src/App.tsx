@@ -29,7 +29,7 @@ const App = () => {
 	}
 
 	return (
-		<Box d="flex" minH="100vh" flexDir="column">
+		<Box d="flex" minH="100vh" flexDir="column" overflow="hidden">
 			<Header />
 			<AnimatePresence exitBeforeEnter>
 				<MotionBox flexGrow={1} key={location.pathname}>
@@ -43,7 +43,7 @@ const App = () => {
 						<Switch location={location}>
 							<Route exact path="/" component={Home} />
 							<Route exact path="/stories" component={Stories} />
-							<Route path="/stories/:id" component={SingleStory} />
+							<Route path="/story/:id" component={SingleStory} />
 							<Route exact path="/about" component={About} />
 							<Route exact path="/subreddits" component={Subreddits} />
 							<Route exact path="/style-guide" component={StyleGuide} />
@@ -51,7 +51,7 @@ const App = () => {
 					</motion.div>
 				</MotionBox>
 			</AnimatePresence>
-			<Footer />
+			{location.pathname.startsWith('/story/') ? null : <Footer />}
 		</Box>
 	)
 }

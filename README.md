@@ -83,7 +83,7 @@ Expanded Functionality
 - [ ] H - Filter by tags
 - [ ] E - Subreddits list content
 - [ ] E - Dynamic Home content
-- [ ] M - Pagination
+- [ ] M - Pagination (myListing.fetchmore)
 - [ ] M - List item options
 
 Profile
@@ -97,3 +97,8 @@ Finishing Up
 - [ ] E - Responsive Fixups
 - [ ] M - Mobile menu
 - [ ] E - Finalising Content and Links
+- [ ] E - General polish
+
+## Extra Notes
+
+If testing is still difficult try [user-event](https://github.com/testing-library/user-event)
