@@ -74,7 +74,7 @@ Vertical Slice
 - [x] E - Time to read calculation
 - [ ] H - Working Reader
 
-### Submission A2 Milestone
+### Submission Milestone
 
 Expanded Functionality
 
