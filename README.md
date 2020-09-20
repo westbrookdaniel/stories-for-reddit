@@ -61,7 +61,6 @@ Visual Page Setup
 - [x] M - About
 - [ ] M - Reader
 - [ ] E - Profile
-- [ ] E - Attributions
 
 Basic Complexities
 
