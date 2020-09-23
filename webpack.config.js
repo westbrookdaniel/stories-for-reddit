@@ -17,11 +17,11 @@ ACCESS_TOKEN=${process.env.ACCESS_TOKEN}
 fs.writeFile('./.env', str, (err) => {
   if (err) throw err
 })
-fs.readdir('./', (err, files) => {
-  files.forEach(file => {
-    console.log(`file: ${file}`);
-  });
-});
+filePath = path.join(__dirname, '.env');
+fs.readFile(filePath, {encoding: 'utf-8'}, function(err,data){
+  if (err) throw err
+  console.log('CONTENTS OF ENV: ' + data);
+})
 
 const config = {
   entry: [
