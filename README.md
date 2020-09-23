@@ -1,6 +1,6 @@
 # stories-for-reddit
 
-Medium to long form story reader for reddit.
+Medium to long form story reader for reddit
 
 ## Building and running on localhost
 
