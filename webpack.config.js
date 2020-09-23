@@ -1,9 +1,16 @@
 const webpack = require('webpack');
 const path = require('path');
+const fs = require('fs')
 const CopyPlugin = require('copy-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const Dotenv = require('dotenv-webpack');
+
+fs.readdir('./', (err, files) => {
+  files.forEach(file => {
+    console.log(`file: ${file}`);
+  });
+});
 
 const config = {
   entry: [
