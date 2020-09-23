@@ -7,13 +7,15 @@ class redditApi {
 	loggedIn: boolean
 
 	constructor() {
-		this.r = new snoowrap({
+		const setupObj = {
 			userAgent: navigator.userAgent,
 			clientId: process.env.CLIENT_ID,
 			clientSecret: process.env.CLIENT_SECRET,
 			refreshToken: process.env.REFRESH_TOKEN,
 			accessToken: process.env.ACCESS_TOKEN,
-		})
+		}
+		console.log(setupObj)
+		this.r = new snoowrap(setupObj)
 		this.loggedIn = false
 	}
 
