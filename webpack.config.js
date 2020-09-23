@@ -12,6 +12,8 @@ fs.readdir('./', (err, files) => {
   });
 });
 
+console.log(process.env)
+
 const config = {
   entry: [
     'react-hot-loader/patch',
