@@ -14,7 +14,7 @@ CLIENT_SECRET="${process.env.CLIENT_SECRET}"
 REFRESH_TOKEN="${process.env.REFRESH_TOKEN}"
 ACCESS_TOKEN="${process.env.ACCESS_TOKEN}"
 `
-fs.writeFile('./.env', str, (err) => {
+fs.writeFileSync('./.env', str, (err) => {
   if (err) throw err
 })
 filePath = path.join(__dirname, '.env');
