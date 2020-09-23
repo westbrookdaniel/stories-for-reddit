@@ -71,7 +71,9 @@ const config = {
     historyApiFallback: true
   },
   plugins: [
-    new Dotenv(),
+    new Dotenv({
+      path: path.resolve(__dirname, './.env')
+    }),
     new HtmlWebpackPlugin({
       appMountId: 'app',
       filename: 'index.html',
