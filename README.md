@@ -59,27 +59,26 @@ Visual Page Setup
 - [x] E - List
 - [x] E - Subreddits List
 - [x] M - About
-- [ ] M - Reader
+- [x] M - Reader
 - [ ] E - Profile
 
 Basic Complexities
 
 - [x] E - Page transitions
-- [x] E - Animated header
 - [x] E - Dark mode switcher
 
 Vertical Slice
 
 - [x] M - Dynamic list content
-- [x] E - Time to read calculation
 - [ ] H - Working Reader
 
 ### Submission Milestone
 
 Expanded Functionality
 
-- [ ] H - Search
-- [ ] H - Filter by tags
+- [x] E - Time to read calculation
+- [x] E - Animated header
+- [ ] H - Search and filter
 - [ ] E - Subreddits list content
 - [ ] E - Dynamic Home content
 - [ ] M - Pagination (myListing.fetchmore)
