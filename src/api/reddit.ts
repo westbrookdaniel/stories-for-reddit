@@ -14,8 +14,6 @@ class redditApi {
 			refreshToken: process.env.REFRESH_TOKEN,
 			accessToken: process.env.ACCESS_TOKEN,
 		}
-		console.log(setupObj)
-		console.log(process.env)
 		this.r = new snoowrap(setupObj)
 		this.loggedIn = false
 	}

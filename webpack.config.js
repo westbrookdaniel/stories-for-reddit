@@ -17,11 +17,6 @@ ACCESS_TOKEN="${process.env.ACCESS_TOKEN}"
 fs.writeFileSync('./.env', str, (err) => {
   if (err) throw err
 })
-filePath = path.join(__dirname, '.env');
-fs.readFile(filePath, {encoding: 'utf-8'}, function(err,data){
-  if (err) throw err
-  console.log('CONTENTS OF ENV: ' + data);
-})
 
 const config = {
   entry: [
