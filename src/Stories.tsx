@@ -63,7 +63,11 @@ export default function Stories() {
 									return (
 										<motion.div key={post.id} {...animation}>
 											<Card
-												title={post.title}
+												title={
+													post.title.length > 48
+														? post.title.substring(0, 48) + '...'
+														: post.title
+												}
 												time={time ? `${time} min` : undefined}
 												link={`/story/${post.id}`}
 												linkData={post}

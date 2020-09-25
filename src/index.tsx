@@ -7,6 +7,8 @@ import { ChakraProvider } from '@chakra-ui/core'
 import theme from '../theme'
 import { PageProvider } from './PageProvider'
 
+import './index.css'
+
 function Index() {
 	return (
 		<PageProvider>

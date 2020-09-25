@@ -101,7 +101,8 @@ export default function SingleStory(props: Props): ReactElement {
 										top={50}
 										ref={stickyEl}
 									>
-										<Heading>Title</Heading>
+										{console.log(postData)}
+										<Heading mb={4}>{postData?.title}</Heading>
 										<Text>
 											Lorem ipsum dolor sit amet consectetur adipisicing elit.
 											Sapiente, nesciunt.

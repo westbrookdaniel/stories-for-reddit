@@ -6,17 +6,19 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const Dotenv = require('dotenv-webpack');
 
-const str = `
-FB_APIKEY="${process.env.FB_APIKEY}"
-FB_APPID="${process.env.FB_APPID}"
-CLIENT_ID="${process.env.CLIENT_ID}"
-CLIENT_SECRET="${process.env.CLIENT_SECRET}"
-REFRESH_TOKEN="${process.env.REFRESH_TOKEN}"
-ACCESS_TOKEN="${process.env.ACCESS_TOKEN}"
-`
-fs.writeFileSync('./.env', str, (err) => {
-  if (err) throw err
-})
+if (process.env.FB_APPID) {
+  const str = `
+  FB_APIKEY="${process.env.FB_APIKEY}"
+  FB_APPID="${process.env.FB_APPID}"
+  CLIENT_ID="${process.env.CLIENT_ID}"
+  CLIENT_SECRET="${process.env.CLIENT_SECRET}"
+  REFRESH_TOKEN="${process.env.REFRESH_TOKEN}"
+  ACCESS_TOKEN="${process.env.ACCESS_TOKEN}"
+  `
+  fs.writeFileSync('./.env', str, (err) => {
+    if (err) throw err
+  })
+}
 
 const config = {
   entry: [
