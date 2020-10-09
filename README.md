@@ -60,7 +60,7 @@ Visual Page Setup
 - [x] E - Subreddits List
 - [x] M - About
 - [x] M - Reader
-- [ ] E - Profile
+- [x] E - Profile
 
 Basic Complexities
 
