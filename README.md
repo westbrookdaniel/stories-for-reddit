@@ -70,7 +70,7 @@ Basic Complexities
 Vertical Slice
 
 - [x] M - Dynamic list content
-- [ ] H - Working Reader
+- [x] H - Working Reader
 
 ### Submission Milestone
 
