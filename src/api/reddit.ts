@@ -2,9 +2,15 @@ import snoowrap from 'snoowrap'
 // https://www.reddit.com/prefs/apps
 // https://not-an-aardvark.github.io/snoowrap/
 
+interface storyObject {
+	[key: string]: any
+}
+
 class redditApi {
 	r: snoowrap
 	loggedIn: boolean
+	FeaturedStories: undefined | snoowrap.Listing<snoowrap.Submission>
+	StoryById: storyObject
 
 	constructor() {
 		const setupObj = {
@@ -16,6 +22,8 @@ class redditApi {
 		}
 		this.r = new snoowrap(setupObj)
 		this.loggedIn = false
+		this.FeaturedStories = undefined
+		this.StoryById = {}
 	}
 
 	login = () => {
@@ -31,8 +39,13 @@ class redditApi {
 
 	getFeaturedStories = async () => {
 		try {
-			const posts = await this.r.getHot('shortstories', { limit: 10 }) // Actually is a limit of 12
-			return posts
+			if (this.FeaturedStories) {
+				return this.FeaturedStories
+			} else {
+				const data = await this.r.getHot('shortstories', { limit: 10 }) // Actually is a limit of 12
+				this.FeaturedStories = data
+				return data
+			}
 		} catch (error) {
 			console.log(error)
 			return null
@@ -41,15 +54,22 @@ class redditApi {
 
 	getStoryById = (id: string) => {
 		try {
-			const data = new Promise<Omit<snoowrap.Submission, "then">>((res, rej) => {
-				this.r
-					.getSubmission(id)
-					.fetch()
-					.then((post) => {
-						res(post)
-					})
-			})
-			return data
+			if (this.StoryById[id]) {
+				return this.StoryById[id]
+			} else {
+				const data = new Promise<Omit<snoowrap.Submission, 'then'>>(
+					(res, rej) => {
+						this.r
+							.getSubmission(id)
+							.fetch()
+							.then((post) => {
+								res(post)
+							})
+					}
+				)
+				this.StoryById[id] = data
+				return data
+			}
 		} catch (error) {
 			console.log(error)
 			return null
