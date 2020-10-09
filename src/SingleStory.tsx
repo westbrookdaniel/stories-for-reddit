@@ -5,7 +5,9 @@ import {
 	SkeletonText,
 	Text,
 	useColorMode,
-	VStack,
+	Link,
+	Button,
+	useTheme,
 } from '@chakra-ui/core'
 import React, { ReactElement, useEffect, useRef, useState } from 'react'
 import { Submission } from 'snoowrap'
@@ -13,6 +15,8 @@ import { reddit } from './api'
 import SectionContainer from './components/layout/SectionContainer'
 import DOMPurify from 'dompurify'
 import { AnimatePresence, motion } from 'framer-motion'
+import { HiExternalLink } from 'react-icons/hi'
+import { BsBookmarkFill, BsFillEyeSlashFill } from 'react-icons/bs'
 
 interface Props {
 	[index: string]: any
@@ -22,6 +26,7 @@ const MotionBox = motion.custom(Box)
 
 export default function SingleStory(props: Props): ReactElement {
 	const { colorMode } = useColorMode()
+	const theme = useTheme()
 	const stickyEl = useRef<HTMLDivElement>(null)
 
 	const [postData, setPostData] = useState<any>(null)
@@ -101,12 +106,66 @@ export default function SingleStory(props: Props): ReactElement {
 										top={50}
 										ref={stickyEl}
 									>
-										{console.log(postData)}
-										<Heading mb={4}>{postData?.title}</Heading>
-										<Text>
-											Lorem ipsum dolor sit amet consectetur adipisicing elit.
-											Sapiente, nesciunt.
+										<Heading
+											color={
+												colorMode === 'dark' ? 'white' : 'primary.700'
+											}
+											mb={4}
+										>
+											{postData?.title}
+										</Heading>
+										<Text
+											color={
+												colorMode === 'dark' ? 'primary.100' : 'primary.500'
+											}
+										>
+											From {postData?.subreddit_name_prefixed}
 										</Text>
+										<Text
+											color={
+												colorMode === 'dark' ? 'primary.100' : 'primary.500'
+											}
+										>
+											By {postData?.author.name}
+										</Text>
+										<HStack spacing={4} mt={3}>
+										<Link href="#" isExternal>
+												<Button variant="ghost" p={1} size="sm">
+													<BsBookmarkFill
+														color={
+															colorMode === 'dark'
+																? theme.colors.primary[100]
+																: theme.colors.primary[500]
+														}
+														fontSize="1.3rem"
+													/>
+												</Button>
+											</Link>
+											<Link href="#" isExternal>
+												<Button variant="ghost" p={1} size="sm">
+													<BsFillEyeSlashFill
+														color={
+															colorMode === 'dark'
+																? theme.colors.primary[100]
+																: theme.colors.primary[500]
+														}
+														fontSize="1.3rem"
+													/>
+												</Button>
+											</Link>
+											<Link href={postData?.url} isExternal>
+												<Button variant="ghost" p={1} size="sm">
+													<HiExternalLink
+														color={
+															colorMode === 'dark'
+																? theme.colors.primary[100]
+																: theme.colors.primary[500]
+														}
+														fontSize="1.3rem"
+													/>
+												</Button>
+											</Link>
+										</HStack>
 									</MotionBox>
 								</Box>
 							</HStack>
