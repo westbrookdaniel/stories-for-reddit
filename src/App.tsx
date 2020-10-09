@@ -33,13 +33,16 @@ const App = () => {
 		<Box d="flex" minH="100vh" flexDir="column" overflow="hidden">
 			<Header />
 			<AnimatePresence exitBeforeEnter>
-				<MotionBox flexGrow={1} key={location.pathname}>
-					<motion.div
+				<MotionBox flexGrow={1} display="flex" flexDir="column" key={location.pathname}>
+					<MotionBox
 						initial={{ opacity: 0 }}
 						animate={{ opacity: 1, transition: { delay: 0.1 } }}
 						exit={{ opacity: 0 }}
 						transition={{ ease: 'easeInOut', duration: '0.1' }}
 						onAnimationStart={ScrollAfterDelay}
+						display="flex"
+						flexDir="column"
+						flexGrow={1}
 					>
 						<Switch location={location}>
 							<Route exact path="/" component={Home} />
@@ -50,7 +53,7 @@ const App = () => {
 							<Route exact path="/style-guide" component={StyleGuide} />
 							<Route exact path="/profile" component={Profile} />
 						</Switch>
-					</motion.div>
+					</MotionBox>
 				</MotionBox>
 			</AnimatePresence>
 			<Footer />

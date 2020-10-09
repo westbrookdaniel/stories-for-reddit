@@ -32,6 +32,7 @@ export default function Stories() {
 				title: post.title,
 				length: post.selftext_html?.length,
 				id: post.id,
+				url: post.url,
 			}))
 		)
 	}
@@ -46,7 +47,7 @@ export default function Stories() {
 	const filter = useFilter(posts, query)
 	const [firstLoaded, setFirstLoaded] = useState(false)
 
-	useEffect(() => {		
+	useEffect(() => {
 		if (!firstLoaded) {
 			if (posts && filter.length !== 0) {
 				setFirstLoaded(true)
@@ -70,6 +71,7 @@ export default function Stories() {
 				maxW="4xl"
 				bg={colorMode === 'dark' ? 'tan.950' : 'tan.400'}
 				pb={8}
+				flexGrow={1}
 			>
 				<AnimatePresence exitBeforeEnter>
 					{firstLoaded ? (
