@@ -1,10 +1,8 @@
-import React, { useContext, useEffect } from 'react'
+import React from 'react'
 
 import { Helmet } from 'react-helmet'
-import Hero from './components/pages/About/Hero'
 import SectionContainer from './components/layout/SectionContainer'
 import {
-	SimpleGrid,
 	Box,
 	Heading,
 	Text,
@@ -13,20 +11,11 @@ import {
 	HStack,
 	Avatar,
 } from '@chakra-ui/core'
-import { PageContext, PageStateProps } from './PageProvider'
 import DefaultButton from './components/util/DefaultButton'
 import { Link } from 'react-router-dom'
 import CardRow from './components/layout/CardRow'
 
 export default function Profile() {
-	const {
-		page: [, setPageState],
-	}: PageStateProps = useContext(PageContext)
-
-	useEffect(() => {
-		setPageState('default')
-	}, [])
-
 	const { colorMode } = useColorMode()
 
 	return (

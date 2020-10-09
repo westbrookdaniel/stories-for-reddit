@@ -1,22 +1,13 @@
-import React, { useContext, useEffect } from 'react'
+import React from 'react'
 
 import { Helmet } from 'react-helmet'
 import { SimpleGrid, useColorMode } from '@chakra-ui/core'
 import TopDetails from './components/pages/List/TopDetails'
 import Card from './components/util/Card'
-import { PageContext, PageStateProps } from './PageProvider'
 import SectionContainer from './components/layout/SectionContainer'
 
 export default function Subreddits() {
 	const { colorMode } = useColorMode()
-
-	const {
-		page: [, setPageState],
-	}: PageStateProps = useContext(PageContext)
-
-	useEffect(() => {
-		setPageState('hidden')
-	}, [])
 
 	const cards = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
 

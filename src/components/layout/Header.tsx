@@ -12,7 +12,6 @@ import {
 import Logo from '../util/Logo'
 import { AnimatePresence, motion } from 'framer-motion'
 import Nav from './Nav'
-import { PageContext, PageStateProps } from '../../PageProvider'
 
 export default function Header() {
 	const { colorMode } = useColorMode()
@@ -41,10 +40,6 @@ export default function Header() {
 }
 
 const NavSection = ({ logoHover }: { logoHover: boolean }) => {
-	const {
-		page: [pageState],
-	}: PageStateProps = useContext(PageContext)
-
 	const animation = {
 		initial: { opacity: 0, x: -100 },
 		animate: { opacity: 1, x: 0 },
@@ -53,22 +48,6 @@ const NavSection = ({ logoHover }: { logoHover: boolean }) => {
 			ease: 'easeOut',
 			duration: 0.2,
 		},
-	}
-
-	if (pageState === 'hidden') {
-		return (
-			<Box w="100%" ml={8} overflow="hidden">
-				<AnimatePresence exitBeforeEnter>
-					{logoHover ? (
-						<motion.div {...animation} key={1}>
-							<Heading fontFamily="logo" as="h2" fontSize="1.2rem">
-								Stories for Reddit
-							</Heading>
-						</motion.div>
-					) : null}
-				</AnimatePresence>
-			</Box>
-		)
 	}
 
 	return (
@@ -80,14 +59,7 @@ const NavSection = ({ logoHover }: { logoHover: boolean }) => {
 							Stories for Reddit
 						</Heading>
 					</motion.div>
-				) : (
-					<motion.div {...animation} key={2}>
-						<Input
-							_focus={{ outline: 'none' }}
-							placeholder="Search by title..."
-						/>
-					</motion.div>
-				)}
+				) : null}
 			</AnimatePresence>
 		</Box>
 	)

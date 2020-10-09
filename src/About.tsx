@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from 'react'
+import React from 'react'
 
 import { Helmet } from 'react-helmet'
 import Hero from './components/pages/About/Hero'
@@ -11,18 +11,9 @@ import {
 	useColorMode,
 	VStack,
 } from '@chakra-ui/core'
-import { PageContext, PageStateProps } from './PageProvider'
 import DefaultButton from './components/util/DefaultButton'
 
 export default function About() {
-	const {
-		page: [, setPageState],
-	}: PageStateProps = useContext(PageContext)
-
-	useEffect(() => {
-		setPageState('default')
-	}, [])
-
 	const { colorMode } = useColorMode()
 
 	return (

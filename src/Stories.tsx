@@ -1,13 +1,12 @@
-import React, { useEffect, useContext, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 
 import { reddit } from './api'
 
 import { Helmet } from 'react-helmet'
 import SectionContainer from './components/layout/SectionContainer'
-import { SimpleGrid, Skeleton, Spinner, useColorMode } from '@chakra-ui/core'
+import { SimpleGrid, useColorMode } from '@chakra-ui/core'
 import TopDetails from './components/pages/List/TopDetails'
 import Card from './components/util/Card'
-import { PageContext, PageStateProps } from './PageProvider'
 import { CardPost } from './types'
 import { SkeletonCards } from './components/util/Skeletons'
 import { AnimatePresence, motion } from 'framer-motion'
@@ -17,18 +16,17 @@ export default function Stories() {
 	const { colorMode } = useColorMode()
 
 	const [posts, setPosts] = useState<null | CardPost[]>(null)
-	const {
-		page: [, setPageState],
-	}: PageStateProps = useContext(PageContext)
 
 	useEffect(() => {
-		setPageState('hidden')
 		getStories()
 	}, [])
 
 	const getStories = async () => {
 		const rawPosts = await reddit.getFeaturedStories()
-		if (!rawPosts) throw 'can not get featured stories'
+		if (typeof rawPosts === 'string') {
+			setPosts([])
+			throw new Error(rawPosts)
+		}
 		setPosts(
 			rawPosts.map((post) => ({
 				title: post.title,
@@ -48,11 +46,13 @@ export default function Stories() {
 	const filter = useFilter(posts, query)
 	const [firstLoaded, setFirstLoaded] = useState(false)
 
-	if (!firstLoaded) {
-		if (posts && filter.length !== 0) {
-			setFirstLoaded(true)
+	useEffect(() => {		
+		if (!firstLoaded) {
+			if (posts && filter.length !== 0) {
+				setFirstLoaded(true)
+			}
 		}
-	}
+	}, [posts, filter, firstLoaded])
 
 	return (
 		<>

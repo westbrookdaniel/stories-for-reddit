@@ -1,6 +1,4 @@
-import React, { useEffect, useState, useContext } from 'react'
-
-import { placeholder, firebase } from './api'
+import React from 'react'
 
 import { Helmet } from 'react-helmet'
 import Hero from './components/pages/Home/Hero'
@@ -8,27 +6,8 @@ import SectionContainer from './components/layout/SectionContainer'
 import CardRow from './components/layout/CardRow'
 import { VStack, SimpleGrid } from '@chakra-ui/core'
 import ActionContainer from './components/pages/Home/ActionContainer'
-import { PageContext, PageStateProps } from './PageProvider'
 
 export default function Home() {
-	const {
-		page: [, setPageState],
-	}: PageStateProps = useContext(PageContext)
-	
-	useEffect(() => {
-		setPageState('default')
-		// callp()
-		// callf()
-	}, [])
-
-	// const callf = async () => {
-	// 	const fdata = await firebase.get('users')
-	// 	console.log(fdata)
-	// }
-	// const callp = async () => {
-	// 	const pdata = await placeholder.getPosts()
-	// 	setPosts(pdata)
-	// }
 
 	return (
 		<>

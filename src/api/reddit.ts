@@ -48,7 +48,7 @@ class redditApi {
 			}
 		} catch (error) {
 			console.log(error)
-			return null
+			return 'Error can not get featured stories'
 		}
 	}
 
