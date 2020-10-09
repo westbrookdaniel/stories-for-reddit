@@ -14,18 +14,19 @@ import MoreDetailsPopover from './MoreDetailsPopover'
 
 interface Props {
 	title?: string
-	time?: string
+	badge?: string
 	link?: string
 	postData?: any
+	compact?: boolean
 }
 
-const Card = ({ title, time = 'unknown', link, postData }: Props) => {
+const Card = ({ title, badge = 'unknown', compact = false, link, postData }: Props) => {
 	const { colorMode } = useColorMode()
 	const theme = useTheme()
 
 	return (
 		<AspectRatio
-			ratio={1}
+			ratio={compact ? 5 / 4 : 1}
 			maxW="200px"
 			w="100%"
 			borderRadius="md"
@@ -51,7 +52,7 @@ const Card = ({ title, time = 'unknown', link, postData }: Props) => {
 				<Box w="100%">
 					<Box d="flex" alignItems="baseline" pt={3}>
 						<Badge borderRadius="full" px="2" colorScheme="primary">
-							{time}
+							{badge}
 						</Badge>
 					</Box>
 					<Box

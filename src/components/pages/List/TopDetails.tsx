@@ -26,24 +26,6 @@ const TopDetails = ({ title, query, setQuery, ...props }: Props) => {
 					onChange={(e) => setQuery(e.target.value)}
 					placeholder="Search by title..."
 				/>
-				<HStack pt={3}>
-					<Badge
-						borderRadius="full"
-						px="3"
-						fontSize="0.9em"
-						colorScheme="primary"
-					>
-						SF
-					</Badge>
-					<Badge
-						borderRadius="full"
-						px="3"
-						fontSize="0.9em"
-						colorScheme="primary"
-					>
-						FN
-					</Badge>
-				</HStack>
 			</Box>
 		</SectionContainer>
 	)

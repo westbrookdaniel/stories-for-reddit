@@ -18,7 +18,7 @@ export default function Home() {
 			<SectionContainer maxW="7xl" mb={16}>
 				<VStack spacing={10}>
 					<CardRow title="Featured Stories" w="100%" />
-					<CardRow title="Featured Subreddits" w="100%" />
+					<CardRow title="Featured Subreddits" w="100%" compact />
 					<SimpleGrid columns={2} w="100%" gap={10}>
 						<ActionContainer title="View All Subreddits" link="/"/>
 						<ActionContainer title="Discover All Stories" link="/stories"/>

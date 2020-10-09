@@ -88,7 +88,7 @@ export default function Stories() {
 													? post.title.substring(0, 48) + '...'
 													: post.title
 											}
-											time={time ? `${time} min` : undefined}
+											badge={time ? `${time} min` : undefined}
 											link={`/story/${post.id}`}
 											postData={post}
 										/>

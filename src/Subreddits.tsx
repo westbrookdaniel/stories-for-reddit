@@ -27,8 +27,9 @@ export default function Subreddits() {
 						return (
 							<Card
 								key={cards.indexOf(card)}
-								title="[HR] Monster Hunter Saga"
-								time="14 min"
+								title="r/shortstories"
+								badge="14.2k"
+								compact
 							/>
 						)
 					})}
