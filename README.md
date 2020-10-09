@@ -82,7 +82,7 @@ Expanded Functionality
 - [ ] M - Filter
 - [ ] E - Dynamic Home content
 - [ ] M - Pagination (myListing.fetchmore)
-- [ ] M - List item options
+- [x] M - List item options
 - [ ] E - Put Everything Everywhere
 
 Profile
