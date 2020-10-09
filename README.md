@@ -79,6 +79,7 @@ Expanded Functionality
 - [x] E - Time to read calculation
 - [x] E - Animated header
 - [x] M - Search
+- [ ] H - Subreddits
 - [ ] M - Filter
 - [ ] E - Dynamic Home content
 - [ ] M - Pagination (myListing.fetchmore)
