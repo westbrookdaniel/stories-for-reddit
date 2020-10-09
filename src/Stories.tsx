@@ -11,6 +11,7 @@ import { PageContext, PageStateProps } from './PageProvider'
 import { CardPost } from './types'
 import { SkeletonCards } from './components/util/Skeletons'
 import { AnimatePresence, motion } from 'framer-motion'
+import { useFilter } from './components/pages/List/useFilter'
 
 export default function Stories() {
 	const { colorMode } = useColorMode()
@@ -43,41 +44,62 @@ export default function Stories() {
 		exit: { opacity: 0 },
 	}
 
+	const [query, setQuery] = useState('')
+	const filter = useFilter(posts, query)
+	const [firstLoaded, setFirstLoaded] = useState(false)
+
+	if (!firstLoaded) {
+		if (posts && filter.length !== 0) {
+			setFirstLoaded(true)
+		}
+	}
+
 	return (
 		<>
 			<Helmet>
 				<title>Featured Stories | Stories For Reddit</title>
 			</Helmet>
-			<TopDetails mb={6} title="Featured Stories" maxW="4xl" />
+			<TopDetails
+				query={query}
+				setQuery={setQuery}
+				mb={6}
+				title="Featured Stories"
+				maxW="4xl"
+			/>
 			<SectionContainer
 				maxW="4xl"
 				bg={colorMode === 'dark' ? 'tan.950' : 'tan.400'}
 				pb={8}
 			>
-				<SimpleGrid columns={4} spacing={5}>
-					<AnimatePresence exitBeforeEnter>
-						{posts
-							? posts.map((post) => {
+				<AnimatePresence exitBeforeEnter>
+					{firstLoaded ? (
+						<motion.div id="1" {...animation}>
+							<SimpleGrid columns={4} spacing={5}>
+								{filter.map((post) => {
 									// Character Per Minuite Reading Time
 									const time = Math.floor(post.length! / 1250)
 									return (
-										<motion.div key={post.id} {...animation}>
-											<Card
-												title={
-													post.title.length > 48
-														? post.title.substring(0, 48) + '...'
-														: post.title
-												}
-												time={time ? `${time} min` : undefined}
-												link={`/story/${post.id}`}
-												linkData={post}
-											/>
-										</motion.div>
+										<Card
+											key={post.id}
+											title={
+												post.title.length > 48
+													? post.title.substring(0, 48) + '...'
+													: post.title
+											}
+											time={time ? `${time} min` : undefined}
+											link={`/story/${post.id}`}
+											linkData={post}
+										/>
 									)
-							  })
-							: SkeletonCards({ quanitity: 12, motionProps: animation })}
-					</AnimatePresence>
-				</SimpleGrid>
+								})}
+							</SimpleGrid>
+						</motion.div>
+					) : (
+						<SimpleGrid columns={4} spacing={5}>
+							{SkeletonCards({ quanitity: 12, motionProps: animation })}
+						</SimpleGrid>
+					)}
+				</AnimatePresence>
 			</SectionContainer>
 		</>
 	)

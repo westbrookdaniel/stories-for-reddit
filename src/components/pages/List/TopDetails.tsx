@@ -1,22 +1,15 @@
 import React from 'react'
 import SectionContainer from '../../layout/SectionContainer'
-import {
-	Box,
-	Heading,
-	Input,
-	Button,
-	HStack,
-	Badge,
-} from '@chakra-ui/core'
+import { Box, Heading, Input, Button, HStack, Badge } from '@chakra-ui/core'
 import BigBackArrow from '../../util/BigBackArrow'
 import { useHistory } from 'react-router-dom'
 
 interface Props {
-    title: string
-    [index: string]: any
+	title: string
+	[index: string]: any
 }
 
-const TopDetails = ({ title, ...props }: Props) => {
+const TopDetails = ({ title, query, setQuery, ...props }: Props) => {
 	const history = useHistory()
 
 	return (
@@ -29,13 +22,25 @@ const TopDetails = ({ title, ...props }: Props) => {
 				<Input
 					w="100%"
 					_focus={{ outline: 'none' }}
-					placeholder="Search by name or flair..."
+					value={query}
+					onChange={(e) => setQuery(e.target.value)}
+					placeholder="Search by title..."
 				/>
 				<HStack pt={3}>
-					<Badge borderRadius="full" px="3" fontSize="0.9em" colorScheme="primary">
+					<Badge
+						borderRadius="full"
+						px="3"
+						fontSize="0.9em"
+						colorScheme="primary"
+					>
 						SF
 					</Badge>
-					<Badge borderRadius="full" px="3" fontSize="0.9em" colorScheme="primary">
+					<Badge
+						borderRadius="full"
+						px="3"
+						fontSize="0.9em"
+						colorScheme="primary"
+					>
 						FN
 					</Badge>
 				</HStack>

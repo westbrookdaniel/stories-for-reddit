@@ -84,7 +84,7 @@ const NavSection = ({ logoHover }: { logoHover: boolean }) => {
 					<motion.div {...animation} key={2}>
 						<Input
 							_focus={{ outline: 'none' }}
-							placeholder="Search by name or flair..."
+							placeholder="Search by title..."
 						/>
 					</motion.div>
 				)}
