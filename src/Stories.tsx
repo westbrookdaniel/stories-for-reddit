@@ -88,7 +88,7 @@ export default function Stories() {
 											}
 											time={time ? `${time} min` : undefined}
 											link={`/story/${post.id}`}
-											linkData={post}
+											postData={post}
 										/>
 									)
 								})}

@@ -1,17 +1,6 @@
 import React, { ReactElement } from 'react'
-import { HiExternalLink } from 'react-icons/hi'
-import { BsBookmarkFill, BsFillEyeSlashFill } from 'react-icons/bs'
-import {
-	Box,
-	Heading,
-	HStack,
-	SkeletonText,
-	Text,
-	useColorMode,
-	Link,
-	Button,
-	useTheme,
-} from '@chakra-ui/core'
+import { Box, Heading, Text, useColorMode, useTheme } from '@chakra-ui/core'
+import IconStack from './IconStack'
 
 interface Props {
 	postData: any
@@ -19,7 +8,6 @@ interface Props {
 
 export default function StoryDetails({ postData }: Props): ReactElement {
 	const { colorMode } = useColorMode()
-	const theme = useTheme()
 
 	return (
 		<>
@@ -32,44 +20,9 @@ export default function StoryDetails({ postData }: Props): ReactElement {
 			<Text color={colorMode === 'dark' ? 'primary.100' : 'primary.500'}>
 				By {postData?.author.name}
 			</Text>
-			<HStack spacing={4} mt={3}>
-				<Link href="#" isExternal>
-					<Button variant="ghost" p={1} size="sm">
-						<BsBookmarkFill
-							color={
-								colorMode === 'dark'
-									? theme.colors.primary[100]
-									: theme.colors.primary[500]
-							}
-							fontSize="1.3rem"
-						/>
-					</Button>
-				</Link>
-				<Link href="#" isExternal>
-					<Button variant="ghost" p={1} size="sm">
-						<BsFillEyeSlashFill
-							color={
-								colorMode === 'dark'
-									? theme.colors.primary[100]
-									: theme.colors.primary[500]
-							}
-							fontSize="1.3rem"
-						/>
-					</Button>
-				</Link>
-				<Link href={postData?.url} isExternal>
-					<Button variant="ghost" p={1} size="sm">
-						<HiExternalLink
-							color={
-								colorMode === 'dark'
-									? theme.colors.primary[100]
-									: theme.colors.primary[500]
-							}
-							fontSize="1.3rem"
-						/>
-					</Button>
-				</Link>
-			</HStack>
+			<Box mt={3}>
+				<IconStack postData={postData} />
+			</Box>
 		</>
 	)
 }

@@ -10,15 +10,16 @@ import {
 } from '@chakra-ui/core'
 import { MdMoreHoriz, MdKeyboardArrowRight } from 'react-icons/md'
 import { Link } from 'react-router-dom'
+import MoreDetailsPopover from './MoreDetailsPopover'
 
 interface Props {
 	title?: string
 	time?: string
 	link?: string
-	linkData?: any
+	postData?: any
 }
 
-const Card = ({ title, time = 'unknown', link, linkData }: Props) => {
+const Card = ({ title, time = 'unknown', link, postData }: Props) => {
 	const { colorMode } = useColorMode()
 	const theme = useTheme()
 
@@ -35,7 +36,7 @@ const Card = ({ title, time = 'unknown', link, linkData }: Props) => {
 			}}
 			transition="ease-in-out 0.1s all"
 		>
-			<Box display="flex" flexDirection="column" p={5}>
+			<Box display="flex" overflow="visible" flexDirection="column" p={5}>
 				<Text
 					fontSize="lg"
 					mt="1"
@@ -60,17 +61,8 @@ const Card = ({ title, time = 'unknown', link, linkData }: Props) => {
 						justifyContent="space-between"
 						alignItems="center"
 					>
-						<Button variant="ghost" p={1} size="sm">
-							<MdMoreHoriz
-								fontSize={25}
-								color={
-									colorMode === 'dark'
-										? theme.colors.primary[100]
-										: theme.colors.primary[500]
-								}
-							/>
-						</Button>
-						{link && linkData ? (
+						<MoreDetailsPopover postData={postData} />
+						{link ? (
 							<Button variant="ghost" p={1} size="sm">
 								<Link to={link}>
 									<MdKeyboardArrowRight
