@@ -12,6 +12,7 @@ import { AnimatePresence, motion } from 'framer-motion'
 import Subreddits from './Subreddits'
 import About from './About'
 import SingleStory from './SingleStory'
+import Profile from './Profile'
 
 const MotionBox = motion.custom(Box)
 
@@ -47,6 +48,7 @@ const App = () => {
 							<Route exact path="/about" component={About} />
 							<Route exact path="/subreddits" component={Subreddits} />
 							<Route exact path="/style-guide" component={StyleGuide} />
+							<Route exact path="/profile" component={Profile} />
 						</Switch>
 					</motion.div>
 				</MotionBox>

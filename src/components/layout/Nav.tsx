@@ -29,7 +29,9 @@ const Nav: FunctionComponent<Props> = ({ onlyLinks, color, ...props }) => {
 					<Button onClick={toggleColorMode} variant="ghost" p={1} size="sm">
 						<BsMoon fontSize="1.3rem" />
 					</Button>
-					<Avatar name="Dan Abrahmov" src="https://bit.ly/dan-abramov" />
+					<NavLink color={color} as={RouterLink} to="/profile">
+						<Avatar name="Dan Abrahmov" src="https://bit.ly/dan-abramov" />
+					</NavLink>
 				</HStack>
 			)}
 		</HStack>
