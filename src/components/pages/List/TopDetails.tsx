@@ -46,6 +46,7 @@ const TopDetails = ({
 								>
 									Sort
 								</MenuButton>
+								{/* TODO: Active class for current sort */}
 								<MenuList>{SortingButtons(sortListBy)}</MenuList>
 							</Menu>
 						</Box>
