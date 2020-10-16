@@ -88,16 +88,16 @@ Expanded Functionality
 
 Profile
 
-- [ ] M - Profile Functionality
+- [ ] H - Profile Functionality
 - [ ] M - Saving Stories
+- [ ] M - Hiding Stories
 
 Finishing Up
 
-- [ ] H - Minimum coverage at 70%
 - [ ] E - Responsive Fixups
-- [ ] M - Mobile menu
-- [ ] E - Finalising Content and Links
-- [ ] E - General polish
+- [ ] M - Mobile nav
+- [ ] E - Finalising Content
+- [ ] E - General polish and optimisations
 
 ## Extra Notes
 
