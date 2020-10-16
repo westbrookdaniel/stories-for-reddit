@@ -80,7 +80,7 @@ Expanded Functionality
 - [x] E - Animated header
 - [x] M - Search
 - [x] H - Subreddits
-- [ ] M - Filter
+- [x] M - Filter (sort was more practical)
 - [x] E - Dynamic Home content
 - [ ] M - Pagination (myListing.fetchmore)
 - [x] M - List item options
