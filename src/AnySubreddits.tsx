@@ -12,6 +12,8 @@ import { SkeletonCards } from './components/util/Skeletons'
 import { AnimatePresence, motion } from 'framer-motion'
 import { useList } from './components/pages/List/useList'
 import { fadeAnimation } from './components/util/animations'
+import { reorder } from './components/util/sortBy'
+import { mapFromPosts } from './components/pages/List/mapFromPosts'
 
 interface Props {
 	[key: string]: any
@@ -20,6 +22,7 @@ interface Props {
 export default function Stories(props: Props) {
 	const { colorMode } = useColorMode()
 	const [posts, setPosts] = useState<null | CardPost[]>(null)
+	const [ordered, setOrdered] = useState<null | CardPost[]>(null)
 
 	useEffect(() => {
 		getStories()
@@ -49,6 +52,27 @@ export default function Stories(props: Props) {
 
 	const { query, setQuery, filter, firstLoaded } = useList(posts)
 
+	const sortListBy = {
+		unsorted: {
+			method: () => {
+				setOrdered(null)
+			},
+			name: 'None',
+		},
+		lengthLow: {
+			method: () => {
+				reorder(filter, setOrdered, 'length')
+			},
+			name: 'Shortest',
+		},
+		lengthHigh: {
+			method: () => {
+				reorder(filter, setOrdered, 'length', true)
+			},
+			name: 'Longest',
+		},
+	}
+
 	return (
 		<>
 			<Helmet>
@@ -60,6 +84,7 @@ export default function Stories(props: Props) {
 				mb={6}
 				title={`${props.match.params.id}`}
 				maxW="4xl"
+				sortListBy={sortListBy}
 			/>
 			<SectionContainer
 				maxW="4xl"
@@ -71,23 +96,7 @@ export default function Stories(props: Props) {
 					{firstLoaded ? (
 						<motion.div id="1" {...fadeAnimation}>
 							<SimpleGrid columns={4} spacing={5}>
-								{filter.map((post) => {
-									// Character Per Minuite Reading Time
-									const time = Math.floor(post.length! / 1250)
-									return (
-										<Card
-											key={post.id}
-											title={
-												post.title.length > 48
-													? post.title.substring(0, 48) + '...'
-													: post.title
-											}
-											badge={time ? `${time} min` : undefined}
-											link={`/stories/${post.id}`}
-											postData={post}
-										/>
-									)
-								})}
+								{mapFromPosts(ordered || filter)}
 							</SimpleGrid>
 						</motion.div>
 					) : (

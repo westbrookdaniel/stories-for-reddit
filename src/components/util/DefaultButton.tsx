@@ -17,7 +17,7 @@ const DefaultButton: FunctionComponent<Props> = ({
 	return (
 		<Button
 			colorScheme={colorScheme}
-			color={colorScheme === 'tan' ? "primary.700" : undefined}
+			color={colorScheme === 'tan' ? 'primary.700' : undefined}
 			pr={2}
 			size="md"
 			boxShadow="sm"
