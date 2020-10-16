@@ -3,7 +3,7 @@ import { Helmet } from 'react-helmet'
 import Hero from './components/pages/Home/Hero'
 import SectionContainer from './components/layout/SectionContainer'
 import CardRow from './components/layout/CardRow'
-import { VStack, SimpleGrid } from '@chakra-ui/core'
+import { VStack, SimpleGrid, HStack } from '@chakra-ui/core'
 import ActionContainer from './components/pages/Home/ActionContainer'
 import { useListWithoutFilter } from './components/pages/List/useList'
 import { reddit } from './api'
@@ -12,7 +12,7 @@ import Card from './components/util/Card'
 import { mapFromPosts } from './components/pages/List/mapFromPosts'
 import { SkeletonCards } from './components/util/Skeletons'
 import { fadeAnimation } from './components/util/animations'
-import { AnimatePresence } from 'framer-motion'
+import { AnimatePresence, motion } from 'framer-motion'
 import mapFromSubreddits from './components/pages/List/mapFromSubreddits'
 
 export default function Home() {
@@ -58,16 +58,28 @@ export default function Home() {
 				<VStack spacing={10}>
 					<CardRow title="Featured Stories" w="100%">
 						<AnimatePresence exitBeforeEnter>
-							{loadedStories
-								? mapFromPosts(posts)
-								: SkeletonCards({ quanitity: 4, motionProps: fadeAnimation })}
+							{loadedStories ? (
+								<motion.div id="1" {...fadeAnimation}>
+									<HStack spacing={6}>{mapFromPosts(posts)}</HStack>
+								</motion.div>
+							) : (
+								<HStack spacing={6}>
+									{SkeletonCards({ quanitity: 4, motionProps: fadeAnimation })}
+								</HStack>
+							)}
 						</AnimatePresence>
 					</CardRow>
 					<CardRow title="Featured Subreddits" w="100%">
 						<AnimatePresence exitBeforeEnter>
-							{loadedSubreddits
-								? mapFromSubreddits(subreddits)
-								: SkeletonCards({ quanitity: 4, motionProps: fadeAnimation })}
+							{loadedSubreddits ? (
+								<motion.div id="1" {...fadeAnimation}>
+									<HStack spacing={6}>{mapFromSubreddits(subreddits)}</HStack>
+								</motion.div>
+							) : (
+								<HStack spacing={6}>
+									{SkeletonCards({ quanitity: 4, motionProps: fadeAnimation })}
+								</HStack>
+							)}
 						</AnimatePresence>
 					</CardRow>
 					<SimpleGrid columns={2} w="100%" gap={10}>

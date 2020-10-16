@@ -9,7 +9,7 @@ export const SkeletonCards = ({
 	motionProps,
 }: {
 	quanitity?: Number
-	motionProps: AnyObject
+	motionProps?: AnyObject
 }) => {
 	const { colorMode } = useColorMode()
 

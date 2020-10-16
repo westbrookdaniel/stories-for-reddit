@@ -12,7 +12,7 @@ const CardRow = ({ title, compact = false, children, ...props }: Props) => {
 	return (
 		<PaddedContainer {...props}>
 			<Heading mb={8}>{title}</Heading>
-			<HStack spacing={6}>{children}</HStack>
+			{children}
 		</PaddedContainer>
 	)
 }
