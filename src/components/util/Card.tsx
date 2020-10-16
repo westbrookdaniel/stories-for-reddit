@@ -20,13 +20,18 @@ interface Props {
 	compact?: boolean
 }
 
-const Card = ({ title, badge = 'unknown', compact = false, link, postData }: Props) => {
+const Card = ({
+	title,
+	badge = 'unknown',
+	link,
+	postData,
+}: Props) => {
 	const { colorMode } = useColorMode()
 	const theme = useTheme()
 
 	return (
 		<AspectRatio
-			ratio={compact ? 5 / 4 : 1}
+			ratio={1}
 			maxW="200px"
 			w="100%"
 			borderRadius="md"

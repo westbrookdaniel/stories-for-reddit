@@ -12,7 +12,11 @@ import { SkeletonCards } from './components/util/Skeletons'
 import { AnimatePresence, motion } from 'framer-motion'
 import { useFilter } from './components/pages/List/useFilter'
 
-export default function Stories() {
+interface Props {
+	[key: string]: any
+}
+
+export default function Stories(props: Props) {
 	const { colorMode } = useColorMode()
 
 	const [posts, setPosts] = useState<null | CardPost[]>(null)
@@ -22,13 +26,13 @@ export default function Stories() {
 	}, [])
 
 	const getStories = async () => {
-		const rawPosts = await reddit.getFeaturedStories()
+		const rawPosts = await reddit.getSubredditStories(props.match.params.id)
 		if (typeof rawPosts === 'string') {
 			setPosts([])
 			throw new Error(rawPosts)
 		}
 		setPosts(
-			rawPosts.map((post) => ({
+			rawPosts.map((post: any) => ({
 				title: post.title,
 				length: post.selftext_html?.length,
 				id: post.id,
@@ -58,13 +62,13 @@ export default function Stories() {
 	return (
 		<>
 			<Helmet>
-				<title>Featured Stories | Stories For Reddit</title>
+				<title>r/{props.match.params.id} | Stories For Reddit</title>
 			</Helmet>
 			<TopDetails
 				query={query}
 				setQuery={setQuery}
 				mb={6}
-				title="Featured Stories"
+				title={`${props.match.params.id}`}
 				maxW="4xl"
 			/>
 			<SectionContainer

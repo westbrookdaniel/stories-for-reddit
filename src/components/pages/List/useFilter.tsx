@@ -6,9 +6,9 @@ export const useFilter = (array: any[] | null, query: string) => {
 	useEffect(() => {
 		if (array) {
 			const out: any[] = []
-			array.forEach((post) => {
-				if (post.title?.toLowerCase().includes(query.toLowerCase())) {
-					out.push(post)
+			array.forEach((item) => {
+				if (item.title?.toLowerCase().includes(query.toLowerCase())) {
+					out.push(item)
 				}
 			})
 			setFilter(out)

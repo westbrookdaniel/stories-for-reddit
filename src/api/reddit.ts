@@ -1,4 +1,5 @@
 import snoowrap from 'snoowrap'
+import { AnyObject } from '../types'
 // https://www.reddit.com/prefs/apps
 // https://not-an-aardvark.github.io/snoowrap/
 
@@ -6,10 +7,19 @@ interface storyObject {
 	[key: string]: any
 }
 
+const subreddits = [
+	{ title: 'shortstories', subs: 14.2 },
+	{ title: 'HFY', subs: 3.2 },
+	{ title: 'sleepspell', subs: 4.4 },
+]
+
+export type subredditsType = typeof subreddits
+
 class redditApi {
 	r: snoowrap
 	loggedIn: boolean
 	FeaturedStories: undefined | snoowrap.Listing<snoowrap.Submission>
+	Subreddit: AnyObject
 	StoryById: storyObject
 
 	constructor() {
@@ -24,6 +34,7 @@ class redditApi {
 		this.loggedIn = false
 		this.FeaturedStories = undefined
 		this.StoryById = {}
+		this.Subreddit = {}
 	}
 
 	login = () => {
@@ -44,6 +55,29 @@ class redditApi {
 			} else {
 				const data = await this.r.getHot('shortstories', { limit: 10 }) // Actually is a limit of 12
 				this.FeaturedStories = data
+				return data
+			}
+		} catch (error) {
+			console.log(error)
+			return 'Error can not get featured stories'
+		}
+	}
+
+	getSubreddits = async () => {
+		return new Promise((res, rej) => {
+			setTimeout(() => {
+				res(subreddits)
+			}, 1000)
+		})
+	}
+
+	getSubredditStories = async (id: string) => {
+		try {
+			if (this.Subreddit[id]) {
+				return this.Subreddit[id]
+			} else {
+				const data = await this.r.getHot(id, { limit: 10 }) // Actually is a limit of 12
+				this.Subreddit[id] = data
 				return data
 			}
 		} catch (error) {

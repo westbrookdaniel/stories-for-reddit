@@ -3,13 +3,12 @@ import {
 	HStack,
 	SkeletonText,
 	useColorMode,
-	useTheme,
 } from '@chakra-ui/core'
 import React, { ReactElement, useEffect, useRef, useState } from 'react'
 import { reddit } from './api'
 import SectionContainer from './components/layout/SectionContainer'
 import DOMPurify from 'dompurify'
-import { AnimatePresence, motion, useViewportScroll } from 'framer-motion'
+import { AnimatePresence, motion } from 'framer-motion'
 import StoryDetails from './components/pages/SingleStory/StoryDetails'
 
 interface Props {
@@ -20,9 +19,7 @@ const MotionBox = motion.custom(Box)
 
 export default function SingleStory(props: Props): ReactElement {
 	const { colorMode } = useColorMode()
-	const theme = useTheme()
 	const stickyEl = useRef<HTMLDivElement>(null)
-	const { scrollY } = useViewportScroll()
 	const [postData, setPostData] = useState<any>(null)
 	useEffect(() => {
 		getPostData()

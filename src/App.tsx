@@ -13,6 +13,7 @@ import Subreddits from './Subreddits'
 import About from './About'
 import SingleStory from './SingleStory'
 import Profile from './Profile'
+import AnySubreddits from './AnySubreddits'
 
 const MotionBox = motion.custom(Box)
 
@@ -46,8 +47,9 @@ const App = () => {
 					>
 						<Switch location={location}>
 							<Route exact path="/" component={Home} />
+							<Route path="/stories/:id" component={SingleStory} />
+							<Route path="/subreddits/:id" component={AnySubreddits} />
 							<Route exact path="/stories" component={Stories} />
-							<Route path="/story/:id" component={SingleStory} />
 							<Route exact path="/about" component={About} />
 							<Route exact path="/subreddits" component={Subreddits} />
 							<Route exact path="/style-guide" component={StyleGuide} />
