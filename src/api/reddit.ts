@@ -18,7 +18,7 @@ export type subredditsType = typeof subreddits
 class redditApi {
 	r: snoowrap
 	loggedIn: boolean
-	FeaturedStories: undefined | snoowrap.Listing<snoowrap.Submission>
+	FeaturedStories: AnyObject
 	Subreddit: AnyObject
 	StoryById: storyObject
 
@@ -32,7 +32,7 @@ class redditApi {
 		}
 		this.r = new snoowrap(setupObj)
 		this.loggedIn = false
-		this.FeaturedStories = undefined
+		this.FeaturedStories = {}
 		this.StoryById = {}
 		this.Subreddit = {}
 	}
@@ -48,13 +48,15 @@ class redditApi {
 		window.location.href = authUrl
 	}
 
-	getFeaturedStories = async () => {
+	getFeaturedStories = async (quantity = 12) => {
 		try {
-			if (this.FeaturedStories) {
-				return this.FeaturedStories
+			if (this.FeaturedStories[quantity]) {
+				return this.FeaturedStories[quantity]
 			} else {
-				const data = await this.r.getHot('shortstories', { limit: 10 }) // Actually is a limit of 12
-				this.FeaturedStories = data
+				const data = await this.r.getSubreddit('shortstories').getHot({
+					limit: quantity - 2,
+				}) // Adds Two to Number
+				this.FeaturedStories[quantity] = data
 				return data
 			}
 		} catch (error) {
@@ -63,12 +65,13 @@ class redditApi {
 		}
 	}
 
-	getSubreddits = async () => {
-		return new Promise((res, rej) => {
-			setTimeout(() => {
-				res(subreddits)
-			}, 1000)
-		})
+	getSubreddits = async (quantity?: number) => {
+		if (quantity) {
+			if (quantity < subreddits.length) {
+				return subreddits.slice(0, quantity)
+			}
+		}
+		return subreddits
 	}
 
 	getSubredditStories = async (id: string) => {
@@ -76,7 +79,7 @@ class redditApi {
 			if (this.Subreddit[id]) {
 				return this.Subreddit[id]
 			} else {
-				const data = await this.r.getHot(id, { limit: 10 }) // Actually is a limit of 12
+				const data = await this.r.getSubreddit(id).getHot({ limit: 10 }) // Adds Two to Number
 				this.Subreddit[id] = data
 				return data
 			}

@@ -10,7 +10,8 @@ import Card from './components/util/Card'
 import { CardPost } from './types'
 import { SkeletonCards } from './components/util/Skeletons'
 import { AnimatePresence, motion } from 'framer-motion'
-import { useFilter } from './components/pages/List/useFilter'
+import { useList } from './components/pages/List/useList'
+import { fadeAnimation } from './components/util/animations'
 
 interface Props {
 	[key: string]: any
@@ -18,7 +19,6 @@ interface Props {
 
 export default function Stories(props: Props) {
 	const { colorMode } = useColorMode()
-
 	const [posts, setPosts] = useState<null | CardPost[]>(null)
 
 	useEffect(() => {
@@ -47,17 +47,7 @@ export default function Stories(props: Props) {
 		exit: { opacity: 0 },
 	}
 
-	const [query, setQuery] = useState('')
-	const filter = useFilter(posts, query)
-	const [firstLoaded, setFirstLoaded] = useState(false)
-
-	useEffect(() => {
-		if (!firstLoaded) {
-			if (posts && filter.length !== 0) {
-				setFirstLoaded(true)
-			}
-		}
-	}, [posts, filter, firstLoaded])
+	const { query, setQuery, filter, firstLoaded } = useList(posts)
 
 	return (
 		<>
@@ -79,7 +69,7 @@ export default function Stories(props: Props) {
 			>
 				<AnimatePresence exitBeforeEnter>
 					{firstLoaded ? (
-						<motion.div id="1" {...animation}>
+						<motion.div id="1" {...fadeAnimation}>
 							<SimpleGrid columns={4} spacing={5}>
 								{filter.map((post) => {
 									// Character Per Minuite Reading Time
@@ -102,7 +92,7 @@ export default function Stories(props: Props) {
 						</motion.div>
 					) : (
 						<SimpleGrid columns={4} spacing={5}>
-							{SkeletonCards({ quanitity: 12, motionProps: animation })}
+							{SkeletonCards({ quanitity: 12, motionProps: fadeAnimation })}
 						</SimpleGrid>
 					)}
 				</AnimatePresence>

@@ -6,9 +6,11 @@ import TopDetails from './components/pages/List/TopDetails'
 import Card from './components/util/Card'
 import SectionContainer from './components/layout/SectionContainer'
 import { reddit } from './api'
-import { useFilter } from './components/pages/List/useFilter'
 import { SkeletonCards } from './components/util/Skeletons'
 import { AnimatePresence, motion } from 'framer-motion'
+import { useList } from './components/pages/List/useList'
+import { fadeAnimation } from './components/util/animations'
+import mapFromSubreddits from './components/pages/List/mapFromSubreddits'
 
 export default function Subreddits() {
 	const { colorMode } = useColorMode()
@@ -20,30 +22,10 @@ export default function Subreddits() {
 
 	const getData = async () => {
 		const data = await reddit.getSubreddits()
-		console.log(data)
-
 		setSubreddits(data)
 	}
 
-	// const cards = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
-
-	const animation = {
-		animate: { opacity: 1 },
-		initial: { opacity: 0 },
-		exit: { opacity: 0 },
-	}
-
-	const [query, setQuery] = useState('')
-	const filter = useFilter(subreddits, query)
-	const [firstLoaded, setFirstLoaded] = useState(false)
-
-	useEffect(() => {
-		if (!firstLoaded) {
-			if (subreddits && filter.length !== 0) {
-				setFirstLoaded(true)
-			}
-		}
-	}, [subreddits, filter, firstLoaded])
+	const { query, setQuery, filter, firstLoaded } = useList(subreddits)
 
 	return (
 		<>
@@ -65,23 +47,14 @@ export default function Subreddits() {
 			>
 				<AnimatePresence exitBeforeEnter>
 					{firstLoaded ? (
-						<motion.div id="1" {...animation}>
+						<motion.div id="1" {...fadeAnimation}>
 							<SimpleGrid columns={4} spacing={5}>
-								{filter.map((subreddit) => {
-									return (
-										<Card
-											key={filter.indexOf(subreddit)}
-											title={`r/${subreddit.title}`}
-											link={`/subreddits/${subreddit.title}`}
-											badge={subreddit.subs ? `${subreddit.subs}k` : undefined}
-										/>
-									)
-								})}
+								{mapFromSubreddits(filter)}
 							</SimpleGrid>
 						</motion.div>
 					) : (
 						<SimpleGrid columns={4} spacing={5}>
-							{SkeletonCards({ quanitity: 8, motionProps: animation })}
+							{SkeletonCards({ quanitity: 8, motionProps: fadeAnimation })}
 						</SimpleGrid>
 					)}
 				</AnimatePresence>

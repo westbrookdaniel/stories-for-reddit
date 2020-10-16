@@ -40,7 +40,7 @@ export default function Header() {
 }
 
 const NavSection = ({ logoHover }: { logoHover: boolean }) => {
-	const animation = {
+	const navAnimation = {
 		initial: { opacity: 0, x: -100 },
 		animate: { opacity: 1, x: 0 },
 		exit: { opacity: 0, x: -100 },
@@ -54,7 +54,7 @@ const NavSection = ({ logoHover }: { logoHover: boolean }) => {
 		<Box w="100%" ml={8} overflow="hidden">
 			<AnimatePresence exitBeforeEnter>
 				{logoHover ? (
-					<motion.div {...animation} key={1}>
+					<motion.div {...navAnimation} key={1}>
 						<Heading fontFamily="logo" as="h2" fontSize="1.2rem">
 							Stories for Reddit
 						</Heading>

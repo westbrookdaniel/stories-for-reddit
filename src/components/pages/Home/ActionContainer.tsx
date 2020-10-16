@@ -13,7 +13,7 @@ const ActionContainer = ({ title, link }: ActionProps) => {
 	return (
 		<PaddedContainer>
 			<Heading mb={6}>{title}</Heading>
-			<Link to="/stories"><DefaultButton>Browse</DefaultButton></Link>
+			<Link to={link}><DefaultButton>Browse</DefaultButton></Link>
 		</PaddedContainer>
 	)
 }

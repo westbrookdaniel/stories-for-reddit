@@ -10,11 +10,12 @@ import Card from './components/util/Card'
 import { CardPost } from './types'
 import { SkeletonCards } from './components/util/Skeletons'
 import { AnimatePresence, motion } from 'framer-motion'
-import { useFilter } from './components/pages/List/useFilter'
+import { useList } from './components/pages/List/useList'
+import { mapFromPosts } from './components/pages/List/mapFromPosts'
+import { fadeAnimation } from './components/util/animations'
 
 export default function Stories() {
 	const { colorMode } = useColorMode()
-
 	const [posts, setPosts] = useState<null | CardPost[]>(null)
 
 	useEffect(() => {
@@ -28,7 +29,7 @@ export default function Stories() {
 			throw new Error(rawPosts)
 		}
 		setPosts(
-			rawPosts.map((post) => ({
+			rawPosts.map((post: any) => ({
 				title: post.title,
 				length: post.selftext_html?.length,
 				id: post.id,
@@ -37,23 +38,7 @@ export default function Stories() {
 		)
 	}
 
-	const animation = {
-		animate: { opacity: 1 },
-		initial: { opacity: 0 },
-		exit: { opacity: 0 },
-	}
-
-	const [query, setQuery] = useState('')
-	const filter = useFilter(posts, query)
-	const [firstLoaded, setFirstLoaded] = useState(false)
-
-	useEffect(() => {
-		if (!firstLoaded) {
-			if (posts && filter.length !== 0) {
-				setFirstLoaded(true)
-			}
-		}
-	}, [posts, filter, firstLoaded])
+	const { query, setQuery, filter, firstLoaded } = useList(posts)
 
 	return (
 		<>
@@ -75,30 +60,14 @@ export default function Stories() {
 			>
 				<AnimatePresence exitBeforeEnter>
 					{firstLoaded ? (
-						<motion.div id="1" {...animation}>
+						<motion.div id="1" {...fadeAnimation}>
 							<SimpleGrid columns={4} spacing={5}>
-								{filter.map((post) => {
-									// Character Per Minuite Reading Time
-									const time = Math.floor(post.length! / 1250)
-									return (
-										<Card
-											key={post.id}
-											title={
-												post.title.length > 48
-													? post.title.substring(0, 48) + '...'
-													: post.title
-											}
-											badge={time ? `${time} min` : undefined}
-											link={`/stories/${post.id}`}
-											postData={post}
-										/>
-									)
-								})}
+								{mapFromPosts(filter)}
 							</SimpleGrid>
 						</motion.div>
 					) : (
 						<SimpleGrid columns={4} spacing={5}>
-							{SkeletonCards({ quanitity: 12, motionProps: animation })}
+							{SkeletonCards({ quanitity: 12, motionProps: fadeAnimation })}
 						</SimpleGrid>
 					)}
 				</AnimatePresence>

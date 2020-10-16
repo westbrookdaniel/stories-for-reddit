@@ -79,12 +79,12 @@ Expanded Functionality
 - [x] E - Time to read calculation
 - [x] E - Animated header
 - [x] M - Search
-- [ ] H - Subreddits
+- [x] H - Subreddits
 - [ ] M - Filter
-- [ ] E - Dynamic Home content
+- [x] E - Dynamic Home content
 - [ ] M - Pagination (myListing.fetchmore)
 - [x] M - List item options
-- [ ] E - Put Everything Everywhere
+- [x] E - Put Everything Everywhere
 
 Profile
 
