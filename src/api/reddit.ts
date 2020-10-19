@@ -79,7 +79,7 @@ class redditApi {
 			if (this.Subreddit[id]) {
 				return this.Subreddit[id]
 			} else {
-				const data = await this.r.getSubreddit(id).getHot({ limit: 10 }) // Adds Two to Number
+				const data = await this.r.getSubreddit(id).getHot({ limit: 10 }) // TODO: Fix this currently it includes pinned posts
 				this.Subreddit[id] = data
 				return data
 			}

@@ -8,6 +8,7 @@ import {
 	SimpleGrid,
 	Image,
 	useColorMode,
+	HStack,
 } from '@chakra-ui/core'
 import DefaultButton from '../../util/DefaultButton'
 import heroImage from '../../../images/christin-hume-k2Kcwkandwg-unsplash@2x.png'
@@ -29,10 +30,24 @@ const Hero = (props: Props) => {
 						Sed ut perspiciatis unde omnis iste natus error sit voluptatem
 						accusantium doloremque laudantium,
 					</Text>
-					<Link to="/stories"><DefaultButton mb={6}>Discover Stories </DefaultButton></Link>
+					<HStack spacing={4}>
+						<Link to="/profile">
+							<DefaultButton colorScheme="tan" mb={6}>
+								Login
+							</DefaultButton>
+						</Link>
+						<Link to="/stories">
+							<DefaultButton mb={6}>Discover Stories </DefaultButton>
+						</Link>
+					</HStack>
 				</Box>
 				<Box maxW="lg" my={12} alignItems="center" d="flex">
-					<Image htmlHeight="341" htmlWidth="512" src={heroImage} alt="Segun Adebayo" />
+					<Image
+						htmlHeight="341"
+						htmlWidth="512"
+						src={heroImage}
+						alt="Segun Adebayo"
+					/>
 				</Box>
 			</SimpleGrid>
 		</SectionContainer>
