@@ -88,7 +88,9 @@ Expanded Functionality
 
 Profile
 
-- [ ] H - Profile Functionality
+- [ ] H - Basic Profile Functionality
+- [ ] M - Favourite Subs
+- [ ] M - Saved Stories
 - [ ] M - Saving Stories
 - [ ] M - Hiding Stories
 
