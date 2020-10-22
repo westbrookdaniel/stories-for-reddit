@@ -32,6 +32,7 @@ export default function Profile() {
 	const [userData, setUserData] = useState<AnyObject | null>(null)
 
 	const [stories, setStories] = useState<any[] | null>(null)
+	const [subreddits, setSubreddits] = useState<any[] | null>(null)
 
 	const toast = useToast()
 
@@ -84,17 +85,40 @@ export default function Profile() {
 		if (userData?.stories) {
 			getStories(userData?.stories)
 		}
+		if (userData?.subreddits) {
+			getSubreddits(userData?.subreddits)
+		}
 	}, [userData])
 
 	const getStories = async (idArr: any[]) => {
 		try {
 			setStories(await reddit.getStoriesFromList(idArr))
 		} catch (error) {
-			console.error('problem getting user stories:', error)
+			toast({
+				position: 'bottom-left',
+				title: 'Problem getting user stories',
+				status: 'error',
+				duration: 3000,
+				isClosable: true,
+			})
 		}
 	}
-
 	const { firstLoaded: loadedStories } = useListWithoutFilter(stories)
+
+	const getSubreddits = async (idArr: any[]) => {
+		try {
+			setSubreddits(await reddit.getSubredditsFromList(idArr))
+		} catch (error) {
+			toast({
+				position: 'bottom-left',
+				title: 'Problem getting user subreddits',
+				status: 'error',
+				duration: 3000,
+				isClosable: true,
+			})
+		}
+	}
+	const { firstLoaded: loadedSubreddits } = useListWithoutFilter(subreddits)
 
 	return (
 		<>
@@ -132,12 +156,31 @@ export default function Profile() {
 			</SectionContainer>
 			<SectionContainer maxW="7xl" mb={16}>
 				<VStack spacing={10}>
-					{/* TODO: get these from userData */}
-					<CardRow title="Favourited Subreddits" w="100%">
+					<CardRow title="Saved Stories" w="100%">
 						<AnimatePresence exitBeforeEnter>
 							{loadedStories ? (
 								<motion.div id="1" {...fadeAnimation}>
-									<HStack spacing={6}>{mapFromPosts(stories, 'No Favourited Stories')}</HStack>
+									<HStack spacing={6}>
+										{mapFromPosts(stories, 'No Saved Stories')}
+									</HStack>
+								</motion.div>
+							) : (
+								<HStack spacing={6}>
+									{SkeletonCards({
+										quanitity: 4,
+										motionProps: fadeAnimation,
+									})}
+								</HStack>
+							)}
+						</AnimatePresence>
+					</CardRow>
+					<CardRow title="Favourited Subreddits" w="100%">
+						<AnimatePresence exitBeforeEnter>
+							{loadedSubreddits ? (
+								<motion.div id="1" {...fadeAnimation}>
+									<HStack spacing={6}>
+										{mapFromPosts(subreddits, 'No Favourited Subreddits')}
+									</HStack>
 								</motion.div>
 							) : (
 								<HStack spacing={6}>
@@ -146,7 +189,6 @@ export default function Profile() {
 							)}
 						</AnimatePresence>
 					</CardRow>
-					<CardRow title="Saved Stories" w="100%" />
 				</VStack>
 			</SectionContainer>
 		</>

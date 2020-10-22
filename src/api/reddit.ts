@@ -73,6 +73,11 @@ class redditApi {
 		return storiesArr
 	}
 
+	getSubredditsFromList = async (idArray: string[]) => {
+		if (idArray.length === 0) return []
+		return idArray.map((id) => subreddits.find((sub) => sub.title === id))
+	}
+
 	getSubreddits = async (quantity?: number) => {
 		if (quantity) {
 			if (quantity < subreddits.length) {
