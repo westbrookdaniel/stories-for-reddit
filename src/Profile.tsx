@@ -75,8 +75,8 @@ export default function Profile() {
 						Email: {currentUser ? currentUser?.email : 'Loading...'}
 					</Text>
 					<HStack spacing={6} pt={3}>
-						<Link to="/stories">
-							<DefaultButton mb={6}>Discover Stories </DefaultButton>
+						<Link to="/update">
+							<DefaultButton mb={6}>Update Details</DefaultButton>
 						</Link>
 						<DefaultButton onClick={handleLogOut} colorScheme="tan" mb={6}>
 							Log Out

@@ -2,6 +2,8 @@ import React, { useState } from 'react'
 import { Helmet } from 'react-helmet'
 import SectionContainer from '../components/layout/SectionContainer'
 import {
+	Alert,
+	AlertIcon,
 	Box,
 	FormControl,
 	FormHelperText,
@@ -18,38 +20,31 @@ import DefaultButton from '../components/util/DefaultButton'
 
 interface formValuesTypes {
 	email: string
-	password: string
 }
 
-export default function Login() {
-	const history = useHistory()
+export default function ForgotPassword() {
 	const toast = useToast()
 	const [formValues, setFormValues] = useState<formValuesTypes>({
 		email: '',
-		password: '',
 	})
 	const [loading, setLoading] = useState<boolean>(false)
+	const [success, setSuccess] = useState<null | string>(null)
 
 	const handleSubmit = (e: any) => {
 		e.preventDefault()
-		const { email, password } = formValues
-		handleLogin(email, password)
+		const { email } = formValues
+		handleReset(email)
 	}
 
-	const handleLogin = async (email: string, password: string) => {
+	const handleReset = async (email: string) => {
 		try {
+			setSuccess(null)
 			setLoading(true)
-			const res = await firebase.login(email, password)
-			toast({
-				position: 'bottom-left',
-				title: res,
-				status: 'success',
-				duration: 3000,
-				isClosable: true,
-			})
+			const res = await firebase.resetPassword(email)
+			setSuccess(res)
 			setLoading(false)
-			history.push('/profile')
 		} catch (error) {
+			setSuccess(null)
 			setLoading(false)
 			toast({
 				position: 'bottom-left',
@@ -74,12 +69,12 @@ export default function Login() {
 	return (
 		<>
 			<Helmet>
-				<title>Login | Stories For Reddit</title>
+				<title>Forgot Password | Stories For Reddit</title>
 			</Helmet>
 			<SectionContainer py={12}>
 				<Box maxW="sm">
 					<Heading as="h1" fontSize="4em" mb={6}>
-						Login
+						Forgot Password
 					</Heading>
 					<VStack my={8} spacing={4} align="start">
 						<FormControl id="email">
@@ -91,29 +86,25 @@ export default function Login() {
 								type="email"
 								w="100%"
 							/>
-							<FormHelperText>We'll never share your email.</FormHelperText>
-						</FormControl>
-						<FormControl id="password">
-							<FormLabel>Password</FormLabel>
-							<Input
-								value={formValues['password']}
-								name="password"
-								onChange={handleChange}
-								type="password"
-								w="100%"
-							/>
+							<FormHelperText>The email you used for your account.</FormHelperText>
 						</FormControl>
 						<DefaultButton
 							isLoading={loading}
 							onClick={handleSubmit}
 							type="submit"
 						>
-							Login
+							Send Reset Email
 						</DefaultButton>
+						{success && (
+							<Alert status="success" borderRadius="md">
+								<AlertIcon />
+								{success}
+							</Alert>
+						)}
 					</VStack>
 					<VStack spacing={4} align="start">
-						<Link to="/forgotpassword" as={RouterLink}>
-							Forgot Password?
+						<Link to="/login" as={RouterLink}>
+							Already have an account? Login
 						</Link>
 						<Link to="/signup" as={RouterLink}>
 							Don't have an account? Sign Up

@@ -78,6 +78,17 @@ class firebaseApi {
 			}
 		})
 	}
+	resetPassword = async (email: string) => {
+		return new Promise<string>(async (res, rej) => {
+			try {
+				await auth.sendPasswordResetEmail(email)
+				res('Check your inbox to reset your password')
+			} catch (error) {
+				console.error(error)
+				rej(error?.message || 'Failed Reset Password. Please Try Again')
+			}
+		})
+	}
 }
 
 const api = new firebaseApi()

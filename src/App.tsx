@@ -16,6 +16,8 @@ import Profile from './Profile'
 import AnySubreddits from './AnySubreddits'
 import Login from './account/Login'
 import SignUp from './account/SignUp'
+import ForgotPassword from './account/ForgotPassword'
+import Update from './account/Update'
 
 const MotionBox = motion.custom(Box)
 
@@ -58,6 +60,8 @@ const App = () => {
 							<Route exact path="/profile" component={Profile} />
 							<Route exact path="/login" component={Login} />
 							<Route exact path="/signup" component={SignUp} />
+							<Route exact path="/forgotpassword" component={ForgotPassword} />
+							<Route exact path="/update" component={Update} />
 						</Switch>
 					</MotionBox>
 				</MotionBox>
