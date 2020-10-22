@@ -2,7 +2,6 @@ import firebase from 'firebase/app'
 import 'firebase/analytics'
 import 'firebase/auth'
 import 'firebase/firestore'
-import { Collection, User } from '../types'
 
 const firebaseConfig = {
 	apiKey: process.env.FB_APIKEY,
@@ -18,33 +17,55 @@ firebase.initializeApp(firebaseConfig)
 const db = firebase.firestore()
 export const auth = firebase.auth()
 
+const parseDoc = (
+	doc: firebase.firestore.DocumentSnapshot<firebase.firestore.DocumentData>
+) => ({ ...doc.data(), id: doc.id })
+
 class firebaseApi {
-	get = async (collection: Collection) => {
+	getAllUsers = async () => {
 		try {
-			const data = await db.collection(collection).get()
-			let docs: any[] = []
-			data.forEach((doc) => {
-				docs.push(doc.data())
+			const docs = await db.collection('users').get()
+			let output: any[] = []
+			docs.forEach((doc) => {
+				output.push(parseDoc(doc))
 			})
-			return docs
+			return output
 		} catch (error) {
 			console.error(error)
 			throw error
 		}
 	}
-	post = async (collection: Collection, user: User) => {
+	getUser = async (id: string) => {
 		try {
-			const data = await db.collection(collection).add(user)
-			return data.id
+			const doc = await db.collection('users').doc(id).get()
+			if (doc.exists) {
+				return { success: true, data: parseDoc(doc) }
+			} else {
+				throw 'User does not exist. Please contact our admin'
+			}
 		} catch (error) {
 			console.error(error)
-			throw error
+			throw 'Error getting user. Please contact our admin'
+		}
+	}
+	addUser = async (id: string) => {
+		try {
+			const userData = {
+				stories: [],
+				subreddits: [],
+			}
+			await db.collection('users').doc(id).set(userData)
+			return { message: 'User added', data: null }
+		} catch (error) {
+			console.error(error)
+			throw { message: 'Failed to create user', data: error }
 		}
 	}
 	signUp = async (email: string, password: string) => {
 		return new Promise<string>(async (res, rej) => {
 			try {
-				await auth.createUserWithEmailAndPassword(email, password)
+				const cred = await auth.createUserWithEmailAndPassword(email, password)
+				this.addUser(cred.user?.uid!)
 				res('Account Created')
 			} catch (error) {
 				console.error(error)

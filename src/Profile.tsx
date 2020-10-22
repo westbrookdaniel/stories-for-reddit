@@ -17,12 +17,14 @@ import { Link, useHistory } from 'react-router-dom'
 import CardRow from './components/layout/CardRow'
 import { AuthContext } from './AuthContext'
 import { firebase } from './api'
+import { AnyObject } from './types'
 
 export default function Profile() {
 	const history = useHistory()
 	const { colorMode } = useColorMode()
 	const { currentUser } = useContext(AuthContext)
 	const [loading, setLoading] = useState<boolean>(false)
+	const [userData, setUserData] = useState<AnyObject>(false)
 	const toast = useToast()
 
 	const handleLogOut = async () => {
@@ -52,6 +54,21 @@ export default function Profile() {
 	useEffect(() => {
 		if (currentUser === null) {
 			history.push('/login')
+		} else if (currentUser) {
+			firebase
+				.getUser(currentUser.uid)
+				.then((data) => {
+					setUserData(data)
+				})
+				.catch((error) => {
+					toast({
+						position: 'bottom-left',
+						title: error,
+						status: 'error',
+						duration: 3000,
+						isClosable: true,
+					})
+				})
 		}
 	}, [currentUser])
 
@@ -86,6 +103,7 @@ export default function Profile() {
 			</SectionContainer>
 			<SectionContainer maxW="7xl" mb={16}>
 				<VStack spacing={10}>
+					{/* TODO: get these from userData */}
 					<CardRow title="Favourited Subreddits" w="100%" />
 					<CardRow title="Saved Stories" w="100%" />
 				</VStack>

@@ -14,6 +14,7 @@ import { SkeletonCards } from './components/util/Skeletons'
 import { fadeAnimation } from './components/util/animations'
 import { AnimatePresence, motion } from 'framer-motion'
 import mapFromSubreddits from './components/pages/List/mapFromSubreddits'
+import { firebase } from './api'
 
 export default function Home() {
 	const [posts, setPosts] = useState<null | CardPost[]>(null)
@@ -22,6 +23,9 @@ export default function Home() {
 	useEffect(() => {
 		getStories()
 		getSubreddits()
+		// firebase.getUser('HQcg1KIJWmynrzlu1hLu').then(data => {
+		// 	console.log(data);
+		// })
 	}, [])
 
 	const getStories = async () => {
