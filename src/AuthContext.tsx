@@ -10,10 +10,6 @@ const AuthProvider: FunctionComponent<Props> = ({ children }) => {
 	const [currentUser, setCurrentUser] = useState<User | null>()
 
     useEffect(() => {
-        console.log(currentUser)
-    }, [currentUser])
-
-    useEffect(() => {
         const unsub = auth.onAuthStateChanged(user => {
             setCurrentUser(user)
         })  
