@@ -23,9 +23,6 @@ export default function Home() {
 	useEffect(() => {
 		getStories()
 		getSubreddits()
-		// firebase.getUser('HQcg1KIJWmynrzlu1hLu').then(data => {
-		// 	console.log(data);
-		// })
 	}, [])
 
 	const getStories = async () => {

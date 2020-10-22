@@ -93,7 +93,15 @@ export default function Profile() {
 
 	const getStories = async (idArr: any[]) => {
 		try {
-			setStories(await reddit.getStoriesFromList(idArr))
+			const rawPosts: any[] = await reddit.getStoriesFromList(idArr)
+			setStories(
+				rawPosts.map((post: any) => ({
+					title: post.title,
+					length: post.selftext_html?.length,
+					id: post.id,
+					url: post.url,
+				}))
+			)
 		} catch (error) {
 			toast({
 				position: 'bottom-left',

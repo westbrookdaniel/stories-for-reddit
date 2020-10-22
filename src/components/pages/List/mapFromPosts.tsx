@@ -11,7 +11,7 @@ export function mapFromPosts(posts: any, msg = 'No Stories') {
 		)
 	}
 	return posts.map((post: any) => {
-		// Character Per Minuite Reading Time
+		// Character Per Minuite Reading Time		
 		const time = Math.floor(post.length! / 1250)
 		return (
 			<Card

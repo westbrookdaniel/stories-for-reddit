@@ -28,7 +28,7 @@ const Card = ({
 }: Props) => {
 	const { colorMode } = useColorMode()
 	const theme = useTheme()
-
+	
 	return (
 		<AspectRatio
 			ratio={1}
