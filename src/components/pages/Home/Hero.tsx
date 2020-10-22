@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import SectionContainer from '../../layout/SectionContainer'
 import {
 	Heading,
@@ -13,11 +13,13 @@ import {
 import DefaultButton from '../../util/DefaultButton'
 import heroImage from '../../../images/christin-hume-k2Kcwkandwg-unsplash@2x.png'
 import { Link } from 'react-router-dom'
+import { AuthContext } from '../../../AuthContext'
 
 interface Props {}
 
 const Hero = (props: Props) => {
 	const { colorMode } = useColorMode()
+	const { currentUser } = useContext(AuthContext)
 
 	return (
 		<SectionContainer py={12}>
@@ -34,9 +36,9 @@ const Hero = (props: Props) => {
 						<Link to="/stories">
 							<DefaultButton mb={6}>Discover Stories </DefaultButton>
 						</Link>
-						<Link to="/profile">
+						<Link to={currentUser ? "/profile" : "/login"}>
 							<DefaultButton colorScheme="tan" mb={6}>
-								Login
+								{currentUser ? 'Profile' : 'Login'}
 							</DefaultButton>
 						</Link>
 					</HStack>
