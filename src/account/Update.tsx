@@ -29,7 +29,7 @@ interface formValuesTypes {
 
 export default function Update() {
 	const history = useHistory()
-	const { currentUser, update } = useContext(AuthContext)
+	const { currentUser, updateAccount } = useContext(AuthContext)
 	const toast = useToast()
 	const [formValues, setFormValues] = useState<formValuesTypes>({
 		email: '',
@@ -63,7 +63,7 @@ export default function Update() {
 	const handleUpdate = async (email: string, password: string) => {
 		try {
 			setLoading(true)
-			const res = await update(email, password)
+			const res = await updateAccount(email, password)
 			toast({
 				position: 'bottom-left',
 				title: res,

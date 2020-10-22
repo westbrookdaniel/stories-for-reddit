@@ -23,6 +23,7 @@ import { useListWithoutFilter } from './components/pages/List/useList'
 import { fadeAnimation } from './components/util/animations'
 import { mapFromPosts } from './components/pages/List/mapFromPosts'
 import { SkeletonCards } from './components/util/Skeletons'
+import mapFromSubreddits from './components/pages/List/mapFromSubreddits'
 
 export default function Profile() {
 	const history = useHistory()
@@ -179,7 +180,7 @@ export default function Profile() {
 							{loadedSubreddits ? (
 								<motion.div id="1" {...fadeAnimation}>
 									<HStack spacing={6}>
-										{mapFromPosts(subreddits, 'No Favourited Subreddits')}
+										{mapFromSubreddits(subreddits, 'No Favourited Subreddits')}
 									</HStack>
 								</motion.div>
 							) : (

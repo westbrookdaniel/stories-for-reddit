@@ -23,7 +23,7 @@ export function mapFromPosts(posts: any, msg = 'No Stories') {
 				}
 				badge={time ? `${time} min` : undefined}
 				link={`/stories/${post.id}`}
-				postData={post}
+				postData={{ ...post, type: 'stories' }}
 			/>
 		)
 	})

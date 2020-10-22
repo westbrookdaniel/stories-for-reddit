@@ -2,6 +2,7 @@ import firebase from 'firebase/app'
 import 'firebase/analytics'
 import 'firebase/auth'
 import 'firebase/firestore'
+import { AnyObject } from '../types'
 
 const firebaseConfig = {
 	apiKey: process.env.FB_APIKEY,
@@ -16,6 +17,11 @@ const firebaseConfig = {
 firebase.initializeApp(firebaseConfig)
 const db = firebase.firestore()
 export const auth = firebase.auth()
+
+export interface UserDataObj {
+	stories?: string[]
+	subreddits?: string[]
+}
 
 const parseDoc = (
 	doc: firebase.firestore.DocumentSnapshot<firebase.firestore.DocumentData>
@@ -98,6 +104,17 @@ class firebaseApi {
 				rej(error?.message || 'Failed to Log Out. Please Try Again')
 			}
 		})
+	}
+	updateUser = async (
+		id: string,
+		data: UserDataObj
+	) => {
+		try {
+			await db.collection('users').doc(id).update(data)
+			return 'Updated successfully'
+		} catch (error) {
+			throw 'Error updating'
+		}
 	}
 	resetPassword = async (email: string) => {
 		return new Promise<string>(async (res, rej) => {

@@ -1,6 +1,6 @@
 import { User } from 'firebase'
 import React, { FunctionComponent, useEffect, useState } from 'react'
-import { auth } from './api/firebase'
+import firebase, { auth, UserDataObj } from './api/firebase'
 
 interface Props {}
 
@@ -16,12 +16,12 @@ const AuthProvider: FunctionComponent<Props> = ({ children }) => {
 		return unsub
 	}, [])
 
-	const update = async (email: string, password: string) => {
+	const updateAccount = (email: string, password: string) => {
 		return new Promise<string>(async (res, rej) => {
 			try {
 				const prom = []
-				console.log(email, password);
-				
+				console.log(email, password)
+
 				if (password?.length !== 0) {
 					prom.push(currentUser?.updatePassword(password))
 				}
@@ -33,7 +33,7 @@ const AuthProvider: FunctionComponent<Props> = ({ children }) => {
 				if (prom.length === 0) {
 					rej('No changes were made')
 				}
-                await Promise.all(prom)
+				await Promise.all(prom)
 				res('Your account details have been updated')
 			} catch (error) {
 				console.error(error)
@@ -42,8 +42,13 @@ const AuthProvider: FunctionComponent<Props> = ({ children }) => {
 		})
 	}
 
+	const updateUserData = async (data: UserDataObj) =>
+		firebase.updateUser(currentUser?.uid!, data)
+
 	return (
-		<AuthContext.Provider value={{ currentUser, update }}>
+		<AuthContext.Provider
+			value={{ currentUser, updateAccount, updateUserData }}
+		>
 			{children}
 		</AuthContext.Provider>
 	)
