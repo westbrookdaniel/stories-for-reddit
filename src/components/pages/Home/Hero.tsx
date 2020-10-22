@@ -31,13 +31,13 @@ const Hero = (props: Props) => {
 						accusantium doloremque laudantium,
 					</Text>
 					<HStack spacing={4}>
+						<Link to="/stories">
+							<DefaultButton mb={6}>Discover Stories </DefaultButton>
+						</Link>
 						<Link to="/profile">
 							<DefaultButton colorScheme="tan" mb={6}>
 								Login
 							</DefaultButton>
-						</Link>
-						<Link to="/stories">
-							<DefaultButton mb={6}>Discover Stories </DefaultButton>
 						</Link>
 					</HStack>
 				</Box>

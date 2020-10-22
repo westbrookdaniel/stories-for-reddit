@@ -7,13 +7,19 @@ import { ChakraProvider } from '@chakra-ui/core'
 import theme from '../theme'
 
 import './index.css'
+import AuthProvider from './AuthContext'
+
+
+
 
 function Index() {
 	return (
 		<ChakraProvider resetCSS theme={theme}>
-			<Router>
-				<App />
-			</Router>
+			<AuthProvider>
+				<Router>
+					<App />
+				</Router>
+			</AuthProvider>
 		</ChakraProvider>
 	)
 }

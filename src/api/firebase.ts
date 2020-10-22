@@ -16,6 +16,7 @@ const firebaseConfig = {
 }
 firebase.initializeApp(firebaseConfig)
 const db = firebase.firestore()
+export const auth = firebase.auth()
 
 class firebaseApi {
 	get = async (collection: Collection) => {
@@ -39,6 +40,43 @@ class firebaseApi {
 			console.error(error)
 			throw error
 		}
+	}
+	signUp = async (email: string, password: string) => {
+		return new Promise<string>(async (res, rej) => {
+			try {
+				await auth.createUserWithEmailAndPassword(email, password)
+				res('Account Created')
+			} catch (error) {
+				console.error(error)
+				rej(error?.message || 'Failed to Create an Account. Please Try Again')
+			}
+		})
+	}
+	login = async (email: string, password: string) => {
+		return new Promise<string>(async (res, rej) => {
+			try {
+				await auth.signInWithEmailAndPassword(email, password)
+				res('Signed In')
+			} catch (error) {
+				console.error(error)
+				if (error?.code === 'auth/user-not-found') {
+					rej('A user does not exist with that email')
+				} else {
+					rej(error?.message || 'Failed to Login. Please Try Again')
+				}
+			}
+		})
+	}
+	logout = async () => {
+		return new Promise<string>(async (res, rej) => {
+			try {
+				await auth.signOut()
+				res('Logged Out')
+			} catch (error) {
+				console.error(error)
+				rej(error?.message || 'Failed to Log Out. Please Try Again')
+			}
+		})
 	}
 }
 
