@@ -10,6 +10,7 @@ interface Props {
 const DefaultButton: FunctionComponent<Props> = ({
 	children,
 	colorScheme = 'primary',
+	isLoading,
 	...props
 }) => {
 	const { colorMode } = useColorMode()
@@ -18,10 +19,11 @@ const DefaultButton: FunctionComponent<Props> = ({
 		<Button
 			colorScheme={colorScheme}
 			color={colorScheme === 'tan' ? 'primary.700' : undefined}
-			pr={2}
+			pr={isLoading ? undefined : 2}
 			size="md"
 			boxShadow="sm"
 			rightIcon={<MdKeyboardArrowRight size={25} />}
+			isLoading={isLoading}
 			{...props}
 		>
 			{children}

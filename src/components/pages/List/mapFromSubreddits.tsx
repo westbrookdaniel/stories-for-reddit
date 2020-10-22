@@ -1,7 +1,16 @@
+import { Box, Text } from '@chakra-ui/core'
 import React from 'react'
 import Card from '../../util/Card'
 
-export default function mapFromSubreddits(subreddits: any) {
+export default function mapFromSubreddits(subreddits: any, msg = 'No Subreddits') {
+	if (subreddits.length === 0) {
+		return (
+			<Box h="200px">
+				<Text>{msg}</Text>
+			</Box>
+		)
+	}
+
 	return subreddits.map((subreddit: any) => {
 		return (
 			<Card

@@ -56,6 +56,7 @@ class redditApi {
 				const data = await this.r.getSubreddit('shortstories').getHot({
 					limit: quantity - 2,
 				}) // Adds Two to Number
+
 				this.FeaturedStories[quantity] = data
 				return data
 			}
@@ -63,6 +64,13 @@ class redditApi {
 			console.log(error)
 			return 'Error can not get featured stories'
 		}
+	}
+
+	getStoriesFromList = async (idArray: string[]) => {
+		if (idArray.length === 0) return []
+		const promArr = idArray.map((id) => this.r.getSubmission(id).fetch())
+		const storiesArr = await Promise.all(promArr)
+		return storiesArr
 	}
 
 	getSubreddits = async (quantity?: number) => {

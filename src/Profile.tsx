@@ -16,15 +16,23 @@ import DefaultButton from './components/util/DefaultButton'
 import { Link, useHistory } from 'react-router-dom'
 import CardRow from './components/layout/CardRow'
 import { AuthContext } from './AuthContext'
-import { firebase } from './api'
+import { firebase, reddit } from './api'
 import { AnyObject } from './types'
+import { AnimatePresence, motion } from 'framer-motion'
+import { useListWithoutFilter } from './components/pages/List/useList'
+import { fadeAnimation } from './components/util/animations'
+import { mapFromPosts } from './components/pages/List/mapFromPosts'
+import { SkeletonCards } from './components/util/Skeletons'
 
 export default function Profile() {
 	const history = useHistory()
 	const { colorMode } = useColorMode()
 	const { currentUser } = useContext(AuthContext)
 	const [loading, setLoading] = useState<boolean>(false)
-	const [userData, setUserData] = useState<AnyObject>(false)
+	const [userData, setUserData] = useState<AnyObject | null>(null)
+
+	const [stories, setStories] = useState<any[] | null>(null)
+
 	const toast = useToast()
 
 	const handleLogOut = async () => {
@@ -57,7 +65,7 @@ export default function Profile() {
 		} else if (currentUser) {
 			firebase
 				.getUser(currentUser.uid)
-				.then((data) => {
+				.then(({ data }) => {
 					setUserData(data)
 				})
 				.catch((error) => {
@@ -71,6 +79,22 @@ export default function Profile() {
 				})
 		}
 	}, [currentUser])
+
+	useEffect(() => {
+		if (userData?.stories) {
+			getStories(userData?.stories)
+		}
+	}, [userData])
+
+	const getStories = async (idArr: any[]) => {
+		try {
+			setStories(await reddit.getStoriesFromList(idArr))
+		} catch (error) {
+			console.error('problem getting user stories:', error)
+		}
+	}
+
+	const { firstLoaded: loadedStories } = useListWithoutFilter(stories)
 
 	return (
 		<>
@@ -95,7 +119,12 @@ export default function Profile() {
 						<Link to="/update">
 							<DefaultButton mb={6}>Update Details</DefaultButton>
 						</Link>
-						<DefaultButton onClick={handleLogOut} colorScheme="tan" mb={6}>
+						<DefaultButton
+							isLoading={loading}
+							onClick={handleLogOut}
+							colorScheme="tan"
+							mb={6}
+						>
 							Log Out
 						</DefaultButton>
 					</HStack>
@@ -104,7 +133,19 @@ export default function Profile() {
 			<SectionContainer maxW="7xl" mb={16}>
 				<VStack spacing={10}>
 					{/* TODO: get these from userData */}
-					<CardRow title="Favourited Subreddits" w="100%" />
+					<CardRow title="Favourited Subreddits" w="100%">
+						<AnimatePresence exitBeforeEnter>
+							{loadedStories ? (
+								<motion.div id="1" {...fadeAnimation}>
+									<HStack spacing={6}>{mapFromPosts(stories, 'No Favourited Stories')}</HStack>
+								</motion.div>
+							) : (
+								<HStack spacing={6}>
+									{SkeletonCards({ quanitity: 4, motionProps: fadeAnimation })}
+								</HStack>
+							)}
+						</AnimatePresence>
+					</CardRow>
 					<CardRow title="Saved Stories" w="100%" />
 				</VStack>
 			</SectionContainer>
