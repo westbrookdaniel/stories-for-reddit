@@ -54,11 +54,12 @@ class redditApi {
 				return this.FeaturedStories[quantity]
 			} else {
 				const data = await this.r.getSubreddit('shortstories').getHot({
-					limit: quantity - 2,
-				}) // Adds Two to Number
-
-				this.FeaturedStories[quantity] = data
-				return data
+					limit: quantity,
+				})
+				const onlyData: any[] = []				
+				data.forEach((post) => !post.stickied && onlyData.push(post))
+				this.FeaturedStories[quantity] = onlyData
+				return onlyData
 			}
 		} catch (error) {
 			console.log(error)
@@ -92,8 +93,10 @@ class redditApi {
 			if (this.Subreddit[id]) {
 				return this.Subreddit[id]
 			} else {
-				const data = await this.r.getSubreddit(id).getHot({ limit: 10 }) // TODO: Fix this currently it includes pinned posts
-				this.Subreddit[id] = data
+				const data = await this.r.getSubreddit(id).getHot({ limit: 12 })
+				const onlyData: any[] = []
+				data.forEach((post) => !post.stickied && onlyData.push(post))
+				this.Subreddit[id] = onlyData
 				return data
 			}
 		} catch (error) {

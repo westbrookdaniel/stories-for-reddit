@@ -87,7 +87,9 @@ export default function IconStack({ postData }: Props): ReactElement {
 
 	const isInUserData = () => userData[postData.type].indexOf(data.itemId) >= 0
 
-	const handleHide = () => {}
+	const handleHide = () => {
+		
+	}
 
 	return (
 		<HStack spacing={4} mt={2}>
@@ -113,6 +115,7 @@ export default function IconStack({ postData }: Props): ReactElement {
 				)}
 			</Button>
 			<Button onClick={handleHide} variant="ghost" p={1} size="sm">
+				{/* TODO: Changing Icon and impliment this */}
 				<BsFillEyeSlashFill
 					color={
 						colorMode === 'dark'
