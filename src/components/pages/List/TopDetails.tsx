@@ -1,6 +1,15 @@
 import React from 'react'
 import SectionContainer from '../../layout/SectionContainer'
-import { Box, Heading, Input, Button, HStack, Badge } from '@chakra-ui/core'
+import {
+	Box,
+	Heading,
+	Input,
+	Button,
+	HStack,
+	Badge,
+	MenuOptionGroup,
+	MenuItemOption,
+} from '@chakra-ui/core'
 import BigBackArrow from '../../util/BigBackArrow'
 import { useHistory } from 'react-router-dom'
 import { Menu, MenuButton, MenuList, MenuItem } from '@chakra-ui/core'
@@ -47,7 +56,14 @@ const TopDetails = ({
 									Sort
 								</MenuButton>
 								{/* TODO: Active class for current sort */}
-								<MenuList>{SortingButtons(sortListBy)}</MenuList>
+								<MenuList>
+									<MenuOptionGroup
+										defaultValue={sortListBy.unsorted.name}
+										type="radio"
+									>
+										{SortingButtons(sortListBy)}
+									</MenuOptionGroup>
+								</MenuList>
 							</Menu>
 						</Box>
 					) : null}
@@ -69,9 +85,9 @@ const SortingButtons = (sorters: AnyObject) => {
 	Object.keys(sorters).forEach((key) => {
 		const sorter: { method: Function; name: string } = sorters[key]
 		ButtonArr.push(
-			<MenuItem key={key} onClick={() => sorter.method()}>
+			<MenuItemOption key={key} value={sorter.name} onClick={() => sorter.method()}>
 				{sorter.name}
-			</MenuItem>
+			</MenuItemOption>
 		)
 	})
 	return ButtonArr
