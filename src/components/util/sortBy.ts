@@ -1,9 +1,10 @@
 export const reorder = (
-	source: any[],
+	source: any[] | null,
 	setState: Function,
 	prop: string,
 	reversed = false
 ) => {
+	if (!source) return
 	const tempOrder = [...source]
 	const newOrder = sortBy(tempOrder, (el: any) => el[prop])
 	if (reversed) {

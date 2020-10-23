@@ -41,8 +41,6 @@ export default function Stories() {
 		)
 	}
 
-	const { query, setQuery, filter, firstLoaded } = useList(posts)
-
 	const sortListBy = {
 		unsorted: {
 			method: () => {
@@ -52,18 +50,20 @@ export default function Stories() {
 		},
 		lengthLow: {
 			method: () => {
-				reorder(filter, setOrdered, 'length')
+				reorder(posts, setOrdered, 'length')
 			},
 			name: 'Shortest',
 		},
 		lengthHigh: {
 			method: () => {
-				reorder(filter, setOrdered, 'length', true)
+				reorder(posts, setOrdered, 'length', true)
 			},
 			name: 'Longest',
 		},
 	}
 
+	const { query, setQuery, filter, firstLoaded } = useList(ordered || posts)
+	
 	return (
 		<>
 			<Helmet>
@@ -87,7 +87,7 @@ export default function Stories() {
 					{firstLoaded ? (
 						<motion.div id="1" {...fadeAnimation}>
 							<SimpleGrid columns={4} spacing={5}>
-								{mapFromPosts(ordered || filter)}
+								{mapFromPosts(filter)}
 							</SimpleGrid>
 						</motion.div>
 					) : (

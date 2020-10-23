@@ -50,7 +50,7 @@ export default function Stories(props: Props) {
 		exit: { opacity: 0 },
 	}
 
-	const { query, setQuery, filter, firstLoaded } = useList(posts)
+	const { query, setQuery, filter, firstLoaded } = useList(ordered || posts)
 
 	const sortListBy = {
 		unsorted: {
@@ -61,13 +61,13 @@ export default function Stories(props: Props) {
 		},
 		lengthLow: {
 			method: () => {
-				reorder(filter, setOrdered, 'length')
+				reorder(posts, setOrdered, 'length')
 			},
 			name: 'Shortest',
 		},
 		lengthHigh: {
 			method: () => {
-				reorder(filter, setOrdered, 'length', true)
+				reorder(posts, setOrdered, 'length', true)
 			},
 			name: 'Longest',
 		},
@@ -96,7 +96,7 @@ export default function Stories(props: Props) {
 					{firstLoaded ? (
 						<motion.div id="1" {...fadeAnimation}>
 							<SimpleGrid columns={4} spacing={5}>
-								{mapFromPosts(ordered || filter)}
+								{mapFromPosts(filter)}
 							</SimpleGrid>
 						</motion.div>
 					) : (
