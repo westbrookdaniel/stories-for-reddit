@@ -11,7 +11,7 @@ import {
 	useToast,
 } from '@chakra-ui/core'
 import { AuthContext } from '../../../AuthContext'
-import { firebase } from '../../../api'
+import { firebase, reddit } from '../../../api'
 import { AnyObject } from '../../../types'
 
 interface Props {
@@ -87,8 +87,25 @@ export default function IconStack({ postData }: Props): ReactElement {
 
 	const isInUserData = () => userData[postData.type].indexOf(data.itemId) >= 0
 
-	const handleHide = () => {
-		
+	const handleHide = async () => {
+		try {
+			const res = await reddit.hideStoryById(postData.id)
+			toast({
+				position: 'bottom-left',
+				title: res,
+				status: 'success',
+				duration: 3000,
+				isClosable: true,
+			})
+		} catch (error) {
+			toast({
+				position: 'bottom-left',
+				title: error,
+				status: 'error',
+				duration: 3000,
+				isClosable: true,
+			})
+		}
 	}
 
 	return (
@@ -114,17 +131,18 @@ export default function IconStack({ postData }: Props): ReactElement {
 					/>
 				)}
 			</Button>
-			<Button onClick={handleHide} variant="ghost" p={1} size="sm">
-				{/* TODO: Changing Icon and impliment this */}
-				<BsFillEyeSlashFill
-					color={
-						colorMode === 'dark'
-							? theme.colors.primary[100]
-							: theme.colors.primary[500]
-					}
-					fontSize="1.3rem"
-				/>
-			</Button>
+			{postData.type === 'stories' && (
+				<Button onClick={handleHide} variant="ghost" p={1} size="sm">
+					<BsFillEyeSlashFill
+						color={
+							colorMode === 'dark'
+								? theme.colors.primary[100]
+								: theme.colors.primary[500]
+						}
+						fontSize="1.3rem"
+					/>
+				</Button>
+			)}
 			<Link href={data.externalLink} isExternal>
 				<Button variant="ghost" p={1} size="sm">
 					<HiExternalLink

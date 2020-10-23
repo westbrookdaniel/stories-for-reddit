@@ -56,7 +56,7 @@ class redditApi {
 				const data = await this.r.getSubreddit('shortstories').getHot({
 					limit: quantity,
 				})
-				const onlyData: any[] = []				
+				const onlyData: any[] = []
 				data.forEach((post) => !post.stickied && onlyData.push(post))
 				this.FeaturedStories[quantity] = onlyData
 				return onlyData
@@ -103,6 +103,42 @@ class redditApi {
 			console.log(error)
 			return 'Error can not get featured stories'
 		}
+	}
+
+	// TODO: Setup new keys with storiesadmin reddit account
+	hideStoryById = (id: string) => {
+		return new Promise<string>((res, rej) => {
+			const post = this.r.getSubmission(id)
+			post
+				.fetch()
+				.then((data) => {
+					if (data.hidden) {
+						post
+							.unhide()
+							.then(() => {
+								res('Story is now visible')
+							})
+							.catch((error) => {
+								console.error(error)
+								rej("Couldn't Show Story. Please try again")
+							})
+					} else {
+						post
+							.hide()
+							.then(() => {
+								res('Story is now hidden')
+							})
+							.catch((error) => {
+								console.error(error)
+								rej("Couldn't Hide Story. Please try again")
+							})
+					}
+				})
+				.catch((error) => {
+					console.error(error)
+					rej("Couldn't get Story. Please try again")
+				})
+		})
 	}
 
 	getStoryById = (id: string) => {

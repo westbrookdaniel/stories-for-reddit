@@ -61,7 +61,6 @@ export default function Profile() {
 	}
 
 	useEffect(() => {
-		console.log(userData);
 		if (userData?.stories) {
 			getStories(userData?.stories)
 		}
