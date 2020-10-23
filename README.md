@@ -91,10 +91,11 @@ Profile
 - [x] H - Basic Profile Functionality
 - [x] M - Favourite Subs
 - [x] M - Saved Stories
-- [ ] M - Hiding Stories
+- [x] M - Hiding Stories
 
 Finishing Up
 
+- [ ] M - Swap reddit profile
 - [ ] E - Responsive Fixups
 - [ ] M - Mobile nav
 - [ ] E - Finalising Content
