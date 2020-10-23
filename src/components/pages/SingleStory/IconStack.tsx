@@ -1,6 +1,7 @@
 import React, { ReactElement, useContext, useEffect, useState } from 'react'
 import { HiExternalLink } from 'react-icons/hi'
-import { BsBookmarkFill, BsFillEyeSlashFill } from 'react-icons/bs'
+import { BsFillEyeSlashFill } from 'react-icons/bs'
+import { MdBookmark, MdBookmarkBorder } from 'react-icons/md'
 import {
 	HStack,
 	useColorMode,
@@ -20,31 +21,13 @@ interface Props {
 export default function IconStack({ postData }: Props): ReactElement {
 	const { colorMode } = useColorMode()
 	const theme = useTheme()
-	const { updateUserData, currentUser } = useContext(AuthContext)
+	const { updateUserData, userData } = useContext(AuthContext)
 	const toast = useToast()
 
 	const [data, setData] = useState({
 		itemId: '',
 		externalLink: '',
 	})
-	const [userData, setUserData] = useState<AnyObject | null>(null)
-
-	useEffect(() => {
-		firebase
-			.getUser(currentUser.uid)
-			.then(({ data }) => {
-				setUserData(data)
-			})
-			.catch((error) => {
-				toast({
-					position: 'bottom-left',
-					title: error,
-					status: 'error',
-					duration: 3000,
-					isClosable: true,
-				})
-			})
-	}, [currentUser])
 
 	useEffect(() => {
 		if (!postData) return
@@ -102,19 +85,32 @@ export default function IconStack({ postData }: Props): ReactElement {
 		}
 	}
 
+	const isInUserData = () => userData[postData.type].indexOf(data.itemId) >= 0
+
 	const handleHide = () => {}
 
 	return (
 		<HStack spacing={4} mt={2}>
 			<Button onClick={handleSave} variant="ghost" p={1} size="sm">
-				<BsBookmarkFill
-					color={
-						colorMode === 'dark'
-							? theme.colors.primary[100]
-							: theme.colors.primary[500]
-					}
-					fontSize="1.3rem"
-				/>
+				{isInUserData() ? (
+					<MdBookmark
+						color={
+							colorMode === 'dark'
+								? theme.colors.primary[100]
+								: theme.colors.primary[500]
+						}
+						fontSize="1.3rem"
+					/>
+				) : (
+					<MdBookmarkBorder
+						color={
+							colorMode === 'dark'
+								? theme.colors.primary[100]
+								: theme.colors.primary[500]
+						}
+						fontSize="1.3rem"
+					/>
+				)}
 			</Button>
 			<Button onClick={handleHide} variant="ghost" p={1} size="sm">
 				<BsFillEyeSlashFill

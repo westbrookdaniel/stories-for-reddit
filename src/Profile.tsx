@@ -28,9 +28,8 @@ import mapFromSubreddits from './components/pages/List/mapFromSubreddits'
 export default function Profile() {
 	const history = useHistory()
 	const { colorMode } = useColorMode()
-	const { currentUser } = useContext(AuthContext)
+	const { currentUser, userData } = useContext(AuthContext)
 	const [loading, setLoading] = useState<boolean>(false)
-	const [userData, setUserData] = useState<AnyObject | null>(null)
 
 	const [stories, setStories] = useState<any[] | null>(null)
 	const [subreddits, setSubreddits] = useState<any[] | null>(null)
@@ -62,27 +61,7 @@ export default function Profile() {
 	}
 
 	useEffect(() => {
-		if (currentUser === null) {
-			history.push('/login')
-		} else if (currentUser) {
-			firebase
-				.getUser(currentUser.uid)
-				.then(({ data }) => {
-					setUserData(data)
-				})
-				.catch((error) => {
-					toast({
-						position: 'bottom-left',
-						title: error,
-						status: 'error',
-						duration: 3000,
-						isClosable: true,
-					})
-				})
-		}
-	}, [currentUser])
-
-	useEffect(() => {
+		console.log(userData);
 		if (userData?.stories) {
 			getStories(userData?.stories)
 		}
@@ -91,7 +70,7 @@ export default function Profile() {
 		}
 	}, [userData])
 
-	// TODO: Useeffect for refresh which listens for changes in auth
+	// TODO: Useeffect for refresh which listens for changes in userdata
 	const getStories = async (idArr: any[]) => {
 		try {
 			const rawPosts: any[] = await reddit.getStoriesFromList(idArr)

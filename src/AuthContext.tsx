@@ -1,6 +1,7 @@
 import { User } from 'firebase'
 import React, { FunctionComponent, useEffect, useState } from 'react'
 import firebase, { auth, UserDataObj } from './api/firebase'
+import { AnyObject } from './types'
 
 interface Props {}
 
@@ -8,6 +9,8 @@ export const AuthContext = React.createContext<any>(null)
 
 const AuthProvider: FunctionComponent<Props> = ({ children }) => {
 	const [currentUser, setCurrentUser] = useState<User | null>()
+	const [userData, setUserData] = useState<AnyObject | null>(null)
+	const [needsRefresh, setNeedsRefresh] = useState<boolean>(true)
 
 	useEffect(() => {
 		const unsub = auth.onAuthStateChanged((user) => {
@@ -15,6 +18,20 @@ const AuthProvider: FunctionComponent<Props> = ({ children }) => {
 		})
 		return unsub
 	}, [])
+
+	useEffect(() => {
+		if (currentUser && needsRefresh) {
+			firebase
+				.getUser(currentUser.uid)
+				.then((data) => {
+					setUserData(data)
+					setNeedsRefresh(false)
+				})
+				.catch((error) => {
+					console.error(error)
+				})
+		}
+	}, [currentUser, needsRefresh])
 
 	const updateAccount = (email: string, password: string) => {
 		return new Promise<string>(async (res, rej) => {
@@ -42,12 +59,24 @@ const AuthProvider: FunctionComponent<Props> = ({ children }) => {
 		})
 	}
 
-	const updateUserData = async (data: UserDataObj) =>
-		firebase.updateUser(currentUser?.uid!, data)
+	const updateUserData = async (data: UserDataObj) => {
+		try {
+			const res = await firebase.updateUser(currentUser?.uid!, data)
+			setNeedsRefresh(true)
+			return res
+		} catch (error) {
+			throw error
+		}
+	}
 
 	return (
 		<AuthContext.Provider
-			value={{ currentUser, updateAccount, updateUserData }}
+			value={{
+				currentUser,
+				updateAccount,
+				updateUserData,
+				userData,
+			}}
 		>
 			{children}
 		</AuthContext.Provider>

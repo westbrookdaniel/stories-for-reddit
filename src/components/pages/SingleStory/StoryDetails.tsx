@@ -1,6 +1,7 @@
-import React, { ReactElement } from 'react'
+import React, { ReactElement, useEffect, useState } from 'react'
 import { Box, Heading, Text, useColorMode, useTheme } from '@chakra-ui/core'
 import IconStack from './IconStack'
+import { AnyObject } from '../../../types'
 
 interface Props {
 	postData: any
@@ -8,6 +9,16 @@ interface Props {
 
 export default function StoryDetails({ postData }: Props): ReactElement {
 	const { colorMode } = useColorMode()
+	const [post, setPost] = useState<AnyObject>()
+
+	useEffect(() => {
+		setPost({
+			title: postData.title,
+			length: postData.selftext_html?.length,
+			id: postData.id,
+			url: postData.url,
+		})
+	}, [postData])
 
 	return (
 		<>
@@ -21,7 +32,7 @@ export default function StoryDetails({ postData }: Props): ReactElement {
 				By {postData?.author.name}
 			</Text>
 			<Box mt={3}>
-				<IconStack postData={postData} />
+				<IconStack postData={{ ...post, type: 'stories' }} />
 			</Box>
 		</>
 	)

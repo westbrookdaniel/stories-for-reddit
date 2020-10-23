@@ -45,7 +45,7 @@ class firebaseApi {
 		try {
 			const doc = await db.collection('users').doc(id).get()
 			if (doc.exists) {
-				return { success: true, data: parseDoc(doc) }
+				return parseDoc(doc)
 			} else {
 				throw 'User does not exist. Please contact our admin'
 			}
