@@ -82,7 +82,7 @@ Expanded Functionality
 - [x] H - Subreddits
 - [x] M - Filter (sort was more practical)
 - [x] E - Dynamic Home content
-- [ ] M - Pagination (myListing.fetchmore)
+- [x] M - Pagination (myListing.fetchmore)
 - [x] M - List item options
 - [x] E - Put Everything Everywhere
 

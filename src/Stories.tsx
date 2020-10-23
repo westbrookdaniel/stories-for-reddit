@@ -4,7 +4,7 @@ import { reddit } from './api'
 
 import { Helmet } from 'react-helmet'
 import SectionContainer from './components/layout/SectionContainer'
-import { Button, SimpleGrid, useColorMode } from '@chakra-ui/core'
+import { Box, Button, Flex, SimpleGrid, useColorMode } from '@chakra-ui/core'
 import TopDetails from './components/pages/List/TopDetails'
 import Card from './components/util/Card'
 import { CardPost } from './types'
@@ -20,17 +20,25 @@ export default function Stories() {
 	const { colorMode } = useColorMode()
 	const [posts, setPosts] = useState<null | CardPost[]>(null)
 	const [ordered, setOrdered] = useState<null | CardPost[]>(null)
+	const [pageCount, setPageCount] = useState(1)
+	const [isLoadingMore, setIsLoadingMore] = useState(true)
 
 	useEffect(() => {
-		getStories()
-	}, [])
+		getStories(pageCount)
+	}, [pageCount])
 
-	const getStories = async () => {
-		const rawPosts = await reddit.getFeaturedStories()
+	const getMore = () => {
+		setIsLoadingMore(true)
+		setPageCount((count) => count + 1)
+	}
+
+	const getStories = async (n: number) => {
+		const rawPosts = await reddit.getFeaturedStories(n * 12)
 		if (typeof rawPosts === 'string') {
 			setPosts([])
 			throw new Error(rawPosts)
 		}
+		setIsLoadingMore(false)
 		setPosts(
 			rawPosts.map((post: any) => ({
 				title: post.title,
@@ -63,7 +71,7 @@ export default function Stories() {
 	}
 
 	const { query, setQuery, filter, firstLoaded } = useList(ordered || posts)
-	
+
 	return (
 		<>
 			<Helmet>
@@ -80,7 +88,7 @@ export default function Stories() {
 			<SectionContainer
 				maxW="4xl"
 				bg={colorMode === 'dark' ? 'tan.950' : 'tan.400'}
-				pb={8}
+				pb={4}
 				flexGrow={1}
 			>
 				<AnimatePresence exitBeforeEnter>
@@ -96,6 +104,18 @@ export default function Stories() {
 						</SimpleGrid>
 					)}
 				</AnimatePresence>
+				<Box mt={8}>
+					{/* TODO: Fix jumping back to the top */}
+					<Button
+						colorScheme="primary"
+						variant="ghost"
+						size="sm"
+						isLoading={isLoadingMore}
+						onClick={getMore}
+					>
+						Show More
+					</Button>
+				</Box>
 			</SectionContainer>
 		</>
 	)

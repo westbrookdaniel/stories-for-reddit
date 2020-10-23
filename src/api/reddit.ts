@@ -88,16 +88,19 @@ class redditApi {
 		return subreddits
 	}
 
-	getSubredditStories = async (id: string) => {
+	getSubredditStories = async (id: string, quantity = 12) => {
 		try {
-			if (this.Subreddit[id]) {
-				return this.Subreddit[id]
+			if (this.Subreddit[id] && this.Subreddit[id][quantity]) {
+				return this.Subreddit[id][quantity]
 			} else {
-				const data = await this.r.getSubreddit(id).getHot({ limit: 12 })
+				const data = await this.r.getSubreddit(id).getHot({ limit: quantity })
 				const onlyData: any[] = []
 				data.forEach((post) => !post.stickied && onlyData.push(post))
-				this.Subreddit[id] = onlyData
-				return data
+				if (!this.Subreddit[id]) {
+					this.Subreddit[id] = {}
+				}
+				this.Subreddit[id][quantity] = onlyData
+				return onlyData
 			}
 		} catch (error) {
 			console.log(error)
