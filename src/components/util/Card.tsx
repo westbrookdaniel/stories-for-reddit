@@ -32,6 +32,7 @@ const Card = ({
 	return (
 		<AspectRatio
 			ratio={1}
+			minW="200px"
 			w="200px"
 			borderRadius="md"
 			bg={colorMode === 'dark' ? 'gray.750' : 'white'}

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { FunctionComponent, useEffect, useState } from 'react'
 import { Helmet } from 'react-helmet'
 import Hero from './components/pages/Home/Hero'
 import SectionContainer from './components/layout/SectionContainer'
@@ -8,13 +8,12 @@ import ActionContainer from './components/pages/Home/ActionContainer'
 import { useListWithoutFilter } from './components/pages/List/useList'
 import { reddit } from './api'
 import { CardPost } from './types'
-import Card from './components/util/Card'
+import CardStack from './components/layout/CardStack'
 import { mapFromPosts } from './components/pages/List/mapFromPosts'
 import { SkeletonCards } from './components/util/Skeletons'
 import { fadeAnimation } from './components/util/animations'
 import { AnimatePresence, motion } from 'framer-motion'
 import mapFromSubreddits from './components/pages/List/mapFromSubreddits'
-import { firebase } from './api'
 
 export default function Home() {
 	const [posts, setPosts] = useState<null | CardPost[]>(null)
@@ -61,12 +60,12 @@ export default function Home() {
 						<AnimatePresence exitBeforeEnter>
 							{loadedStories ? (
 								<motion.div id="1" {...fadeAnimation}>
-									<HStack spacing={6}>{mapFromPosts(posts)}</HStack>
+									<CardStack>{mapFromPosts(posts)}</CardStack>
 								</motion.div>
 							) : (
-								<HStack spacing={6}>
+								<CardStack>
 									{SkeletonCards({ quanitity: 4, motionProps: fadeAnimation })}
-								</HStack>
+								</CardStack>
 							)}
 						</AnimatePresence>
 					</CardRow>
@@ -74,12 +73,12 @@ export default function Home() {
 						<AnimatePresence exitBeforeEnter>
 							{loadedSubreddits ? (
 								<motion.div id="1" {...fadeAnimation}>
-									<HStack spacing={6}>{mapFromSubreddits(subreddits)}</HStack>
+									<CardStack>{mapFromSubreddits(subreddits)}</CardStack>
 								</motion.div>
 							) : (
-								<HStack spacing={6}>
+								<CardStack>
 									{SkeletonCards({ quanitity: 4, motionProps: fadeAnimation })}
-								</HStack>
+								</CardStack>
 							)}
 						</AnimatePresence>
 					</CardRow>

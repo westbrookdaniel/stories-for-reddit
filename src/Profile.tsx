@@ -24,6 +24,7 @@ import { fadeAnimation } from './components/util/animations'
 import { mapFromPosts } from './components/pages/List/mapFromPosts'
 import { SkeletonCards } from './components/util/Skeletons'
 import mapFromSubreddits from './components/pages/List/mapFromSubreddits'
+import CardStack from './components/layout/CardStack'
 
 export default function Profile() {
 	const history = useHistory()
@@ -148,17 +149,17 @@ export default function Profile() {
 						<AnimatePresence exitBeforeEnter>
 							{loadedStories ? (
 								<motion.div id="1" {...fadeAnimation}>
-									<HStack spacing={6}>
+									<CardStack>
 										{mapFromPosts(stories, 'No Saved Stories')}
-									</HStack>
+									</CardStack>
 								</motion.div>
 							) : (
-								<HStack spacing={6}>
+								<CardStack>
 									{SkeletonCards({
 										quanitity: 4,
 										motionProps: fadeAnimation,
 									})}
-								</HStack>
+								</CardStack>
 							)}
 						</AnimatePresence>
 					</CardRow>
@@ -166,14 +167,14 @@ export default function Profile() {
 						<AnimatePresence exitBeforeEnter>
 							{loadedSubreddits ? (
 								<motion.div id="1" {...fadeAnimation}>
-									<HStack spacing={6}>
+									<CardStack>
 										{mapFromSubreddits(subreddits, 'No Favourited Subreddits')}
-									</HStack>
+									</CardStack>
 								</motion.div>
 							) : (
-								<HStack spacing={6}>
+								<CardStack>
 									{SkeletonCards({ quanitity: 4, motionProps: fadeAnimation })}
-								</HStack>
+								</CardStack>
 							)}
 						</AnimatePresence>
 					</CardRow>
