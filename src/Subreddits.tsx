@@ -37,10 +37,10 @@ export default function Subreddits() {
 				setQuery={setQuery}
 				mb={6}
 				title="All Subreddits"
-				maxW="4xl"
+				maxW="5xl"
 			/>
 			<SectionContainer
-				maxW="4xl"
+				maxW="5xl"
 				bg={colorMode === 'dark' ? 'tan.950' : 'tan.400'}
 				pb={8}
 				flexGrow={1}
@@ -48,12 +48,12 @@ export default function Subreddits() {
 				<AnimatePresence exitBeforeEnter>
 					{firstLoaded ? (
 						<motion.div id="1" {...fadeAnimation}>
-							<SimpleGrid columns={4} spacing={5}>
+							<SimpleGrid d="flex" flexWrap="wrap" spacing={5}>
 								{mapFromSubreddits(filter)}
 							</SimpleGrid>
 						</motion.div>
 					) : (
-						<SimpleGrid columns={4} spacing={5}>
+						<SimpleGrid d="flex" flexWrap="wrap" spacing={5}>
 							{SkeletonCards({ quanitity: 8, motionProps: fadeAnimation })}
 						</SimpleGrid>
 					)}

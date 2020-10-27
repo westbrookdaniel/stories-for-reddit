@@ -94,11 +94,11 @@ export default function Stories(props: Props) {
 				setQuery={setQuery}
 				mb={6}
 				title={`${props.match.params.id}`}
-				maxW="4xl"
+				maxW="5xl"
 				sortListBy={sortListBy}
 			/>
 			<SectionContainer
-				maxW="4xl"
+				maxW="5xl"
 				bg={colorMode === 'dark' ? 'tan.950' : 'tan.400'}
 				pb={4}
 				flexGrow={1}
@@ -106,12 +106,12 @@ export default function Stories(props: Props) {
 				<AnimatePresence exitBeforeEnter>
 					{firstLoaded ? (
 						<motion.div id="1" {...fadeAnimation}>
-							<SimpleGrid columns={4} spacing={5}>
+							<SimpleGrid d="flex" flexWrap="wrap" spacing={5}>
 								{mapFromPosts(filter)}
 							</SimpleGrid>
 						</motion.div>
 					) : (
-						<SimpleGrid columns={4} spacing={5}>
+						<SimpleGrid d="flex" flexWrap="wrap" spacing={5}>
 							{SkeletonCards({ quanitity: 12, motionProps: fadeAnimation })}
 						</SimpleGrid>
 					)}
