@@ -82,7 +82,7 @@ export default function Home() {
 							)}
 						</AnimatePresence>
 					</CardRow>
-					<SimpleGrid columns={2} w="100%" gap={10}>
+					<SimpleGrid columns={[1, 1, 1, 2]} w="100%" gap={10}>
 						<ActionContainer title="View All Subreddits" link="/subreddits" />
 						<ActionContainer title="Discover All Stories" link="/stories" />
 					</SimpleGrid>

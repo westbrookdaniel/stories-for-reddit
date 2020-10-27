@@ -9,7 +9,8 @@ const PaddedContainer: FunctionComponent<Props> = ({ children, ...props }) => {
 	const { colorMode } = useColorMode()
 	return (
 		<Box
-			p={16}
+			px={[8, 8, 16]}
+			py={[10, 10, 16]}
 			bg={colorMode === 'dark' ? 'tan.950' : 'tan.400'}
 			rounded="md"
 			{...props}
