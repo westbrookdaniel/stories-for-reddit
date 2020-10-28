@@ -1,6 +1,6 @@
 import React, { FunctionComponent, useState, useContext } from 'react'
 import { Link as RouterLink } from 'react-router-dom'
-import { Link, Input } from '@chakra-ui/core'
+import { Link, Input, Flex } from '@chakra-ui/core'
 import { useColorMode, Box, Heading } from '@chakra-ui/core'
 import Logo from '../util/Logo'
 import { AnimatePresence, motion } from 'framer-motion'
@@ -16,16 +16,18 @@ export default function Header() {
 
 	return (
 		<Box px={10} py={6} d="flex" alignItems="center" w="100%">
-			<Link
-				onMouseEnter={handleHover}
-				onMouseLeave={handleHover}
-				as={RouterLink}
-				_hover={{ textDecor: 'none' }}
-				to="/"
-				_focus={{ outline: 'none' }}
-			>
-				<Logo colorMode={colorMode} w="34px" minW="34px" />
-			</Link>
+			<Flex alignItems="center" minH="50px">
+				<Link
+					onMouseEnter={handleHover}
+					onMouseLeave={handleHover}
+					as={RouterLink}
+					_hover={{ textDecor: 'none' }}
+					to="/"
+					_focus={{ outline: 'none' }}
+				>
+					<Logo colorMode={colorMode} w="34px" minW="34px" />
+				</Link>
+			</Flex>
 			<NavSection logoHover={logoHover} />
 			<Nav color={colorMode === 'dark' ? 'gray.500' : 'gray.700'} />
 		</Box>
@@ -44,12 +46,7 @@ const NavSection = ({ logoHover }: { logoHover: boolean }) => {
 	}
 
 	return (
-		<Box
-			w="100%"
-			ml={8}
-			overflow="hidden"
-			d={['none', 'none', 'block']}
-		>
+		<Box w="100%" ml={8} overflow="hidden" d={['none', 'none', 'block']}>
 			<AnimatePresence exitBeforeEnter>
 				{logoHover ? (
 					<motion.div {...navAnimation} key={1}>
