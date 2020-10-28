@@ -123,7 +123,7 @@ export default function SingleStory(props: Props): ReactElement {
 									'column-reverse',
 									'row',
 								]}
-								key={0}
+								key={1}
 								mt={[10, 10, 4, 4, 0]}
 								spacing={[8, 8, 8, 8, 16]}
 								alignItems="stretch"
