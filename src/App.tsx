@@ -5,7 +5,6 @@ import Header from './components/layout/Header'
 import Footer from './components/layout/Footer'
 
 import Home from './Home'
-import StyleGuide from './StyleGuide'
 import { Box } from '@chakra-ui/core'
 import Stories from './Stories'
 import { AnimatePresence, motion } from 'framer-motion'
@@ -56,7 +55,6 @@ const App = () => {
 							<Route exact path="/stories" component={Stories} />
 							<Route exact path="/about" component={About} />
 							<Route exact path="/subreddits" component={Subreddits} />
-							<Route exact path="/style-guide" component={StyleGuide} />
 							<Route exact path="/profile" component={Profile} />
 							<Route exact path="/login" component={Login} />
 							<Route exact path="/signup" component={SignUp} />

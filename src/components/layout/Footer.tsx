@@ -43,14 +43,11 @@ export default function Footer() {
 				direction={['column', 'column', 'column', 'column', 'row']}
 				w="100%"
 				overflow="hidden"
-				spacing={8}
+				spacing={[2, 2, 2, 2, 8]}
 			>
 				<Text>Copyright Stories for Reddit</Text>
 				<NavLink as={RouterLink} to="/">
 					Attributions
-				</NavLink>
-				<NavLink as={RouterLink} to="/style-guide">
-					Style Guide
 				</NavLink>
 			</Stack>
 			<Nav
