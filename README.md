@@ -97,7 +97,7 @@ Finishing Up
 
 - [x] M - Swap reddit profile
 - [x] E - Responsive Fixups
-- [ ] M - Mobile nav (Top Drawer)
+- [x] M - Mobile nav (Top Drawer)
 - [ ] E - Finalising Content
 - [ ] E - General polish and optimisations
 
