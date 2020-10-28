@@ -11,11 +11,18 @@ import {
 	DrawerContent,
 	DrawerHeader,
 	DrawerBody,
+	DrawerCloseButton,
+	Flex,
+	Link,
+	DrawerFooter,
+	Box,
+	Text,
 } from '@chakra-ui/core'
 import { Link as RouterLink } from 'react-router-dom'
 import NavLink from '../util/NavLink'
 import { BsMoon } from 'react-icons/bs'
-import { BiMenu } from 'react-icons/bi'
+import { IoMdMenu, IoMdClose } from 'react-icons/io'
+import Logo from '../util/Logo'
 
 interface Props {
 	onlyLinks?: boolean
@@ -29,6 +36,7 @@ const Nav: FunctionComponent<Props> = ({
 	justifyContent = 'flex-end',
 	direction = 'row',
 	spacing = 12,
+	onClick,
 	...props
 }) => {
 	const { toggleColorMode } = useColorMode()
@@ -44,13 +52,18 @@ const Nav: FunctionComponent<Props> = ({
 				spacing={spacing}
 				{...props}
 			>
-				<NavLink color={color} as={RouterLink} to="/stories">
+				<NavLink color={color} as={RouterLink} to="/stories" onClick={onClick}>
 					Featured
 				</NavLink>
-				<NavLink color={color} as={RouterLink} to="/subreddits">
+				<NavLink
+					color={color}
+					as={RouterLink}
+					to="/subreddits"
+					onClick={onClick}
+				>
 					Subreddits
 				</NavLink>
-				<NavLink color={color} as={RouterLink} to="/about">
+				<NavLink color={color} as={RouterLink} to="/about" onClick={onClick}>
 					About
 				</NavLink>
 			</Stack>
@@ -82,7 +95,7 @@ const Nav: FunctionComponent<Props> = ({
 					<Button onClick={toggleColorMode} variant="ghost" p={1} size="sm">
 						<BsMoon fontSize="1.3rem" />
 					</Button>
-					<NavLink color={color} as={RouterLink} to="/profile">
+					<NavLink as={RouterLink} to="/profile">
 						<Avatar name="Dan Abrahmov" src="https://bit.ly/dan-abramov" />
 					</NavLink>
 				</Stack>
@@ -97,13 +110,14 @@ const Nav: FunctionComponent<Props> = ({
 				{...props}
 			>
 				<Stack direction={direction} alignItems="center" spacing={6}>
-					<Button onClick={toggleColorMode} variant="ghost" p={1} size="sm">
-						<BsMoon fontSize="1.3rem" />
-					</Button>
 					<Button onClick={onOpen} variant="ghost" p={1} size="md">
-						<BiMenu fontSize="2.2rem" />
+						<IoMdMenu fontSize="2rem" />
 					</Button>
-					<MenuDrawer onClose={onClose} isOpen={isOpen} />
+					<MenuDrawer
+						toggleColorMode={toggleColorMode}
+						onClose={onClose}
+						isOpen={isOpen}
+					/>
 				</Stack>
 			</Stack>
 		</>
@@ -113,18 +127,73 @@ const Nav: FunctionComponent<Props> = ({
 interface DrawerProps {
 	onClose: any
 	isOpen: boolean
+	toggleColorMode: any
 }
-const MenuDrawer: FunctionComponent<DrawerProps> = ({ onClose, isOpen }) => {
+const MenuDrawer: FunctionComponent<DrawerProps> = ({
+	onClose,
+	isOpen,
+	toggleColorMode,
+}) => {
+	const { colorMode } = useColorMode()
+
 	return (
 		<Drawer placement="top" onClose={onClose} isOpen={isOpen}>
 			<DrawerOverlay>
 				<DrawerContent>
-					<DrawerHeader borderBottomWidth="1px">Basic Drawer</DrawerHeader>
-					<DrawerBody>
-						<p>Some contents...</p>
-						<p>Some contents...</p>
-						<p>Some contents...</p>
+					<Flex px={10} py={6} alignItems="center">
+						<Flex flexGrow={1} alignItems="center" minH="50px">
+							<Link
+								onClick={onClose}
+								as={RouterLink}
+								_hover={{ textDecor: 'none' }}
+								to="/"
+								_focus={{ outline: 'none' }}
+							>
+								<Logo colorMode={colorMode} w="34px" minW="34px" />
+							</Link>
+						</Flex>
+						<Button onClick={onClose} variant="ghost" p={1} size="md">
+							<IoMdClose fontSize="2rem" />
+						</Button>
+					</Flex>
+					<DrawerBody px={10}>
+						<Nav
+							onClick={onClose}
+							onlyLinks
+							justifyContent="flex-start"
+							direction="column"
+							spacing={4}
+						/>
 					</DrawerBody>
+					<DrawerFooter px={10} justifyContent="flex-start" my={8}>
+						<HStack alignItems="center" spacing={6}>
+							<Box>
+								<Flex h="40px" alignItems="center">
+									<Button
+										onClick={toggleColorMode}
+										variant="ghost"
+										p={1}
+										size="md"
+									>
+										<BsMoon fontSize="2rem" />
+									</Button>
+								</Flex>
+								<Text mt={2}>Change Theme</Text>
+							</Box>
+							<Box>
+								<Flex h="40px" alignItems="center">
+									<NavLink onClick={onClose} as={RouterLink} to="/profile">
+										<Avatar
+											size="sm"
+											name="Dan Abrahmov"
+											src="https://bit.ly/dan-abramov"
+										/>
+									</NavLink>
+								</Flex>
+								<Text mt={2}>My Profile</Text>
+							</Box>
+						</HStack>
+					</DrawerFooter>
 				</DrawerContent>
 			</DrawerOverlay>
 		</Drawer>
