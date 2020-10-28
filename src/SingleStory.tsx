@@ -124,19 +124,19 @@ export default function SingleStory(props: Props): ReactElement {
 									'row',
 								]}
 								key={0}
-								mt={[4, 4, 4, 4, 0]}
+								mt={[10, 10, 4, 4, 0]}
 								spacing={[8, 8, 8, 8, 16]}
 								alignItems="stretch"
 							>
 								<MotionBox
 									bg={colorMode === 'dark' ? 'gray.800' : 'white'}
 									w="100%"
-									maxW="2xl"
+									maxW={['none', 'none', '2xl']}
 									h="100%"
 									overflow="scroll"
-									boxShadow="lg"
+									boxShadow={['none', 'none', 'lg']}
+									px={10}
 									py={12}
-									px={[10, 10, 10, 10, 0]}
 									className="story-details"
 									initial={{
 										y: 20,

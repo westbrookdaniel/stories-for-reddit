@@ -47,8 +47,8 @@ export default function IconStack({ postData }: Props): ReactElement {
 	const handleSave = async () => {
 		try {
 			if (!userData) throw 'User data not found'
-			const i = userData[postData.type].indexOf(data.itemId)
-			if (i >= 0) {
+			const i = userData && userData[postData.type].indexOf(data.itemId)
+			if (i >= 0 && userData) {
 				const newData = [...userData[postData.type]]
 				newData.splice(i, 1)
 				await updateUserData({
@@ -62,9 +62,11 @@ export default function IconStack({ postData }: Props): ReactElement {
 					isClosable: true,
 				})
 			} else {
-				await updateUserData({
-					[postData.type]: [...userData[postData.type], data.itemId],
-				})
+				if (userData) {
+					await updateUserData({
+						[postData.type]: [...userData[postData.type], data.itemId],
+					})	
+				}
 				toast({
 					position: 'bottom-left',
 					title: `Saved to favourite ${postData.type}`,
@@ -85,7 +87,7 @@ export default function IconStack({ postData }: Props): ReactElement {
 		}
 	}
 
-	const isInUserData = () => userData[postData.type].indexOf(data.itemId) >= 0
+	const isInUserData = () => userData && userData[postData.type].indexOf(data.itemId) >= 0
 
 	const handleHide = async () => {
 		try {
