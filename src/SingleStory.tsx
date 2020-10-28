@@ -1,9 +1,4 @@
-import {
-	Box,
-	HStack,
-	SkeletonText,
-	useColorMode,
-} from '@chakra-ui/core'
+import { Box, HStack, SkeletonText, Stack, useColorMode } from '@chakra-ui/core'
 import React, { ReactElement, useEffect, useRef, useState } from 'react'
 import { reddit } from './api'
 import SectionContainer from './components/layout/SectionContainer'
@@ -43,18 +38,30 @@ export default function SingleStory(props: Props): ReactElement {
 			height="100%"
 			position="relative"
 		>
-			<SectionContainer>
+			<SectionContainer p={[0, 0, 8]}>
 				<Box>
 					<AnimatePresence exitBeforeEnter>
 						{postData ? (
-							<HStack key={0} spacing={16} alignItems="stretch">
+							<Stack
+								direction={[
+									'column-reverse',
+									'column-reverse',
+									'column-reverse',
+									'column-reverse',
+									'row',
+								]}
+								key={0}
+								mt={[10, 10, 4, 4, 0]}
+								spacing={[8, 8, 8, 8, 16]}
+								alignItems="stretch"
+							>
 								<MotionBox
 									bg={colorMode === 'dark' ? 'gray.800' : 'white'}
 									w="100%"
-									maxW="2xl"
+									maxW={['none', 'none', '2xl']}
 									h="100%"
 									overflow="scroll"
-									boxShadow="lg"
+									boxShadow={['none', 'none', 'lg']}
 									px={10}
 									py={12}
 									initial={{
@@ -75,7 +82,10 @@ export default function SingleStory(props: Props): ReactElement {
 										__html: DOMPurify.sanitize(postData?.selftext_html),
 									}}
 								></MotionBox>
-								<Box position="relative" w="600px">
+								<Box
+									position="relative"
+									w={['inherit', 'inherit', 'inherit', 'inherit', '600px']}
+								>
 									<MotionBox
 										initial={{
 											opacity: 0,
@@ -88,16 +98,36 @@ export default function SingleStory(props: Props): ReactElement {
 											opacity: 0,
 											transition: { duration: 1 },
 										}}
-										position="absolute"
+										position={[
+											'relative',
+											'relative',
+											'relative',
+											'relative',
+											'absolute',
+										]}
+										px={[10, 10, 10, 10, 0]}
 										top={50}
+										className="story-details"
 										ref={stickyEl}
 									>
 										<StoryDetails postData={postData} />
 									</MotionBox>
 								</Box>
-							</HStack>
+							</Stack>
 						) : (
-							<HStack key={1} spacing={16} alignItems="stretch">
+							<Stack
+								direction={[
+									'column-reverse',
+									'column-reverse',
+									'column-reverse',
+									'column-reverse',
+									'row',
+								]}
+								key={0}
+								mt={[4, 4, 4, 4, 0]}
+								spacing={[8, 8, 8, 8, 16]}
+								alignItems="stretch"
+							>
 								<MotionBox
 									bg={colorMode === 'dark' ? 'gray.800' : 'white'}
 									w="100%"
@@ -105,8 +135,9 @@ export default function SingleStory(props: Props): ReactElement {
 									h="100%"
 									overflow="scroll"
 									boxShadow="lg"
-									px={10}
 									py={12}
+									px={[10, 10, 10, 10, 0]}
+									className="story-details"
 									initial={{
 										y: 20,
 										opacity: 0,
@@ -123,8 +154,11 @@ export default function SingleStory(props: Props): ReactElement {
 								>
 									<SkeletonText spacing={5} noOfLines={32} />
 								</MotionBox>
-								<Box position="relative" w="600px"></Box>
-							</HStack>
+								<Box
+									position="relative"
+									w={['inherit', 'inherit', 'inherit', 'inherit', '600px']}
+								></Box>
+							</Stack>
 						)}
 					</AnimatePresence>
 				</Box>

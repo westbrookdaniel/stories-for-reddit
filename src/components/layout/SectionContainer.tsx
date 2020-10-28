@@ -9,11 +9,12 @@ interface Props {
 const SectionContainer: FunctionComponent<Props> = ({
 	children,
 	maxW = '6xl',
+	p = 8,
 	...props
 }) => {
 	return (
 		<Box {...props}>
-			<Container p={8} maxW={maxW}>
+			<Container p={p} maxW={maxW}>
 				{children}
 			</Container>
 		</Box>
