@@ -48,7 +48,7 @@ export default function About() {
 							quae ab illo inventore veritatis et quasi architecto beatae vitae
 							dicta sunt.
 						</Text>
-						<VStack alignItems="flex-start" spacing={6}>
+						<VStack alignItems="flex-start" spacing={4}>
 							<DefaultButton>Discover Subreddits</DefaultButton>
 							<DefaultButton>Discover Stories</DefaultButton>
 						</VStack>

@@ -11,6 +11,7 @@ import {
 	HStack,
 	Avatar,
 	useToast,
+	Stack,
 } from '@chakra-ui/core'
 import DefaultButton from './components/util/DefaultButton'
 import { Link, useHistory } from 'react-router-dom'
@@ -122,13 +123,13 @@ export default function Profile() {
 						name="Dan Abrahmov"
 						src="https://bit.ly/dan-abramov"
 					/>
-					<Heading as="h1" fontSize="4em" mb={3}>
+					<Heading as="h1" fontSize={["2.5em", "3em", "4em", "4em","4em"]} mb={3}>
 						My Profile
 					</Heading>
 					<Text mb={6} color={colorMode === 'dark' ? 'gray.500' : 'gray.700'}>
 						Email: {currentUser ? currentUser?.email : 'Loading...'}
 					</Text>
-					<HStack spacing={6} pt={3}>
+					<Stack direction={["column", "row", "row"]} alignItems="flex-start" spacing={[0, 6, 6]} pt={3}>
 						<Link to="/update">
 							<DefaultButton mb={6}>Update Details</DefaultButton>
 						</Link>
@@ -140,7 +141,7 @@ export default function Profile() {
 						>
 							Log Out
 						</DefaultButton>
-					</HStack>
+					</Stack>
 				</Box>
 			</SectionContainer>
 			<SectionContainer maxW="7xl" mb={16}>

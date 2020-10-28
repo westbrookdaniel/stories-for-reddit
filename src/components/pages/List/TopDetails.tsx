@@ -9,6 +9,7 @@ import {
 	Badge,
 	MenuOptionGroup,
 	MenuItemOption,
+	Stack,
 } from '@chakra-ui/core'
 import BigBackArrow from '../../util/BigBackArrow'
 import { useHistory } from 'react-router-dom'
@@ -36,10 +37,14 @@ const TopDetails = ({
 		<SectionContainer {...props}>
 			<Box maxW="md">
 				<BigBackArrow onClick={history.goBack} />
-				<Heading as="h1" fontSize="3em" mb={6}>
+				<Heading
+					as="h1"
+					fontSize={['1.8em', '3em', '3em', '3em', '3em']}
+					mb={6}
+				>
 					{title}
 				</Heading>
-				<HStack spacing={4}>
+				<Stack direction={['column-reverse', 'row', 'row', 'row']} spacing={[2, 4, 4, 4]}>
 					{sortListBy ? (
 						<Box>
 							<Menu>
@@ -74,7 +79,7 @@ const TopDetails = ({
 						onChange={(e) => setQuery(e.target.value)}
 						placeholder="Search by title..."
 					/>
-				</HStack>
+				</Stack>
 			</Box>
 		</SectionContainer>
 	)
@@ -85,7 +90,11 @@ const SortingButtons = (sorters: AnyObject) => {
 	Object.keys(sorters).forEach((key) => {
 		const sorter: { method: Function; name: string } = sorters[key]
 		ButtonArr.push(
-			<MenuItemOption key={key} value={sorter.name} onClick={() => sorter.method()}>
+			<MenuItemOption
+				key={key}
+				value={sorter.name}
+				onClick={() => sorter.method()}
+			>
 				{sorter.name}
 			</MenuItemOption>
 		)

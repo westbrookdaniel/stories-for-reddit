@@ -73,7 +73,11 @@ export default function ForgotPassword() {
 			</Helmet>
 			<SectionContainer py={12}>
 				<Box maxW="sm">
-					<Heading as="h1" fontSize="4em" mb={6}>
+					<Heading
+						as="h1"
+						fontSize={['2.5em', '3em', '4em', '4em', '4em']}
+						mb={3}
+					>
 						Forgot Password
 					</Heading>
 					<VStack my={8} spacing={4} align="start">
@@ -86,7 +90,9 @@ export default function ForgotPassword() {
 								type="email"
 								w="100%"
 							/>
-							<FormHelperText>The email you used for your account.</FormHelperText>
+							<FormHelperText>
+								The email you used for your account.
+							</FormHelperText>
 						</FormControl>
 						<DefaultButton
 							isLoading={loading}

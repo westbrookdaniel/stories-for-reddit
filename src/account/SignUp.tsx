@@ -53,7 +53,7 @@ export default function SignUp() {
 			setLoading(true)
 			const res = await firebase.signUp(email, password)
 			toast({
-				position: "bottom-left",
+				position: 'bottom-left',
 				title: res,
 				status: 'success',
 				duration: 3000,
@@ -61,7 +61,7 @@ export default function SignUp() {
 			})
 			setLoading(false)
 			history.push('/profile')
-		} catch (error) {			
+		} catch (error) {
 			setLoading(false)
 			setError(error)
 		}
@@ -84,7 +84,11 @@ export default function SignUp() {
 			</Helmet>
 			<SectionContainer py={12}>
 				<Box maxW="sm">
-					<Heading as="h1" fontSize="4em" mb={6}>
+					<Heading
+						as="h1"
+						fontSize={['2.5em', '3em', '4em', '4em', '4em']}
+						mb={3}
+					>
 						Sign Up
 					</Heading>
 					<VStack my={8} spacing={4} align="start">

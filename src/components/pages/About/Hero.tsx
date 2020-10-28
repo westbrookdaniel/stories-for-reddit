@@ -21,7 +21,7 @@ const Hero = (props: Props) => {
 		<SectionContainer py={12}>
 			<SimpleGrid columns={[1, 1, 1, 2]} alignItems="center">
 				<Box maxW="sm">
-					<Heading as="h1" fontSize="4em" mb={6}>
+				<Heading as="h1" fontSize={["2.5em", "3em", "4em", "4em","4em"]} mb={6}>
 						About
 					</Heading>
 					<Text mb={6} color={colorMode === 'dark' ? 'gray.500' : 'gray.700'}>
