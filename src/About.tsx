@@ -10,8 +10,10 @@ import {
 	Text,
 	useColorMode,
 	VStack,
+	Link as StyleLink
 } from '@chakra-ui/core'
 import DefaultButton from './components/util/DefaultButton'
+import { Link } from 'react-router-dom'
 
 export default function About() {
 	const { colorMode } = useColorMode()
@@ -22,9 +24,7 @@ export default function About() {
 				<title>About | Stories For Reddit</title>
 			</Helmet>
 			<Hero />
-			<SectionContainer
-				bg={colorMode === 'dark' ? 'tan.950' : 'tan.400'}
-			>
+			<SectionContainer bg={colorMode === 'dark' ? 'tan.950' : 'tan.400'}>
 				<SimpleGrid columns={[1, 1, 1, 2]} gap={10} w="100%" pt={12} pb={20}>
 					<Box>
 						<Heading as="h2" fontSize="2em" mb={6}>
@@ -36,7 +36,9 @@ export default function About() {
 							quae ab illo inventore veritatis et quasi architecto beatae vitae
 							dicta sunt.
 						</Text>
-						<DefaultButton>Visit My Website</DefaultButton>
+						<StyleLink isExternal href="https://westbrookdaniel.com/">
+							<DefaultButton>Visit My Website</DefaultButton>
+						</StyleLink>
 					</Box>
 					<Box>
 						<Heading as="h2" fontSize="2em" mb={6}>
@@ -49,8 +51,12 @@ export default function About() {
 							dicta sunt.
 						</Text>
 						<VStack alignItems="flex-start" spacing={4}>
-							<DefaultButton>Discover Subreddits</DefaultButton>
-							<DefaultButton>Discover Stories</DefaultButton>
+							<Link to="/subreddits">
+								<DefaultButton>Discover Subreddits</DefaultButton>
+							</Link>
+							<Link to="/stories">
+								<DefaultButton>Discover Stories</DefaultButton>
+							</Link>
 						</VStack>
 					</Box>
 				</SimpleGrid>
