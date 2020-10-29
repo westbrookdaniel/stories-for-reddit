@@ -55,63 +55,43 @@ const App = () => {
 						flexDir="column"
 						flexGrow={1}
 					>
-						<Switch location={location}>
-							<Route exact path="/">
-								<Susp>
+						<Susp>
+							<Switch location={location}>
+								<Route exact path="/">
 									<Home />
-								</Susp>
-							</Route>
-							<Route path="/stories/:id">
-								<Susp>
+								</Route>
+								<Route path="/stories/:id">
 									<SingleStory />
-								</Susp>
-							</Route>
-							<Route path="/subreddits/:id">
-								<Susp>
+								</Route>
+								<Route path="/subreddits/:id">
 									<AnySubreddits />
-								</Susp>
-							</Route>
-							<Route exact path="/stories">
-								<Susp>
+								</Route>
+								<Route exact path="/stories">
 									<Stories />
-								</Susp>
-							</Route>
-							<Route exact path="/about">
-								<Susp>
+								</Route>
+								<Route exact path="/about">
 									<About />
-								</Susp>
-							</Route>
-							<Route exact path="/subreddits">
-								<Susp>
+								</Route>
+								<Route exact path="/subreddits">
 									<Subreddits />
-								</Susp>
-							</Route>
-							<Route exact path="/profile">
-								<Susp>
+								</Route>
+								<Route exact path="/profile">
 									<Profile />
-								</Susp>
-							</Route>
-							<Route exact path="/login">
-								<Susp>
+								</Route>
+								<Route exact path="/login">
 									<Login />
-								</Susp>
-							</Route>
-							<Route exact path="/signup">
-								<Susp>
+								</Route>
+								<Route exact path="/signup">
 									<SignUp />
-								</Susp>
-							</Route>
-							<Route exact path="/forgotpassword">
-								<Susp>
+								</Route>
+								<Route exact path="/forgotpassword">
 									<ForgotPassword />
-								</Susp>
-							</Route>
-							<Route exact path="/update">
-								<Susp>
+								</Route>
+								<Route exact path="/update">
 									<Update />
-								</Susp>
-							</Route>
-						</Switch>
+								</Route>
+							</Switch>
+						</Susp>
 					</MotionBox>
 				</MotionBox>
 			</AnimatePresence>
