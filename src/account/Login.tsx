@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { Helmet } from 'react-helmet'
 import SectionContainer from '../components/layout/SectionContainer'
 import {
@@ -15,6 +15,7 @@ import { Link as RouterLink, useHistory } from 'react-router-dom'
 import { firebase } from '../api'
 import { useToast } from '@chakra-ui/core'
 import DefaultButton from '../components/util/DefaultButton'
+import { AuthContext } from '../AuthContext'
 
 interface formValuesTypes {
 	email: string
@@ -29,6 +30,7 @@ export default function Login() {
 		password: '',
 	})
 	const [loading, setLoading] = useState<boolean>(false)
+	const { currentUser } = useContext(AuthContext)
 
 	const handleSubmit = (e: any) => {
 		e.preventDefault()
@@ -47,8 +49,6 @@ export default function Login() {
 				duration: 3000,
 				isClosable: true,
 			})
-			setLoading(false)
-			history.push('/profile')
 		} catch (error) {
 			setLoading(false)
 			toast({
@@ -60,6 +60,12 @@ export default function Login() {
 			})
 		}
 	}
+
+	useEffect(() => {
+		if (currentUser) {
+			history.push('/profile')
+		}
+	}, [currentUser])
 
 	const handleChange = (e: any) => {
 		const name = e?.target?.name

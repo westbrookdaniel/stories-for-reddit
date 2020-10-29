@@ -50,6 +50,7 @@ export default function Profile() {
 				isClosable: true,
 			})
 			setLoading(false)
+			history.push('/login')
 		} catch (error) {
 			setLoading(false)
 			toast({
@@ -70,6 +71,12 @@ export default function Profile() {
 			getSubreddits(userData?.subreddits)
 		}
 	}, [userData])
+
+	useEffect(() => {
+		if (currentUser === null) {
+			history.replace('/login')
+		}
+	}, [currentUser])
 
 	// TODO: Useeffect for refresh which listens for changes in userdata
 	const getStories = async (idArr: any[]) => {
@@ -123,13 +130,22 @@ export default function Profile() {
 						name="Dan Abrahmov"
 						src="https://bit.ly/dan-abramov"
 					/>
-					<Heading as="h1" fontSize={["2.5em", "3em", "4em", "4em","4em"]} mb={3}>
+					<Heading
+						as="h1"
+						fontSize={['2.5em', '3em', '4em', '4em', '4em']}
+						mb={3}
+					>
 						My Profile
 					</Heading>
 					<Text mb={6} color={colorMode === 'dark' ? 'gray.500' : 'gray.700'}>
 						Email: {currentUser ? currentUser?.email : 'Loading...'}
 					</Text>
-					<Stack direction={["column", "row", "row"]} alignItems="flex-start" spacing={[0, 6, 6]} pt={3}>
+					<Stack
+						direction={['column', 'row', 'row']}
+						alignItems="flex-start"
+						spacing={[0, 6, 6]}
+						pt={3}
+					>
 						<Link to="/update">
 							<DefaultButton mb={6}>Update Details</DefaultButton>
 						</Link>
