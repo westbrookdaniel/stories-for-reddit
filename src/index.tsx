@@ -1,29 +1,22 @@
 import React, { lazy } from 'react'
 import ReactDOM from 'react-dom'
-const App = lazy(() => import('./App'))
+import App from './App'
 import { BrowserRouter as Router } from 'react-router-dom'
 
-const ChakraProvider = lazy(() =>
-	import('@chakra-ui/core').then((module) => ({
-		default: module.ChakraProvider,
-	}))
-)
+import { ChakraProvider } from '@chakra-ui/core'
 import theme from '../theme'
 import './index.css'
-const AuthProvider = lazy(() => import('./AuthContext'))
-import { Susp } from './components/util/Susp'
+import AuthProvider from './AuthContext'
 
 function Index() {
 	return (
-		<Susp>
-			<ChakraProvider resetCSS theme={theme}>
-				<AuthProvider>
-					<Router>
-						<App />
-					</Router>
-				</AuthProvider>
-			</ChakraProvider>
-		</Susp>
+		<ChakraProvider resetCSS theme={theme}>
+			<AuthProvider>
+				<Router>
+					<App />
+				</Router>
+			</AuthProvider>
+		</ChakraProvider>
 	)
 }
 
