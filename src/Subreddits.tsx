@@ -11,19 +11,22 @@ import { AnimatePresence, motion } from 'framer-motion'
 import { useList } from './components/pages/List/useList'
 import { fadeAnimation } from './components/util/animations'
 import mapFromSubreddits from './components/pages/List/mapFromSubreddits'
+import makeCancelable from './helpers/makeCancelable'
 
 export default function Subreddits() {
 	const { colorMode } = useColorMode()
 	const [subreddits, setSubreddits] = useState<any>(null)
 
 	useEffect(() => {
-		getData()
+		const p = reddit.getSubreddits()
+		const { promise, cancel } = makeCancelable(p)
+		promise
+			.then((data) => {
+				setSubreddits(data)
+			})
+			.catch((reason) => console.log(reason))
+		return cancel
 	}, [])
-
-	const getData = async () => {
-		const data = await reddit.getSubreddits()
-		setSubreddits(data)
-	}
 
 	const { query, setQuery, filter, firstLoaded } = useList(subreddits)
 

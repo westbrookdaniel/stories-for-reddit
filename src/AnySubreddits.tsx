@@ -14,6 +14,7 @@ import { useList } from './components/pages/List/useList'
 import { fadeAnimation } from './components/util/animations'
 import { reorder } from './components/util/sortBy'
 import { mapFromPosts } from './components/pages/List/mapFromPosts'
+import makeCancelable from './helpers/makeCancelable'
 
 interface Props {
 	[key: string]: any
@@ -26,33 +27,33 @@ export default function Stories(props: Props) {
 	const [pageCount, setPageCount] = useState(1)
 	const [isLoadingMore, setIsLoadingMore] = useState(true)
 
-	useEffect(() => {		
-		getStories(pageCount)
+	useEffect(() => {
+		const p = reddit.getSubredditStories(props.match.params.id, pageCount)
+		const { promise, cancel } = makeCancelable(p)
+		promise
+			.then((rawPosts: any) => {
+				// TODO: Change this to not be bad
+				if (typeof rawPosts === 'string') {
+					setPosts([])
+					throw new Error(rawPosts)
+				}
+				setIsLoadingMore(false)
+				setPosts(
+					rawPosts.map((post: any) => ({
+						title: post.title,
+						length: post.selftext_html?.length,
+						id: post.id,
+						url: post.url,
+					}))
+				)
+			})
+			.catch((reason) => console.log(reason))
+		return cancel
 	}, [pageCount])
 
 	const getMore = () => {
 		setIsLoadingMore(true)
 		setPageCount((count) => count + 1)
-	}
-
-	const getStories = async (n: number) => {
-		const rawPosts = await reddit.getSubredditStories(
-			props.match.params.id,
-			n * 12
-		)
-		if (typeof rawPosts === 'string') {
-			setPosts([])
-			throw new Error(rawPosts)
-		}
-		setIsLoadingMore(false)
-		setPosts(
-			rawPosts.map((post: any) => ({
-				title: post.title,
-				length: post.selftext_html?.length,
-				id: post.id,
-				url: post.url,
-			}))
-		)
 	}
 
 	const animation = {

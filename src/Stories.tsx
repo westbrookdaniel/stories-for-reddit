@@ -15,6 +15,7 @@ import { mapFromPosts } from './components/pages/List/mapFromPosts'
 import { fadeAnimation } from './components/util/animations'
 import { useFilter } from './components/pages/List/useFilter'
 import { reorder, sortBy } from './components/util/sortBy'
+import makeCancelable from './helpers/makeCancelable'
 
 export default function Stories() {
 	const { colorMode } = useColorMode()
@@ -24,29 +25,31 @@ export default function Stories() {
 	const [isLoadingMore, setIsLoadingMore] = useState(true)
 
 	useEffect(() => {
-		getStories(pageCount)
+		const p = reddit.getFeaturedStories(pageCount * 12)
+		const { promise, cancel } = makeCancelable(p)
+		promise
+			.then((rawPosts: any) => {
+				if (typeof rawPosts === 'string') {
+					setPosts([])
+					throw new Error(rawPosts)
+				}
+				setIsLoadingMore(false)
+				setPosts(
+					rawPosts.map((post: any) => ({
+						title: post.title,
+						length: post.selftext_html?.length,
+						id: post.id,
+						url: post.url,
+					}))
+				)
+			})
+			.catch((reason) => console.log(reason))
+		return cancel
 	}, [pageCount])
 
 	const getMore = () => {
 		setIsLoadingMore(true)
 		setPageCount((count) => count + 1)
-	}
-
-	const getStories = async (n: number) => {
-		const rawPosts = await reddit.getFeaturedStories(n * 12)
-		if (typeof rawPosts === 'string') {
-			setPosts([])
-			throw new Error(rawPosts)
-		}
-		setIsLoadingMore(false)
-		setPosts(
-			rawPosts.map((post: any) => ({
-				title: post.title,
-				length: post.selftext_html?.length,
-				id: post.id,
-				url: post.url,
-			}))
-		)
 	}
 
 	const sortListBy = {
