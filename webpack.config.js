@@ -5,7 +5,7 @@ const CopyPlugin = require('copy-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const Dotenv = require('dotenv-webpack');
-// const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
 if (process.env.FB_APPID) {
   const str = `
@@ -97,12 +97,14 @@ const config = {
       template: './src/index.html'
     }),
     new CleanWebpackPlugin(),
-    // new BundleAnalyzerPlugin()
+    new BundleAnalyzerPlugin()
   ],
   optimization: {
     runtimeChunk: 'single',
     splitChunks: {
       chunks: 'all',
+      maxSize: 240000,
+      minSize: 160000,
     }
   }
 };

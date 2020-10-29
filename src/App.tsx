@@ -3,6 +3,7 @@ import { hot } from 'react-hot-loader/root'
 import { Switch, Route, useLocation } from 'react-router-dom'
 import { Box, Spinner } from '@chakra-ui/core'
 import { AnimatePresence, motion } from 'framer-motion'
+import { Susp } from './components/util/Susp'
 
 const Header = lazy(() => import('./components/layout/Header'))
 const Footer = lazy(() => import('./components/layout/Footer'))
@@ -83,19 +84,4 @@ const App = () => {
 		</div>
 	)
 }
-
-const Susp: FunctionComponent = ({ children }) => {
-	return (
-		<Suspense
-			fallback={
-				<div className="suspense-spinner">
-					<Spinner color="primary.500" />
-				</div>
-			}
-		>
-			{children}
-		</Suspense>
-	)
-}
-
 export default hot(App)
