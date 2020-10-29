@@ -63,21 +63,39 @@ const App = () => {
 							}
 						>
 							<Switch location={location}>
-								<Route exact path="/" component={Home} />
-								<Route path="/stories/:id" component={SingleStory} />
-								<Route path="/subreddits/:id" component={AnySubreddits} />
-								<Route exact path="/stories" component={Stories} />
-								<Route exact path="/about" component={About} />
-								<Route exact path="/subreddits" component={Subreddits} />
-								<Route exact path="/profile" component={Profile} />
-								<Route exact path="/login" component={Login} />
-								<Route exact path="/signup" component={SignUp} />
-								<Route
-									exact
-									path="/forgotpassword"
-									component={ForgotPassword}
-								/>
-								<Route exact path="/update" component={Update} />
+								<Route exact path="/">
+									<Home />
+								</Route>
+								<Route path="/stories/:id">
+									<SingleStory />
+								</Route>
+								<Route path="/subreddits/:id">
+									<AnySubreddits />
+								</Route>
+								<Route exact path="/stories">
+									<Stories />
+								</Route>
+								<Route exact path="/about">
+									<About />
+								</Route>
+								<Route exact path="/subreddits">
+									<Subreddits />
+								</Route>
+								<Route exact path="/profile">
+									<Profile />
+								</Route>
+								<Route exact path="/login">
+									<Login />
+								</Route>
+								<Route exact path="/signup">
+									<SignUp />
+								</Route>
+								<Route exact path="/forgotpassword">
+									<ForgotPassword />
+								</Route>
+								<Route exact path="/update">
+									<Update />
+								</Route>
 							</Switch>
 						</Suspense>
 					</MotionBox>
