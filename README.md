@@ -100,7 +100,3 @@ Finishing Up
 - [x] M - Mobile nav (Top Drawer)
 - [ ] E - Finalising Content
 - [ ] E - General polish and optimisations
-
-## Extra Notes
-
-If testing is still difficult try [user-event](https://github.com/testing-library/user-event)
