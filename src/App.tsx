@@ -1,4 +1,4 @@
-import React, { Suspense, lazy } from 'react'
+import React, { Suspense, lazy, FunctionComponent } from 'react'
 import { hot } from 'react-hot-loader/root'
 import { Switch, Route, useLocation } from 'react-router-dom'
 import { Box, Spinner } from '@chakra-ui/core'
@@ -55,54 +55,82 @@ const App = () => {
 						flexDir="column"
 						flexGrow={1}
 					>
-						<Suspense
-							fallback={
-								<div className="suspense-spinner">
-									<Spinner color="primary.500" />
-								</div>
-							}
-						>
-							<Switch location={location}>
-								<Route exact path="/">
+						<Switch location={location}>
+							<Route exact path="/">
+								<Susp>
 									<Home />
-								</Route>
-								<Route path="/stories/:id">
+								</Susp>
+							</Route>
+							<Route path="/stories/:id">
+								<Susp>
 									<SingleStory />
-								</Route>
-								<Route path="/subreddits/:id">
+								</Susp>
+							</Route>
+							<Route path="/subreddits/:id">
+								<Susp>
 									<AnySubreddits />
-								</Route>
-								<Route exact path="/stories">
+								</Susp>
+							</Route>
+							<Route exact path="/stories">
+								<Susp>
 									<Stories />
-								</Route>
-								<Route exact path="/about">
+								</Susp>
+							</Route>
+							<Route exact path="/about">
+								<Susp>
 									<About />
-								</Route>
-								<Route exact path="/subreddits">
+								</Susp>
+							</Route>
+							<Route exact path="/subreddits">
+								<Susp>
 									<Subreddits />
-								</Route>
-								<Route exact path="/profile">
+								</Susp>
+							</Route>
+							<Route exact path="/profile">
+								<Susp>
 									<Profile />
-								</Route>
-								<Route exact path="/login">
+								</Susp>
+							</Route>
+							<Route exact path="/login">
+								<Susp>
 									<Login />
-								</Route>
-								<Route exact path="/signup">
+								</Susp>
+							</Route>
+							<Route exact path="/signup">
+								<Susp>
 									<SignUp />
-								</Route>
-								<Route exact path="/forgotpassword">
+								</Susp>
+							</Route>
+							<Route exact path="/forgotpassword">
+								<Susp>
 									<ForgotPassword />
-								</Route>
-								<Route exact path="/update">
+								</Susp>
+							</Route>
+							<Route exact path="/update">
+								<Susp>
 									<Update />
-								</Route>
-							</Switch>
-						</Suspense>
+								</Susp>
+							</Route>
+						</Switch>
 					</MotionBox>
 				</MotionBox>
 			</AnimatePresence>
 			<Footer />
 		</Box>
+	)
+}
+
+const Susp: FunctionComponent = ({ children }) => {
+	return (
+		<Suspense
+			fallback={
+				<div className="suspense-spinner">
+					<Spinner color="primary.500" />
+				</div>
+			}
+		>
+			{children}
+		</Suspense>
 	)
 }
 
