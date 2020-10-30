@@ -1,12 +1,12 @@
-import React, { lazy } from 'react'
+import React from 'react'
 import ReactDOM from 'react-dom'
 import App from './App'
 import { BrowserRouter as Router } from 'react-router-dom'
 
 import { ChakraProvider } from '@chakra-ui/core'
 import theme from '../theme'
-import './index.css'
 import AuthProvider from './AuthContext'
+require('./index.css')
 
 function Index() {
 	return (
