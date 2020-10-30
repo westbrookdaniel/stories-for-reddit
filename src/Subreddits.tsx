@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 
 import { Helmet } from 'react-helmet'
-import { SimpleGrid, useColorMode } from '@chakra-ui/core'
+import { Flex, SimpleGrid, useColorMode } from '@chakra-ui/core'
 import TopDetails from './components/pages/List/TopDetails'
 import Card from './components/util/Card'
 import SectionContainer from './components/layout/SectionContainer'
@@ -12,6 +12,7 @@ import { useList } from './components/pages/List/useList'
 import { fadeAnimation } from './components/util/animations'
 import mapFromSubreddits from './components/pages/List/mapFromSubreddits'
 import makeCancelable from './helpers/makeCancelable'
+import CardWrap from './components/layout/CardWrap'
 
 export default function Subreddits() {
 	const { colorMode } = useColorMode()
@@ -51,14 +52,14 @@ export default function Subreddits() {
 				<AnimatePresence exitBeforeEnter>
 					{firstLoaded ? (
 						<motion.div id="1" {...fadeAnimation}>
-							<SimpleGrid d="flex" flexWrap="wrap" spacing={5}>
+							<CardWrap>
 								{mapFromSubreddits(filter)}
-							</SimpleGrid>
+							</CardWrap>
 						</motion.div>
 					) : (
-						<SimpleGrid d="flex" flexWrap="wrap" spacing={5}>
+						<CardWrap>
 							{SkeletonCards({ quanitity: 8, motionProps: fadeAnimation })}
-						</SimpleGrid>
+						</CardWrap>
 					)}
 				</AnimatePresence>
 			</SectionContainer>

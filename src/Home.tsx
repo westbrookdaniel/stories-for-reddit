@@ -8,7 +8,7 @@ import ActionContainer from './components/pages/Home/ActionContainer'
 import { useListWithoutFilter } from './components/pages/List/useList'
 import { reddit } from './api'
 import { CardPost } from './types'
-import CardStack from './components/layout/CardStack'
+import CardWrap from './components/layout/CardWrap'
 import { mapFromPosts } from './components/pages/List/mapFromPosts'
 import { SkeletonCards } from './components/util/Skeletons'
 import { fadeAnimation } from './components/util/animations'
@@ -60,12 +60,12 @@ export default function Home() {
 						<AnimatePresence exitBeforeEnter>
 							{loadedStories ? (
 								<motion.div id="1" {...fadeAnimation}>
-									<CardStack>{mapFromPosts(posts)}</CardStack>
+									<CardWrap>{mapFromPosts(posts)}</CardWrap>
 								</motion.div>
 							) : (
-								<CardStack>
+								<CardWrap>
 									{SkeletonCards({ quanitity: 4, motionProps: fadeAnimation })}
-								</CardStack>
+								</CardWrap>
 							)}
 						</AnimatePresence>
 					</CardRow>
@@ -73,12 +73,12 @@ export default function Home() {
 						<AnimatePresence exitBeforeEnter>
 							{loadedSubreddits ? (
 								<motion.div id="1" {...fadeAnimation}>
-									<CardStack>{mapFromSubreddits(subreddits)}</CardStack>
+									<CardWrap>{mapFromSubreddits(subreddits)}</CardWrap>
 								</motion.div>
 							) : (
-								<CardStack>
+								<CardWrap>
 									{SkeletonCards({ quanitity: 4, motionProps: fadeAnimation })}
-								</CardStack>
+								</CardWrap>
 							)}
 						</AnimatePresence>
 					</CardRow>

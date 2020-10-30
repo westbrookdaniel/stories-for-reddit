@@ -16,6 +16,7 @@ import { fadeAnimation } from './components/util/animations'
 import { useFilter } from './components/pages/List/useFilter'
 import { reorder, sortBy } from './components/util/sortBy'
 import makeCancelable from './helpers/makeCancelable'
+import CardWrap from './components/layout/CardWrap'
 
 export default function Stories() {
 	const { colorMode } = useColorMode()
@@ -97,14 +98,14 @@ export default function Stories() {
 				<AnimatePresence exitBeforeEnter>
 					{firstLoaded ? (
 						<motion.div id="1" {...fadeAnimation}>
-							<SimpleGrid d="flex" flexWrap="wrap" spacing={5}>
+							<CardWrap>
 								{mapFromPosts(filter)}
-							</SimpleGrid>
+							</CardWrap>
 						</motion.div>
 					) : (
-						<SimpleGrid d="flex" flexWrap="wrap" spacing={5}>
+						<CardWrap>
 							{SkeletonCards({ quanitity: 12, motionProps: fadeAnimation })}
-						</SimpleGrid>
+						</CardWrap>
 					)}
 				</AnimatePresence>
 				<Box mt={8}>

@@ -4,7 +4,7 @@ import { reddit } from './api'
 
 import { Helmet } from 'react-helmet'
 import SectionContainer from './components/layout/SectionContainer'
-import { Box, Button, SimpleGrid, useColorMode } from '@chakra-ui/core'
+import { Box, Button, Flex, SimpleGrid, useColorMode } from '@chakra-ui/core'
 import TopDetails from './components/pages/List/TopDetails'
 import Card from './components/util/Card'
 import { CardPost } from './types'
@@ -15,6 +15,7 @@ import { fadeAnimation } from './components/util/animations'
 import { reorder } from './components/util/sortBy'
 import { mapFromPosts } from './components/pages/List/mapFromPosts'
 import makeCancelable from './helpers/makeCancelable'
+import CardWrap from './components/layout/CardWrap'
 
 interface Props {
 	[key: string]: any
@@ -107,14 +108,14 @@ export default function Stories(props: Props) {
 				<AnimatePresence exitBeforeEnter>
 					{firstLoaded ? (
 						<motion.div id="1" {...fadeAnimation}>
-							<SimpleGrid d="flex" flexWrap="wrap" spacing={5}>
+							<CardWrap>
 								{mapFromPosts(filter)}
-							</SimpleGrid>
+							</CardWrap>
 						</motion.div>
 					) : (
-						<SimpleGrid d="flex" flexWrap="wrap" spacing={5}>
+						<CardWrap>
 							{SkeletonCards({ quanitity: 12, motionProps: fadeAnimation })}
-						</SimpleGrid>
+						</CardWrap>
 					)}
 				</AnimatePresence>
 				<Box mt={8}>
