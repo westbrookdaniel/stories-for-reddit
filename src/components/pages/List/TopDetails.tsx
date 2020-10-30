@@ -60,7 +60,6 @@ const TopDetails = ({
 								>
 									Sort
 								</MenuButton>
-								{/* TODO: Active class for current sort */}
 								<MenuList>
 									<MenuOptionGroup
 										defaultValue={sortListBy.unsorted.name}

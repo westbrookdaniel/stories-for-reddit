@@ -108,7 +108,6 @@ class redditApi {
 		}
 	}
 
-	// TODO: Setup new keys with storiesadmin reddit account
 	hideStoryById = (id: string) => {
 		return new Promise<string>((res, rej) => {
 			const post = this.r.getSubmission(id)

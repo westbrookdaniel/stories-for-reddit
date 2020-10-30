@@ -78,7 +78,6 @@ export default function Profile() {
 		}
 	}, [currentUser])
 
-	// TODO: Useeffect for refresh which listens for changes in userdata
 	const getStories = async (idArr: any[]) => {
 		try {
 			const rawPosts: any[] = await reddit.getStoriesFromList(idArr)

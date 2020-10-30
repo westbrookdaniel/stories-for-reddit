@@ -30,5 +30,3 @@ export const sortBy = (oldArray: any[], matchFunc: Function) => {
 	}
 	return array
 }
-
-// TODO: Fix search while filtered
