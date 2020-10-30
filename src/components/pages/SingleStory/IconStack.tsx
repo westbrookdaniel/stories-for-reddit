@@ -21,7 +21,7 @@ interface Props {
 export default function IconStack({ postData }: Props): ReactElement {
 	const { colorMode } = useColorMode()
 	const theme = useTheme()
-	const { updateUserData, userData } = useContext(AuthContext)
+	const { updateUserData, userData, currentUser } = useContext(AuthContext)
 	const toast = useToast()
 
 	const [data, setData] = useState({
@@ -46,6 +46,7 @@ export default function IconStack({ postData }: Props): ReactElement {
 
 	const handleSave = async () => {
 		try {
+			if (currentUser === null) throw 'Login to save stories'
 			if (!userData) throw 'User data not found'
 			const i = userData && userData[postData.type].indexOf(data.itemId)
 			if (i >= 0 && userData) {
