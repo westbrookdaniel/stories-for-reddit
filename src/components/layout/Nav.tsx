@@ -1,4 +1,4 @@
-import React, { FunctionComponent } from 'react'
+import React, { FunctionComponent, useContext } from 'react'
 import {
 	HStack,
 	Button,
@@ -17,12 +17,15 @@ import {
 	DrawerFooter,
 	Box,
 	Text,
+	Spinner,
 } from '@chakra-ui/core'
 import { Link as RouterLink } from 'react-router-dom'
 import NavLink from '../util/NavLink'
 import { BsMoon } from 'react-icons/bs'
 import { IoMdMenu, IoMdClose } from 'react-icons/io'
 import Logo from '../util/Logo'
+import { AuthContext } from '../../AuthContext'
+import DefaultButton from '../util/DefaultButton'
 
 interface Props {
 	onlyLinks?: boolean
@@ -41,6 +44,7 @@ const Nav: FunctionComponent<Props> = ({
 }) => {
 	const { toggleColorMode } = useColorMode()
 	const { isOpen, onOpen, onClose } = useDisclosure()
+	const { currentUser } = useContext(AuthContext)
 
 	if (onlyLinks) {
 		return (
@@ -95,9 +99,19 @@ const Nav: FunctionComponent<Props> = ({
 					<Button onClick={toggleColorMode} variant="ghost" p={1} size="sm">
 						<BsMoon fontSize="1.3rem" />
 					</Button>
-					<NavLink as={RouterLink} to="/profile">
-						<Avatar name="Dan Abrahmov" src="https://bit.ly/dan-abramov" />
-					</NavLink>
+					{currentUser === undefined ? (
+						<Box className="suspense-spinner" w="40px">
+							<Spinner color="primary.500" />
+						</Box>
+					) : currentUser !== null ? (
+						<NavLink as={RouterLink} to="/profile">							
+							<Avatar name={currentUser?.email ? currentUser.email : 'User'} />
+						</NavLink>
+					) : (
+						<NavLink as={RouterLink} to="/login">
+							<DefaultButton>Login</DefaultButton>
+						</NavLink>
+					)}
 				</Stack>
 			</Stack>
 			<Stack

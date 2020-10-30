@@ -126,8 +126,7 @@ export default function Profile() {
 					<Avatar
 						size="2xl"
 						mb={8}
-						name="Dan Abrahmov"
-						src="https://bit.ly/dan-abramov"
+						name={currentUser?.email ? currentUser.email : 'User'}
 					/>
 					<Heading
 						as="h1"
