@@ -104,8 +104,8 @@ const Nav: FunctionComponent<Props> = ({
 							<Spinner color="primary.500" />
 						</Box>
 					) : currentUser !== null ? (
-						<NavLink as={RouterLink} to="/profile">							
-							<Avatar name={currentUser?.email ? currentUser.email : 'User'} />
+						<NavLink as={RouterLink} to="/profile">
+							<Avatar name={currentUser?.email && currentUser.email} />
 						</NavLink>
 					) : (
 						<NavLink as={RouterLink} to="/login">
@@ -149,6 +149,7 @@ const MenuDrawer: FunctionComponent<DrawerProps> = ({
 	toggleColorMode,
 }) => {
 	const { colorMode } = useColorMode()
+	const { currentUser } = useContext(AuthContext)
 
 	return (
 		<Drawer placement="top" onClose={onClose} isOpen={isOpen}>
@@ -180,7 +181,7 @@ const MenuDrawer: FunctionComponent<DrawerProps> = ({
 						/>
 					</DrawerBody>
 					<DrawerFooter px={10} justifyContent="flex-start" my={8}>
-						<HStack alignItems="center" spacing={6}>
+						<HStack alignItems="flex-end" spacing={6}>
 							<Box>
 								<Flex h="40px" alignItems="center">
 									<Button
@@ -195,16 +196,27 @@ const MenuDrawer: FunctionComponent<DrawerProps> = ({
 								<Text mt={2}>Change Theme</Text>
 							</Box>
 							<Box>
-								<Flex h="40px" alignItems="center">
-									<NavLink onClick={onClose} as={RouterLink} to="/profile">
-										<Avatar
-											size="sm"
-											name="Dan Abrahmov"
-											src="https://bit.ly/dan-abramov"
-										/>
+								{currentUser === undefined ? (
+									<Box className="suspense-spinner" w="40px">
+										<Spinner color="primary.500" />
+									</Box>
+								) : currentUser !== null ? (
+									<>
+										<Flex h="40px" alignItems="center">
+											<NavLink onClick={onClose} as={RouterLink} to="/profile">
+												<Avatar
+													size="sm"
+													name={currentUser?.email && currentUser.email}
+												/>
+											</NavLink>
+										</Flex>
+										<Text mt={2}>My Profile</Text>
+									</>
+								) : (
+									<NavLink as={RouterLink} onClick={onClose} to="/login">
+										<DefaultButton>Login</DefaultButton>
 									</NavLink>
-								</Flex>
-								<Text mt={2}>My Profile</Text>
+								)}
 							</Box>
 						</HStack>
 					</DrawerFooter>

@@ -126,7 +126,7 @@ export default function Profile() {
 					<Avatar
 						size="2xl"
 						mb={8}
-						name={currentUser?.email ? currentUser.email : 'User'}
+						name={currentUser?.email && currentUser.email}
 					/>
 					<Heading
 						as="h1"
