@@ -50,6 +50,7 @@ const Hero = (props: Props) => {
 						htmlWidth="512"
 						src={heroImage}
 						alt="Segun Adebayo"
+						rounded="md"
 					/>
 				</Box>
 			</SimpleGrid>
