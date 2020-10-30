@@ -103,8 +103,8 @@ const config = {
     runtimeChunk: 'single',
     splitChunks: {
       chunks: 'all',
-      maxSize: 240000,
-      minSize: 160000,
+      // maxSize: 240000,
+      // minSize: 160000,
     }
   }
 };
