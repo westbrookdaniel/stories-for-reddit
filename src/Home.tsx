@@ -25,7 +25,7 @@ export default function Home() {
 	}, [])
 
 	const getStories = async () => {
-		const rawPosts = await reddit.getFeaturedStories(4)
+		const rawPosts = await reddit.getFeaturedStories(3)
 		if (typeof rawPosts === 'string') {
 			setPosts([])
 			throw new Error(rawPosts)
@@ -42,7 +42,7 @@ export default function Home() {
 	const { firstLoaded: loadedStories } = useListWithoutFilter(posts)
 
 	const getSubreddits = async () => {
-		const data = await reddit.getSubreddits()
+		const data = await reddit.getSubreddits(3)
 		setSubreddits(data)
 	}
 
@@ -64,7 +64,7 @@ export default function Home() {
 								</motion.div>
 							) : (
 								<CardWrap>
-									{SkeletonCards({ quanitity: 4, motionProps: fadeAnimation })}
+									{SkeletonCards({ quanitity: 3, motionProps: fadeAnimation })}
 								</CardWrap>
 							)}
 						</AnimatePresence>
@@ -77,7 +77,7 @@ export default function Home() {
 								</motion.div>
 							) : (
 								<CardWrap>
-									{SkeletonCards({ quanitity: 4, motionProps: fadeAnimation })}
+									{SkeletonCards({ quanitity: 3, motionProps: fadeAnimation })}
 								</CardWrap>
 							)}
 						</AnimatePresence>
