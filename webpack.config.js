@@ -86,15 +86,18 @@ const config = {
 			filename: 'index.html',
 			template: './src/index.html',
 		}),
+		new CopyPlugin({
+			patterns: [
+				{ from: 'public' },
+			],
+		}),
 		new CleanWebpackPlugin(),
-		// new BundleAnalyzerPlugin()
+		// new BundleAnalyzerPlugin(),
 	],
 	optimization: {
 		runtimeChunk: 'single',
 		splitChunks: {
 			chunks: 'all',
-			// maxSize: 240000,
-			// minSize: 160000,
 		},
 	},
 }

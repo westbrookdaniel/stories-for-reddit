@@ -5,6 +5,7 @@ import SectionContainer from './components/layout/SectionContainer'
 import DOMPurify from 'dompurify'
 import { AnimatePresence, motion } from 'framer-motion'
 import StoryDetails from './components/pages/SingleStory/StoryDetails'
+import { Helmet } from 'react-helmet'
 
 interface Props {
 	[index: string]: any
@@ -16,6 +17,9 @@ export default function SingleStory(props: Props): ReactElement {
 	const { colorMode } = useColorMode()
 	const stickyEl = useRef<HTMLDivElement>(null)
 	const [postData, setPostData] = useState<any>(null)
+	const [pageTitle, setPageTitle] = useState('Loading')
+
+	
 	useEffect(() => {
 		getPostData()
 		window.addEventListener('scroll', handleScroll)
@@ -31,6 +35,12 @@ export default function SingleStory(props: Props): ReactElement {
 			? (stickyEl.current.style.top = `${window.scrollY + 50}px`)
 			: null
 	}
+	
+	useEffect(() => {
+		if (typeof postData?.title === 'string') {
+			setPageTitle(`${postData.title.substring(0, 20)}...`)
+		}
+	}, [postData])
 
 	return (
 		<Box
@@ -38,6 +48,9 @@ export default function SingleStory(props: Props): ReactElement {
 			height="100%"
 			position="relative"
 		>
+			<Helmet>
+				<title>{pageTitle} | Stories For Reddit</title>
+			</Helmet>
 			<SectionContainer p={[0, 0, 8]}>
 				<Box>
 					<AnimatePresence exitBeforeEnter>
