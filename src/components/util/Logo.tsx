@@ -20,6 +20,7 @@ export default function Logo({ colorMode, ...props }: Props) {
 		return <Image src={logoGray} {...defaultProps} {...props} />
 	}
 
+	// TODO: Fix Logo
 	return (
 		<Image
 			src={colorMode === 'dark' ? logoWhite : logo}

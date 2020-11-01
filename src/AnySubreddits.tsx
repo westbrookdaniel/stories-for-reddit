@@ -115,7 +115,6 @@ export default function Stories(props: Props) {
 					)}
 				</AnimatePresence>
 				<Box mt={8}>
-					{/* TODO: Fix jumping back to the top */}
 					<Button
 						colorScheme="primary"
 						variant="ghost"

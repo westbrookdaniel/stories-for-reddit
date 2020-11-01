@@ -1,4 +1,4 @@
-import React, { Suspense, lazy, FunctionComponent } from 'react'
+import React, { Suspense, lazy, FunctionComponent, useEffect } from 'react'
 import { hot } from 'react-hot-loader/root'
 import { Switch, Route, useLocation } from 'react-router-dom'
 import { Box, Spinner } from '@chakra-ui/core'
@@ -25,7 +25,7 @@ const MotionBox = motion.custom(Box)
 const App = () => {
 	const location = useLocation()
 
-	const ScrollAfterDelay = () => {
+	useEffect(() => {
 		setTimeout(() => {
 			window.scrollTo({
 				top: 0,
@@ -33,7 +33,7 @@ const App = () => {
 				behavior: 'smooth',
 			})
 		}, 100)
-	}
+	}, [location.key])
 
 	return (
 		<div className="wrapper-box">
@@ -52,7 +52,6 @@ const App = () => {
 							animate={{ opacity: 1, transition: { delay: 0.1 } }}
 							exit={{ opacity: 0 }}
 							transition={{ ease: 'easeInOut', duration: '0.1' }}
-							onAnimationStart={ScrollAfterDelay}
 							display="flex"
 							flexDir="column"
 							flexGrow={1}
