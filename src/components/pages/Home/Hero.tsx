@@ -30,6 +30,7 @@ const Hero = (props: Props) => {
 						as="h1"
 						fontSize={['2.5em', '3em', '4em', '4em', '4em']}
 						mb={6}
+						lineHeight="1.1em"
 					>
 						Stories for Reddit
 					</Heading>

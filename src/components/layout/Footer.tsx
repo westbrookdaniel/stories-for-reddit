@@ -45,10 +45,13 @@ export default function Footer() {
 				overflow="hidden"
 				spacing={[2, 2, 2, 2, 8]}
 			>
-				<Text>Copyright Stories for Reddit</Text>
-				<NavLink as={RouterLink} to="/">
-					Attributions
-				</NavLink>
+				<Link
+					isExternal
+					_focus={{ outline: 'none' }}
+					href="https://westbrookdaniel.com/"
+				>
+					<Text>Made by Daniel Westbrook</Text>
+				</Link>
 			</Stack>
 			<Nav
 				justifyContent={[
