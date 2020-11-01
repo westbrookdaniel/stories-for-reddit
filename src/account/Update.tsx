@@ -96,7 +96,7 @@ export default function Update() {
 			</Helmet>
 			<SectionContainer py={12}>
 				<Box maxW="sm">
-					<Heading as="h1" fontSize="4em" mb={6}>
+					<Heading as="h1" fontSize="4em" mb={6} lineHeight="1.1em">
 						Update
 					</Heading>
 					<VStack my={8} spacing={4} align="start">

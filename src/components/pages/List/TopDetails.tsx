@@ -41,10 +41,14 @@ const TopDetails = ({
 					as="h1"
 					fontSize={['1.8em', '3em', '3em', '3em', '3em']}
 					mb={6}
+					lineHeight="1.1em"
 				>
 					{title}
 				</Heading>
-				<Stack direction={['column-reverse', 'row', 'row', 'row']} spacing={[2, 4, 4, 4]}>
+				<Stack
+					direction={['column-reverse', 'row', 'row', 'row']}
+					spacing={[2, 4, 4, 4]}
+				>
 					{sortListBy ? (
 						<Box>
 							<Menu>

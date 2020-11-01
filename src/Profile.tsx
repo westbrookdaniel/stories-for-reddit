@@ -132,6 +132,7 @@ export default function Profile() {
 						as="h1"
 						fontSize={['2.5em', '3em', '4em', '4em', '4em']}
 						mb={3}
+						lineHeight="1.1em"
 					>
 						My Profile
 					</Heading>
@@ -171,7 +172,7 @@ export default function Profile() {
 							) : (
 								<CardWrap>
 									{SkeletonCards({
-										quanitity: 4,
+										quanitity: 3,
 										motionProps: fadeAnimation,
 									})}
 								</CardWrap>
@@ -188,7 +189,7 @@ export default function Profile() {
 								</motion.div>
 							) : (
 								<CardWrap>
-									{SkeletonCards({ quanitity: 4, motionProps: fadeAnimation })}
+									{SkeletonCards({ quanitity: 3, motionProps: fadeAnimation })}
 								</CardWrap>
 							)}
 						</AnimatePresence>

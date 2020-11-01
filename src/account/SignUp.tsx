@@ -88,6 +88,7 @@ export default function SignUp() {
 						as="h1"
 						fontSize={['2.5em', '3em', '4em', '4em', '4em']}
 						mb={3}
+						lineHeight="1.1em"
 					>
 						Sign Up
 					</Heading>

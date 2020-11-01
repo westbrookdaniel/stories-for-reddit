@@ -84,23 +84,32 @@ class redditApi {
 
 	getSubredditsFromList = async (idArray: string[]) => {
 		if (idArray.length === 0) return []
-		return idArray.map((id) => subreddits.find((sub) => sub.title === id))
+		if (this.subredditsWithData.length === 0) {
+			await this.getSubredditsData()
+		}
+		return idArray.map((id) =>
+			this.subredditsWithData.find((sub) => sub.title === id)
+		)
+	}
+
+	getSubredditsData = async () => {
+		await new Promise((res, rej) => {
+			subreddits.forEach((subreddit) => {
+				this.r
+					.getSubreddit(subreddit.title)
+					.fetch()
+					.then((data) => {
+						subreddit.subs = Math.round(data.subscribers.valueOf() / 100) / 10
+						this.subredditsWithData.push(subreddit)
+						if (this.subredditsWithData.length === subreddits.length) res()
+					})
+			})
+		})
 	}
 
 	getSubreddits = async (quantity?: number) => {
 		if (this.subredditsWithData.length === 0) {
-			await new Promise((res, rej) => {
-				subreddits.forEach((subreddit) => {
-					this.r
-						.getSubreddit(subreddit.title)
-						.fetch()
-						.then((data) => {
-							subreddit.subs = Math.round(data.subscribers.valueOf() / 100) / 10
-							this.subredditsWithData.push(subreddit)
-							if (this.subredditsWithData.length === subreddits.length) res()
-						})
-				})
-			})
+			await this.getSubredditsData()
 		}
 		if (quantity) {
 			if (quantity < subreddits.length) {

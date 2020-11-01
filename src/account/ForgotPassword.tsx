@@ -77,6 +77,7 @@ export default function ForgotPassword() {
 						as="h1"
 						fontSize={['2.5em', '3em', '4em', '4em', '4em']}
 						mb={3}
+						lineHeight="1.1em"
 					>
 						Forgot Password
 					</Heading>
