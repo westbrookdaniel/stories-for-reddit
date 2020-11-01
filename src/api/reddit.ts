@@ -7,6 +7,7 @@ interface storyObject {
 	[key: string]: any
 }
 
+// TODO: Accurate Sub Count
 const subreddits = [
 	{ title: 'shortstories', subs: 14.2 },
 	{ title: 'HFY', subs: 3.2 },

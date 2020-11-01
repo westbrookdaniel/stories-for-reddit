@@ -114,6 +114,7 @@ export default function IconStack({ postData }: Props): ReactElement {
 	return (
 		<HStack spacing={4} mt={2}>
 			<Button onClick={handleSave} variant="ghost" p={1} size="sm">
+				{/* TODO: Handle when not logged in */}
 				{isInUserData() ? (
 					<MdBookmark
 						color={
