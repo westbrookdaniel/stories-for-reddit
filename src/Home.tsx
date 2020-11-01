@@ -25,19 +25,20 @@ export default function Home() {
 	}, [])
 
 	const getStories = async () => {
-		const rawPosts = await reddit.getFeaturedStories(3)
-		if (typeof rawPosts === 'string') {
+		try {
+			const rawPosts = await reddit.getFeaturedStories(3)
+			setPosts(
+				rawPosts.map((post: any) => ({
+					title: post.title,
+					length: post.selftext_html?.length,
+					id: post.id,
+					url: post.url,
+				}))
+			)
+		} catch (error) {
 			setPosts([])
-			throw new Error(rawPosts)
+			console.log(error)
 		}
-		setPosts(
-			rawPosts.map((post: any) => ({
-				title: post.title,
-				length: post.selftext_html?.length,
-				id: post.id,
-				url: post.url,
-			}))
-		)
 	}
 	const { firstLoaded: loadedStories } = useListWithoutFilter(posts)
 

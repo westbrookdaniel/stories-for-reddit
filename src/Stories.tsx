@@ -30,10 +30,6 @@ export default function Stories() {
 		const { promise, cancel } = makeCancelable(p)
 		promise
 			.then((rawPosts: any) => {
-				if (typeof rawPosts === 'string') {
-					setPosts([])
-					throw new Error(rawPosts)
-				}
 				setIsLoadingMore(false)
 				setPosts(
 					rawPosts.map((post: any) => ({
@@ -44,7 +40,10 @@ export default function Stories() {
 					}))
 				)
 			})
-			.catch((reason) => console.log(reason))
+			.catch((reason) => {
+				setPosts([])
+				console.log(reason)
+			})
 		return cancel
 	}, [pageCount])
 
@@ -98,9 +97,7 @@ export default function Stories() {
 				<AnimatePresence exitBeforeEnter>
 					{firstLoaded ? (
 						<motion.div id="1" {...fadeAnimation}>
-							<CardWrap>
-								{mapFromPosts(filter)}
-							</CardWrap>
+							<CardWrap>{mapFromPosts(filter)}</CardWrap>
 						</motion.div>
 					) : (
 						<CardWrap>

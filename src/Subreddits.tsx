@@ -58,7 +58,7 @@ export default function Subreddits() {
 						</motion.div>
 					) : (
 						<CardWrap>
-							{SkeletonCards({ quanitity: 8, motionProps: fadeAnimation })}
+							{SkeletonCards({ quanitity: 9, motionProps: fadeAnimation })}
 						</CardWrap>
 					)}
 				</AnimatePresence>

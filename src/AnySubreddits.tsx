@@ -29,15 +29,10 @@ export default function Stories(props: Props) {
 	const [isLoadingMore, setIsLoadingMore] = useState(true)
 
 	useEffect(() => {
-		const p = reddit.getSubredditStories(props.match.params.id, pageCount)
+		const p = reddit.getSubredditStories(props.match.params.id, pageCount * 12)
 		const { promise, cancel } = makeCancelable(p)
 		promise
 			.then((rawPosts: any) => {
-				// TODO: Change this to not be bad
-				if (typeof rawPosts === 'string') {
-					setPosts([])
-					throw new Error(rawPosts)
-				}
 				setIsLoadingMore(false)
 				setPosts(
 					rawPosts.map((post: any) => ({
@@ -48,7 +43,10 @@ export default function Stories(props: Props) {
 					}))
 				)
 			})
-			.catch((reason) => console.log(reason))
+			.catch((reason) => {
+				setPosts([])
+				console.log(reason)
+			})
 		return cancel
 	}, [pageCount])
 
@@ -108,9 +106,7 @@ export default function Stories(props: Props) {
 				<AnimatePresence exitBeforeEnter>
 					{firstLoaded ? (
 						<motion.div id="1" {...fadeAnimation}>
-							<CardWrap>
-								{mapFromPosts(filter)}
-							</CardWrap>
+							<CardWrap>{mapFromPosts(filter)}</CardWrap>
 						</motion.div>
 					) : (
 						<CardWrap>

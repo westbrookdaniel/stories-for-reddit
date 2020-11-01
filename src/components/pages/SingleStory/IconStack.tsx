@@ -47,7 +47,7 @@ export default function IconStack({ postData }: Props): ReactElement {
 	const handleSave = async () => {
 		try {
 			if (currentUser === null) throw 'Login to save stories'
-			if (!userData) throw 'User data not found'
+			if (!userData) throw `Failed to update saved ${postData.type}`
 			const i = userData && userData[postData.type].indexOf(data.itemId)
 			if (i >= 0 && userData) {
 				const newData = [...userData[postData.type]]
@@ -80,7 +80,7 @@ export default function IconStack({ postData }: Props): ReactElement {
 			console.error(error)
 			toast({
 				position: 'bottom-left',
-				title: `Failed to update saved ${postData.type}`,
+				title: error,
 				status: 'error',
 				duration: 3000,
 				isClosable: true,
@@ -114,7 +114,6 @@ export default function IconStack({ postData }: Props): ReactElement {
 	return (
 		<HStack spacing={4} mt={2}>
 			<Button onClick={handleSave} variant="ghost" p={1} size="sm">
-				{/* TODO: Handle when not logged in */}
 				{isInUserData() ? (
 					<MdBookmark
 						color={

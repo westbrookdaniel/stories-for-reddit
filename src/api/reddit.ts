@@ -7,11 +7,16 @@ interface storyObject {
 	[key: string]: any
 }
 
-// TODO: Accurate Sub Count
-const subreddits = [
-	{ title: 'shortstories', subs: 14.2 },
-	{ title: 'HFY', subs: 3.2 },
-	{ title: 'sleepspell', subs: 4.4 },
+type subList = subs[]
+interface subs {
+	title: string
+	subs: null | number
+}
+
+const subreddits: subList = [
+	{ title: 'shortstories', subs: null },
+	{ title: 'HFY', subs: null },
+	{ title: 'sleepspell', subs: null },
 ]
 
 export type subredditsType = typeof subreddits
@@ -22,6 +27,7 @@ class redditApi {
 	FeaturedStories: AnyObject
 	Subreddit: AnyObject
 	StoryById: storyObject
+	subredditsWithData: subList
 
 	constructor() {
 		const setupObj = {
@@ -36,6 +42,7 @@ class redditApi {
 		this.FeaturedStories = {}
 		this.StoryById = {}
 		this.Subreddit = {}
+		this.subredditsWithData = []
 	}
 
 	login = () => {
@@ -81,12 +88,27 @@ class redditApi {
 	}
 
 	getSubreddits = async (quantity?: number) => {
+		if (this.subredditsWithData.length === 0) {
+			await new Promise((res, rej) => {
+				subreddits.forEach((subreddit) => {
+					this.r
+						.getSubreddit(subreddit.title)
+						.fetch()
+						.then((data) => {
+							subreddit.subs = Math.round(data.subscribers.valueOf() / 100) / 10
+							this.subredditsWithData.push(subreddit)
+							if (this.subredditsWithData.length === subreddits.length) res()
+						})
+				})
+			})
+		}
 		if (quantity) {
 			if (quantity < subreddits.length) {
-				return subreddits.slice(0, quantity)
+				const lengthData = [...this.subredditsWithData]
+				return lengthData.slice(0, quantity)
 			}
 		}
-		return subreddits
+		return this.subredditsWithData
 	}
 
 	getSubredditStories = async (id: string, quantity = 12) => {
