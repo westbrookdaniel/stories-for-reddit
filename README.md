@@ -102,6 +102,6 @@ Finishing Up
 - [ ] E - General polish and optimisations
 - [ ] E - Fix title
 
-- [ ] E - 404 page
+- [x] E - 404 page
 - [ ] E - Error Boundary
 - [ ] M - Handle dynamic page errors with 404 page
