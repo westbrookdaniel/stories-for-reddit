@@ -1,6 +1,15 @@
-# stories-for-reddit
+# Stories For Reddit
 
-Medium to long form story reader for reddit
+Discover and read community made short stories
+
+A web app for reading short stories from Reddit’s many writing focused communities
+built with React and Typescript on a custom Webpack configuration. The website was
+developed to make Reddit short story content easily findable and consumable by the
+public, as well as provide a more accessible and enjoyable experience. It helps
+people with busy lives reconnect with bit-sized stories through a specialized
+sreading experience.
+
+---
 
 ## Building and running on localhost
 
@@ -28,25 +37,44 @@ To create a development build:
 yarn build-dev
 ```
 
-## Running
-
 Open the file `dist/index.html` in your browser
 
-## Testing
+---
 
-To run unit tests:
+## About
 
-```sh
-yarn test
-```
+React app built with Typescript and custom Webpack configuration using Chakra UI as a React
+Framework and Framer motion as an animation library. Backend is handled by Firebase.
 
-To check code coverage:
+### Directory Annotations
 
-```sh
-yarn coverage
-```
+| Directory/File            | Description                                                                                                                                 |
+| ------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------- |
+| theme.js                  | Theme decloration for chakra that sets default styles                                                                                       |
+| public                    | Files that are coppied into the build directory                                                                                             |
+| src                       | General directory for code that contains pages, entry point related content (index.tsx index.html index.css), and context (AuthContext.tsx) |
+| src/account               | Account related routes and functionality for those pages                                                                                    |
+| src/api                   | Shortcuts for interacting with apis that handle getting data from firebase, catching some errors, and caching                               |
+| src/components            | Directory for components                                                                                                                    |
+| src/components/layout     | Layout related components                                                                                                                   |
+| src/components/pages/\*\* | Components that are specific to a certain page                                                                                              |
+| src/components/util       | Reusable utility files and general use components                                                                                           |
+| src/fonts                 | Local fonts that are included with @font-face in src/index.css                                                                              |
+| src/helpers               | Helpers (makeCancelable.ts is used to make promises cancelable to stop memory leaks)                                                        |
+| src/images                | Images that are used on the site                                                                                                            |
+| src/types                 | Some general reusable typescript types that aren't related to a specific file                                                               |
 
 ---
+
+### Conceptual Annotations
+
+| Concept                       | Description                                                                                                                       |
+| ----------------------------- | --------------------------------------------------------------------------------------------------------------------------------- |
+| ChakraProvider                | Provides everything Chakra UI related, resets the css, and applies my custom theme                                                |
+| AuthContext                   | Uses React.useContext to provide the current user and its data and CRUD functionality related to the user to all files in the app |
+| react-router-dom              | History based routing which also handles 404s and dynamic routes                                                                  |
+| React.lazy and React.Suspense | Being used to lazy load routes and Suspense shows a spinner while it is loading                                                   |
+| AnimatePresence               | A part of framer motion that enables fade out animations                                                                          |
 
 ## Development Outline
 
@@ -71,8 +99,6 @@ Vertical Slice
 
 - [x] M - Dynamic list content
 - [x] H - Working Reader
-
-### Submission Milestone
 
 Expanded Functionality
 
@@ -99,12 +125,10 @@ Finishing Up
 - [x] E - Responsive Fixups
 - [x] M - Mobile nav (Top Drawer)
 - [x] E - Finalising Content
-- [ ] E - General polish and optimisations
+- [x] E - General polish and optimisations
 - [x] E - Fix title font
 - [x] E - Fix broken more items popover
-
 - [x] E - 404 page
 - [x] E - Error Boundary on Suspense
 - [x] M - Handle dynamic page errors with 404 page
-
-- [ ] H - Comment Everything
+- [ ] E - Add share buttons

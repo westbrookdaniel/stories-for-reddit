@@ -69,6 +69,7 @@ const AuthProvider: FunctionComponent<Props> = ({ children }) => {
 		}
 	}
 
+	// Note that currentUser === undefined is still loading and currentUser === null is no logged in user
 	return (
 		<AuthContext.Provider
 			value={{
