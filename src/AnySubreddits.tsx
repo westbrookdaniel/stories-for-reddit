@@ -16,6 +16,7 @@ import { reorder } from './components/util/sortBy'
 import { mapFromPosts } from './components/pages/List/mapFromPosts'
 import makeCancelable from './helpers/makeCancelable'
 import CardWrap from './components/layout/CardWrap'
+import { useHistory } from 'react-router-dom'
 
 interface Props {
 	[key: string]: any
@@ -27,6 +28,7 @@ export default function Stories(props: Props) {
 	const [ordered, setOrdered] = useState<null | CardPost[]>(null)
 	const [pageCount, setPageCount] = useState(1)
 	const [isLoadingMore, setIsLoadingMore] = useState(true)
+	const history = useHistory()
 
 	useEffect(() => {
 		const p = reddit.getSubredditStories(props.match.params.id, pageCount * 12)
@@ -44,7 +46,7 @@ export default function Stories(props: Props) {
 				)
 			})
 			.catch((reason) => {
-				setPosts([])
+				history.replace('/404')
 				console.log(reason)
 			})
 		return cancel
@@ -53,12 +55,6 @@ export default function Stories(props: Props) {
 	const getMore = () => {
 		setIsLoadingMore(true)
 		setPageCount((count) => count + 1)
-	}
-
-	const animation = {
-		animate: { opacity: 1 },
-		initial: { opacity: 0 },
-		exit: { opacity: 0 },
 	}
 
 	const { query, setQuery, filter, firstLoaded } = useList(ordered || posts)

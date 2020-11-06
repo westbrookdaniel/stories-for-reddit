@@ -103,5 +103,5 @@ Finishing Up
 - [ ] E - Fix title
 
 - [x] E - 404 page
-- [ ] E - Error Boundary
+- [x] E - Error Boundary on Suspense
 - [ ] M - Handle dynamic page errors with 404 page

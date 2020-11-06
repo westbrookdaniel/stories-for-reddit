@@ -121,22 +121,17 @@ class redditApi {
 	}
 
 	getSubredditStories = async (id: string, quantity = 12) => {
-		try {
-			if (this.Subreddit[id] && this.Subreddit[id][quantity]) {
-				return this.Subreddit[id][quantity]
-			} else {
-				const data = await this.r.getSubreddit(id).getHot({ limit: quantity })
-				const onlyData: any[] = []
-				data.forEach((post) => !post.stickied && onlyData.push(post))
-				if (!this.Subreddit[id]) {
-					this.Subreddit[id] = {}
-				}
-				this.Subreddit[id][quantity] = onlyData
-				return onlyData
+		if (this.Subreddit[id] && this.Subreddit[id][quantity]) {
+			return this.Subreddit[id][quantity]
+		} else {
+			const data = await this.r.getSubreddit(id).getHot({ limit: quantity })
+			const onlyData: any[] = []
+			data.forEach((post) => !post.stickied && onlyData.push(post))
+			if (!this.Subreddit[id]) {
+				this.Subreddit[id] = {}
 			}
-		} catch (error) {
-			console.log(error)
-			return 'Error can not get featured stories'
+			this.Subreddit[id][quantity] = onlyData
+			return onlyData
 		}
 	}
 
@@ -187,6 +182,9 @@ class redditApi {
 							.fetch()
 							.then((post) => {
 								res(post)
+							})
+							.catch((error) => {
+								rej(error)
 							})
 					}
 				)

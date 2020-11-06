@@ -6,6 +6,7 @@ import DOMPurify from 'dompurify'
 import { AnimatePresence, motion } from 'framer-motion'
 import StoryDetails from './components/pages/SingleStory/StoryDetails'
 import { Helmet } from 'react-helmet'
+import { useHistory } from 'react-router-dom'
 
 interface Props {
 	[index: string]: any
@@ -18,7 +19,7 @@ export default function SingleStory(props: Props): ReactElement {
 	const stickyEl = useRef<HTMLDivElement>(null)
 	const [postData, setPostData] = useState<any>(null)
 	const [pageTitle, setPageTitle] = useState('Loading')
-
+	const history = useHistory()
 	
 	useEffect(() => {
 		getPostData()
@@ -26,8 +27,12 @@ export default function SingleStory(props: Props): ReactElement {
 	}, [])
 
 	const getPostData = async () => {
-		const data = await reddit.getStoryById(props.match.params.id)
-		setPostData(data)
+		try {
+			const data = await reddit.getStoryById(props.match.params.id)
+			setPostData(data)				
+		} catch (error) {
+			history.replace('/404')
+		}
 	}
 
 	const handleScroll = () => {
