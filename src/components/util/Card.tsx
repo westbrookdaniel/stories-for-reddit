@@ -39,7 +39,7 @@ const Card = ({ title, badge = 'unknown', link, postData }: Props) => {
 			}}
 			transition="ease-in-out 0.1s all"
 		>
-			<Box display="flex" overflow="visible" flexDirection="column" p={5}>
+			<Box display="flex" className="important-visible" flexDirection="column" p={5}>
 				<Text
 					fontSize="lg"
 					mt="1"

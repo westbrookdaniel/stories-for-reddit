@@ -35,14 +35,16 @@ export default function MoreDetailsPopover({ postData }) {
 						</Button>
 					</PopoverTrigger>
 					{/* Checking isOpen isn't required but dramatically improves performance */}
-					{isOpen && (
-						<PopoverContent p={0} w="auto" m={0} boxShadow="lg">
-							<PopoverBody pb={4}>
-								<Box display="none" ref={initRef}></Box>
-								<IconStack postData={postData} />
-							</PopoverBody>
-						</PopoverContent>
-					)}
+					<div className="popover-wrapper">
+						{isOpen && (
+							<PopoverContent p={0} w="auto" m={0} boxShadow="lg">
+								<PopoverBody pb={4}>
+									<Box display="none" ref={initRef}></Box>
+									<IconStack postData={postData} />
+								</PopoverBody>
+							</PopoverContent>
+						)}
+					</div>
 				</>
 			)}
 		</Popover>

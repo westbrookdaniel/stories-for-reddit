@@ -70,6 +70,14 @@
 	align-items: center;
 }
 
+.important-visible {
+	overflow: visible !important;
+}
+
+.popover-wrapper > * {
+	width: auto !important;
+}
+
 .wrapper-box {
 	display: flex;
 	min-height: 100vh;

@@ -101,6 +101,7 @@ Finishing Up
 - [x] E - Finalising Content
 - [ ] E - General polish and optimisations
 - [x] E - Fix title font
+- [x] E - Fix broken more items popover
 
 - [x] E - 404 page
 - [x] E - Error Boundary on Suspense
