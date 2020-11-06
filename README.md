@@ -134,4 +134,4 @@ Finishing Up
 - [x] E - 404 page
 - [x] E - Error Boundary on Suspense
 - [x] M - Handle dynamic page errors with 404 page
-- [ ] E - Add share buttons
+- [x] E - Add share buttons
