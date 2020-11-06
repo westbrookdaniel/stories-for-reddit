@@ -8,6 +8,8 @@ import {
 	SimpleGrid,
 	Image,
 	useColorMode,
+	VStack,
+	Link as StyleLink,
 } from '@chakra-ui/core'
 import heroImage from '../../../images/sincerely-media-BfriYg0iOCs-unsplash@2x.png'
 import { Link } from 'react-router-dom'
@@ -35,6 +37,25 @@ const Hero = (props: Props) => {
 						We aim to provide features that allow you enjoy short stories at any
 						time you have available.
 					</Text>
+					<VStack alignItems="left">
+						<Text>
+							<StyleLink
+								isExternal
+								href="https://www.facebook.com/sharer.php?u=stories-for-reddit.vercel.app"
+							>
+								Share on Facebook
+							</StyleLink>
+						</Text>
+
+						<Text>
+							<StyleLink
+								isExternal
+								href="https://twitter.com/intent/tweet?url=stories-for-reddit.vercel.app&text=Discover%20and%20read%20exciting%20new%20short%20stories%20made%20by%20Reddit's%20many%20passionate%20writing%20focused%20communties."
+							>
+								Share on Twitter
+							</StyleLink>
+						</Text>
+					</VStack>
 				</Box>
 				<Box maxW="lg" my={12} alignItems="center" d="flex">
 					<Image
