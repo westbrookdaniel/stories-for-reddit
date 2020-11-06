@@ -75,6 +75,9 @@ Framework and Framer motion as an animation library. Backend is handled by Fireb
 | react-router-dom              | History based routing which also handles 404s and dynamic routes                                                                  |
 | React.lazy and React.Suspense | Being used to lazy load routes and Suspense shows a spinner while it is loading                                                   |
 | AnimatePresence               | A part of framer motion that enables fade out animations                                                                          |
+| Social Links                  | Social links can be found in the footer                                                                                           |
+
+---
 
 ## Development Outline
 
