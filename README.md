@@ -100,6 +100,8 @@ Finishing Up
 - [x] M - Mobile nav (Top Drawer)
 - [x] E - Finalising Content
 - [ ] E - General polish and optimisations
+- [ ] E - Fix title
 
 - [ ] E - 404 page
 - [ ] E - Error Boundary
+- [ ] M - Handle dynamic page errors with 404 page

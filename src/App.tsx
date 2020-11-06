@@ -4,6 +4,7 @@ import { Switch, Route, useLocation } from 'react-router-dom'
 import { Box, Spinner } from '@chakra-ui/core'
 import { AnimatePresence, motion } from 'framer-motion'
 import { Susp } from './components/util/Susp'
+import NotFound from './NotFound'
 
 const Header = lazy(() => import('./components/layout/Header'))
 const Footer = lazy(() => import('./components/layout/Footer'))
@@ -73,6 +74,7 @@ const App = () => {
 										component={ForgotPassword}
 									/>
 									<Route exact path="/update" component={Update} />
+									<Route component={NotFound} />
 								</Switch>
 							</Susp>
 						</MotionBox>
