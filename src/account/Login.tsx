@@ -92,36 +92,40 @@ export default function Login() {
 					>
 						Login
 					</Heading>
-					<VStack my={8} spacing={4} align="start">
-						<FormControl id="email">
-							<FormLabel>Email address</FormLabel>
-							<Input
-								value={formValues['email']}
-								name="email"
-								onChange={handleChange}
-								type="email"
-								w="100%"
-							/>
-							<FormHelperText>We'll never share your email.</FormHelperText>
-						</FormControl>
-						<FormControl id="password">
-							<FormLabel>Password</FormLabel>
-							<Input
-								value={formValues['password']}
-								name="password"
-								onChange={handleChange}
-								type="password"
-								w="100%"
-							/>
-						</FormControl>
-						<DefaultButton
-							isLoading={loading}
-							onClick={handleSubmit}
-							type="submit"
-						>
-							Login
-						</DefaultButton>
-					</VStack>
+					<form>
+						<VStack my={8} spacing={4} align="start">
+							<FormControl id="email">
+								<FormLabel>Email address</FormLabel>
+								<Input
+									value={formValues['email']}
+									name="email"
+									onChange={handleChange}
+									type="email"
+									w="100%"
+									autoComplete="username"
+								/>
+								<FormHelperText>We'll never share your email.</FormHelperText>
+							</FormControl>
+							<FormControl id="password">
+								<FormLabel>Password</FormLabel>
+								<Input
+									value={formValues['password']}
+									name="password"
+									onChange={handleChange}
+									type="password"
+									w="100%"
+									autoComplete="current-password"
+								/>
+							</FormControl>
+							<DefaultButton
+								isLoading={loading}
+								onClick={handleSubmit}
+								type="submit"
+							>
+								Login
+							</DefaultButton>
+						</VStack>
+					</form>
 					<VStack spacing={4} align="start">
 						<Link to="/forgotpassword" as={RouterLink}>
 							Forgot Password?

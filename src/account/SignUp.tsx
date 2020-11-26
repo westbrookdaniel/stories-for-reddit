@@ -92,52 +92,57 @@ export default function SignUp() {
 					>
 						Sign Up
 					</Heading>
-					<VStack my={8} spacing={4} align="start">
-						<FormControl id="email">
-							<FormLabel>Email address</FormLabel>
-							<Input
-								value={formValues['email']}
-								name="email"
-								onChange={handleChange}
-								type="email"
-								w="100%"
-							/>
-							<FormHelperText>We'll never share your email.</FormHelperText>
-						</FormControl>
-						<FormControl id="password">
-							<FormLabel>Password</FormLabel>
-							<Input
-								value={formValues['password']}
-								name="password"
-								onChange={handleChange}
-								type="password"
-								w="100%"
-							/>
-						</FormControl>
-						<FormControl id="confirm-password">
-							<FormLabel>Confirm Password</FormLabel>
-							<Input
-								value={formValues['confirm-password']}
-								name="confirm-password"
-								onChange={handleChange}
-								type="password"
-								w="100%"
-							/>
-						</FormControl>
-						<DefaultButton
-							isLoading={loading}
-							onClick={handleSubmit}
-							type="submit"
-						>
-							Create
-						</DefaultButton>
-						{error && (
-							<Alert status="error" borderRadius="md">
-								<AlertIcon />
-								{error}
-							</Alert>
-						)}
-					</VStack>
+					<form>
+						<VStack my={8} spacing={4} align="start">
+							<FormControl id="email">
+								<FormLabel>Email address</FormLabel>
+								<Input
+									value={formValues['email']}
+									name="email"
+									onChange={handleChange}
+									type="email"
+									w="100%"
+									autoComplete="username"
+								/>
+								<FormHelperText>We'll never share your email.</FormHelperText>
+							</FormControl>
+							<FormControl id="password">
+								<FormLabel>Password</FormLabel>
+								<Input
+									value={formValues['password']}
+									name="password"
+									onChange={handleChange}
+									type="password"
+									w="100%"
+									autoComplete="password"
+								/>
+							</FormControl>
+							<FormControl id="confirm-password">
+								<FormLabel>Confirm Password</FormLabel>
+								<Input
+									value={formValues['confirm-password']}
+									name="confirm-password"
+									onChange={handleChange}
+									type="password"
+									w="100%"
+									autoComplete="password"
+								/>
+							</FormControl>
+							<DefaultButton
+								isLoading={loading}
+								onClick={handleSubmit}
+								type="submit"
+							>
+								Create
+							</DefaultButton>
+							{error && (
+								<Alert status="error" borderRadius="md">
+									<AlertIcon />
+									{error}
+								</Alert>
+							)}
+						</VStack>
+					</form>
 					<Link to="/login" as={RouterLink}>
 						Already have an account? Login
 					</Link>

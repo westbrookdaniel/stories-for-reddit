@@ -99,53 +99,58 @@ export default function Update() {
 					<Heading as="h1" fontSize="4em" mb={6} lineHeight="1.1em">
 						Update
 					</Heading>
-					<VStack my={8} spacing={4} align="start">
-						<FormControl id="email">
-							<FormLabel>New Email address</FormLabel>
-							<Input
-								value={formValues['email']}
-								name="email"
-								onChange={handleChange}
-								type="email"
-								w="100%"
-							/>
-						</FormControl>
-						<FormControl id="password">
-							<FormLabel>New Password</FormLabel>
-							<Input
-								value={formValues['password']}
-								name="password"
-								onChange={handleChange}
-								type="password"
-								w="100%"
-								placeholder="Leave blank to keep the same"
-							/>
-						</FormControl>
-						<FormControl id="confirm-password">
-							<FormLabel>Confirm Password</FormLabel>
-							<Input
-								value={formValues['confirm-password']}
-								name="confirm-password"
-								onChange={handleChange}
-								type="password"
-								w="100%"
-								placeholder="Leave blank to keep the same"
-							/>
-						</FormControl>
-						<DefaultButton
-							isLoading={loading}
-							onClick={handleSubmit}
-							type="submit"
-						>
-							Update
-						</DefaultButton>
-						{error && (
-							<Alert status="error" borderRadius="md">
-								<AlertIcon />
-								{error}
-							</Alert>
-						)}
-					</VStack>
+					<form>
+						<VStack my={8} spacing={4} align="start">
+							<FormControl id="email">
+								<FormLabel>New Email address</FormLabel>
+								<Input
+									value={formValues['email']}
+									name="email"
+									onChange={handleChange}
+									type="email"
+									w="100%"
+									autoComplete="new-username"
+								/>
+							</FormControl>
+							<FormControl id="password">
+								<FormLabel>New Password</FormLabel>
+								<Input
+									value={formValues['password']}
+									name="password"
+									onChange={handleChange}
+									type="password"
+									w="100%"
+									placeholder="Leave blank to keep the same"
+									autoComplete="new-password"
+								/>
+							</FormControl>
+							<FormControl id="confirm-password">
+								<FormLabel>Confirm Password</FormLabel>
+								<Input
+									value={formValues['confirm-password']}
+									name="confirm-password"
+									onChange={handleChange}
+									type="password"
+									w="100%"
+									placeholder="Leave blank to keep the same"
+									autoComplete="new-password"
+								/>
+							</FormControl>
+							<DefaultButton
+								isLoading={loading}
+								onClick={handleSubmit}
+								type="submit"
+							>
+								Update
+							</DefaultButton>
+							{error && (
+								<Alert status="error" borderRadius="md">
+									<AlertIcon />
+									{error}
+								</Alert>
+							)}
+						</VStack>
+					</form>
 					<Link to="/profile" as={RouterLink}>
 						Cancel Updating Details
 					</Link>
