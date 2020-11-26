@@ -108,7 +108,7 @@ const Nav: FunctionComponent<Props> = ({
 							<Avatar name={currentUser?.email && currentUser.email} />
 						</NavLink>
 					) : (
-						<NavLink as={RouterLink} to="/login">
+						<NavLink as={RouterLink} to="/login" _hover={{ textDecoration: 'none' }}>
 							<DefaultButton>Login</DefaultButton>
 						</NavLink>
 					)}
