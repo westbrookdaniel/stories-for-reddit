@@ -8,6 +8,7 @@ import {
 	Badge,
 	useTheme,
 	HStack,
+	Link as StyleLink,
 } from '@chakra-ui/core'
 import { MdMoreHoriz, MdKeyboardArrowRight } from 'react-icons/md'
 import { Link } from 'react-router-dom'
@@ -25,9 +26,9 @@ const Card = ({ title, badge = 'unknown', link, postData }: Props) => {
 	const { colorMode } = useColorMode()
 	const theme = useTheme()
 
-	return (
+	return link ? (
 		<AspectRatio
-			ratio={9/4}
+			ratio={9 / 4}
 			minH="130px"
 			maxW="100%"
 			w="300px"
@@ -39,18 +40,23 @@ const Card = ({ title, badge = 'unknown', link, postData }: Props) => {
 			}}
 			transition="ease-in-out 0.1s all"
 		>
-			<Box display="flex" className="important-visible" flexDirection="column" p={5}>
-				<Text
-					fontSize="lg"
-					mt="1"
-					fontWeight="semibold"
-					as="h4"
-					lineHeight="1.4em"
-					flexGrow={1}
-					alignSelf="flex-start"
-				>
-					{title}
-				</Text>
+			<Box
+				display="flex"
+				className="important-visible"
+				flexDirection="column"
+				p={5}
+			>
+				<StyleLink flexGrow={1} _hover={{ textDecoration: 'none' }} _focus={{ outline: 'none' }} alignSelf="flex-start" as={Link} to={link}>
+					<Text
+						fontSize="lg"
+						mt="1"
+						fontWeight="semibold"
+						as="h4"
+						lineHeight="1.4em"
+					>
+						{title}
+					</Text>
+				</StyleLink>
 				<Box w="100%">
 					<Box
 						d="flex"
@@ -59,30 +65,28 @@ const Card = ({ title, badge = 'unknown', link, postData }: Props) => {
 						alignItems="center"
 					>
 						<MoreDetailsPopover postData={postData} />
-						{link ? (
-							<HStack alignItems="center">
-								<Badge borderRadius="full" px="2" colorScheme="primary">
-									{badge}
-								</Badge>
-								<Link to={link}>
-									<Button variant="ghost" p={1} size="sm">
-										<MdKeyboardArrowRight
-											size={25}
-											color={
-												colorMode === 'dark'
-													? theme.colors.primary[100]
-													: theme.colors.primary[500]
-											}
-										/>
-									</Button>
-								</Link>
-							</HStack>
-						) : null}
+						<HStack alignItems="center">
+							<Badge borderRadius="full" px="2" colorScheme="primary">
+								{badge}
+							</Badge>
+							<Link to={link}>
+								<Button variant="ghost" p={1} size="sm">
+									<MdKeyboardArrowRight
+										size={25}
+										color={
+											colorMode === 'dark'
+												? theme.colors.primary[100]
+												: theme.colors.primary[500]
+										}
+									/>
+								</Button>
+							</Link>
+						</HStack>
 					</Box>
 				</Box>
 			</Box>
 		</AspectRatio>
-	)
+	) : null
 }
 
 export default Card
