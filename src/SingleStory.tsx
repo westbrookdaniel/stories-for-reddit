@@ -141,6 +141,7 @@ export default function SingleStory(props: Props): ReactElement {
 											]}
 											right="0"
 											maxW={['2xl', '2xl', '2xl', '2xl', 'md']}
+											width="100%"
 											px={[10, 10, 10, 10, 0]}
 											className="story-details"
 											ref={stickyEl}
