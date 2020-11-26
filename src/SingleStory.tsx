@@ -20,27 +20,27 @@ export default function SingleStory(props: Props): ReactElement {
 	const [postData, setPostData] = useState<any>(null)
 	const [pageTitle, setPageTitle] = useState('Loading')
 	const history = useHistory()
-	
+
 	useEffect(() => {
 		getPostData()
-		window.addEventListener('scroll', handleScroll)
+		// window.addEventListener('scroll', handleScroll)
 	}, [])
 
 	const getPostData = async () => {
 		try {
 			const data = await reddit.getStoryById(props.match.params.id)
-			setPostData(data)				
+			setPostData(data)
 		} catch (error) {
 			history.replace('/404')
 		}
 	}
 
-	const handleScroll = () => {
-		stickyEl.current
-			? (stickyEl.current.style.top = `${window.scrollY + 50}px`)
-			: null
-	}
-	
+	// const handleScroll = () => {
+	// 	stickyEl.current
+	// 		? (stickyEl.current.style.top = `${window.scrollY + 50}px`)
+	// 		: null
+	// }
+
 	useEffect(() => {
 		if (typeof postData?.title === 'string') {
 			setPageTitle(`${postData.title.substring(0, 20)}...`)
@@ -101,35 +101,53 @@ export default function SingleStory(props: Props): ReactElement {
 									}}
 								></MotionBox>
 								<Box
-									position="relative"
-									w={['inherit', 'inherit', 'inherit', 'inherit', '600px']}
+									position={[
+										'relative',
+										'relative',
+										'relative',
+										'relative',
+										'fixed',
+									]}
+									display="flex"
+									justifyContent="center"
+									left={0}
+									right={0}
+									w={['inherit', 'inherit', 'inherit', 'inherit', '100%']}
 								>
-									<MotionBox
-										initial={{
-											opacity: 0,
-										}}
-										animate={{
-											opacity: 1,
-											transition: { duration: 0.5, ease: 'easeOut' },
-										}}
-										exit={{
-											opacity: 0,
-											transition: { duration: 1 },
-										}}
-										position={[
-											'relative',
-											'relative',
-											'relative',
-											'relative',
-											'absolute',
-										]}
-										px={[10, 10, 10, 10, 0]}
-										top={50}
-										className="story-details"
-										ref={stickyEl}
+									<Box
+										position="relative"
+										maxW="6xl"
+										width="100%"
+										top={[0, 0, 0, 0, 50]}
 									>
-										<StoryDetails postData={postData} />
-									</MotionBox>
+										<MotionBox
+											initial={{
+												opacity: 0,
+											}}
+											animate={{
+												opacity: 1,
+												transition: { duration: 0.5, ease: 'easeOut' },
+											}}
+											exit={{
+												opacity: 0,
+												transition: { duration: 1 },
+											}}
+											position={[
+												'relative',
+												'relative',
+												'relative',
+												'relative',
+												'absolute',
+											]}
+											right="0"
+											maxW={['2xl', '2xl', '2xl', '2xl', 'md']}
+											px={[10, 10, 10, 10, 0]}
+											className="story-details"
+											ref={stickyEl}
+										>
+											<StoryDetails postData={postData} />
+										</MotionBox>
+									</Box>
 								</Box>
 							</Stack>
 						) : (
