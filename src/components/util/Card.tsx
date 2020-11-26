@@ -26,7 +26,7 @@ const Card = ({ title, badge = 'unknown', link, postData }: Props) => {
 	const { colorMode } = useColorMode()
 	const theme = useTheme()
 
-	return link ? (
+	return (
 		<AspectRatio
 			ratio={9 / 4}
 			minH="130px"
@@ -46,47 +46,58 @@ const Card = ({ title, badge = 'unknown', link, postData }: Props) => {
 				flexDirection="column"
 				p={5}
 			>
-				<StyleLink flexGrow={1} _hover={{ textDecoration: 'none' }} _focus={{ outline: 'none' }} alignSelf="flex-start" as={Link} to={link}>
-					<Text
-						fontSize="lg"
-						mt="1"
-						fontWeight="semibold"
-						as="h4"
-						lineHeight="1.4em"
-					>
-						{title}
-					</Text>
-				</StyleLink>
-				<Box w="100%">
-					<Box
-						d="flex"
-						w="100%"
-						justifyContent="space-between"
-						alignItems="center"
-					>
-						<MoreDetailsPopover postData={postData} />
-						<HStack alignItems="center">
-							<Badge borderRadius="full" px="2" colorScheme="primary">
-								{badge}
-							</Badge>
-							<Link to={link}>
-								<Button variant="ghost" p={1} size="sm">
-									<MdKeyboardArrowRight
-										size={25}
-										color={
-											colorMode === 'dark'
-												? theme.colors.primary[100]
-												: theme.colors.primary[500]
-										}
-									/>
-								</Button>
-							</Link>
-						</HStack>
-					</Box>
-				</Box>
+				{link ? (
+					<>
+						<StyleLink
+							flexGrow={1}
+							_hover={{ textDecoration: 'none' }}
+							_focus={{ outline: 'none' }}
+							alignSelf="flex-start"
+							as={Link}
+							to={link}
+						>
+							<Text
+								fontSize="lg"
+								mt="1"
+								fontWeight="semibold"
+								as="h4"
+								lineHeight="1.4em"
+							>
+								{title}
+							</Text>
+						</StyleLink>
+						<Box w="100%">
+							<Box
+								d="flex"
+								w="100%"
+								justifyContent="space-between"
+								alignItems="center"
+							>
+								<MoreDetailsPopover postData={postData} />
+								<HStack alignItems="center">
+									<Badge borderRadius="full" px="2" colorScheme="primary">
+										{badge}
+									</Badge>
+									<Link to={link}>
+										<Button variant="ghost" p={1} size="sm">
+											<MdKeyboardArrowRight
+												size={25}
+												color={
+													colorMode === 'dark'
+														? theme.colors.primary[100]
+														: theme.colors.primary[500]
+												}
+											/>
+										</Button>
+									</Link>
+								</HStack>
+							</Box>
+						</Box>
+					</>
+				) : null}
 			</Box>
 		</AspectRatio>
-	) : null
+	)
 }
 
 export default Card
